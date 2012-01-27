@@ -1,4 +1,4 @@
 
 public class Client {
-	test...
+	int x = 5;
 }
