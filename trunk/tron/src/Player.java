@@ -1,5 +1,16 @@
 import java.awt.Color;
-
+/**
+ * 
+ * @author Tobias Hallberg
+ * 
+ * Class creates and handles the player-objects.
+ * 
+ * Course translation table:
+ * 1 = "north/up"
+ * 2 = "east/right"
+ * 3 = "south/down"
+ * 4 = "west/left"
+ */
 public class Player {
 
 	private Color color;
