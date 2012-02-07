@@ -1,15 +1,9 @@
 import java.awt.*;
 /**
  * 
- * @author Tobias Hallberg
+ * @author Tobias Hallberg, Carl-Johan Adolfsson
  * 
- * Class creates and handles the player-objects.
- * 
- * Course translation table:
- * 1 = "north/up"
- * 2 = "east/right"
- * 3 = "south/down"
- * 4 = "west/left"
+ * Class that creates and handles the player-objects.
  */
 public class Player {
 
@@ -63,26 +57,42 @@ public class Player {
 	{
 		this.alive = alive;
 	}
+
 	
-		//1 = upp 2 = höger
-		//3 = ner 4 = vänster
-		public void calcNewCord()
-		{
-				if(course == 1)
-				{
-					point.y = point.y - 1;
-				}
-				else if(course == 2)
-				{
-					point.x = point.x + 1;
-				}
-				else if(course == 3)
-				{
-					point.y = point.y + 1;
-				}
-				else if(course == 4)
-				{
-					point.x = point.x - 1;
-				}
-		}
+	/**
+	 * Course translation table:
+	 * 1 = "north/up"
+	 * 2 = "east/right"
+	 * 3 = "south/down"
+	 * 4 = "west/left"
+	 */
+	public void move()
+	{
+		switch(course){
+			case 1: point.y = point.y - 1;
+					break;
+			case 2: point.x = point.x + 1;
+					break;
+			case 3: point.y = point.y + 1;
+					break;
+			case 4: point.x = point.x - 1;
+					break;
+		}	/*Old code
+			if(course == 1)
+			{
+				point.y = point.y - 1;
+			}
+			else if(course == 2)
+			{
+				point.x = point.x + 1;
+			}
+			else if(course == 3)
+			{
+				point.y = point.y + 1;
+			}
+			else if(course == 4)
+			{
+				point.x = point.x - 1;
+			}*/
+	}
 }
