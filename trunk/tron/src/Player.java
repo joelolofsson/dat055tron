@@ -5,7 +5,8 @@ import java.awt.*;
  * 
  * Class that creates and handles the player-objects.
  */
-public class Player {
+public class Player
+{
 
 	private Color color;
 	private int course;
@@ -14,42 +15,51 @@ public class Player {
 	private int score = 0;
 	private boolean alive = true;
 	
-	public Player(Color color, String name, int course, Point point){
+	public Player(Color color, String name, int course, Point point)
+	{
 		this.color = color;
 		this.name = name;
 		this.course = course;
 		this.point = point;
 	}
 	
-	public Color getColor() {
+	public Color getColor()
+	{
 		return color;
 	}
 	
-	public int getCourse() {
+	public int getCourse()
+	{
 		return course;
 	}
 	
-	public Point getPoint() {
+	public Point getPoint()
+	{
 		return point;
 	}
 	
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 	
-	public int getScore() {
+	public int getScore()
+	{
 		return score;
 	}
 	
-	public void setCourse(int course) {
+	public void setCourse(int course)
+	{
 		this.course = course;
 	}
 	
-	public void setScore(int score) {
+	public void setScore(int score)
+	{
 		this.score = score;
 	}
 	
-	public boolean isAlive() {
+	public boolean isAlive()
+	{
 		return alive;
 	}
 	
@@ -68,7 +78,8 @@ public class Player {
 	 */
 	public void move()
 	{
-		switch(course){
+		switch(course)
+		{
 			case 1: point.y = point.y - 1;
 					break;
 			case 2: point.x = point.x + 1;
@@ -77,7 +88,9 @@ public class Player {
 					break;
 			case 4: point.x = point.x - 1;
 					break;
-		}	/*Old code
+		}	
+		
+			/*Old code
 			if(course == 1)
 			{
 				point.y = point.y - 1;
