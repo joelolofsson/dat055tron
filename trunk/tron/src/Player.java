@@ -1,4 +1,4 @@
-import java.awt.Color;
+import java.awt.*;
 /**
  * 
  * @author Tobias Hallberg
@@ -15,18 +15,16 @@ public class Player {
 
 	private Color color;
 	private int course;
-	private int posX;
-	private int posY;
+	private Point point;
 	private String name;
 	private int score = 0;
 	private boolean alive = true;
 	
-	public Player(Color color, String name, int course, int posX, int posY){
+	public Player(Color color, String name, int course, Point point){
 		this.color = color;
 		this.name = name;
 		this.course = course;
-		this.posX = posX;
-		this.posY = posY;
+		this.point = point;
 	}
 	
 	public Color getColor() {
@@ -37,12 +35,8 @@ public class Player {
 		return course;
 	}
 	
-	public int getPosX() {
-		return posX;
-	}
-	
-	public int getPosY() {
-		return posY;
+	public Point getPoint() {
+		return point;
 	}
 	
 	public String getName() {
@@ -57,14 +51,6 @@ public class Player {
 		this.course = course;
 	}
 	
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
-	
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}
-	
 	public void setScore(int score) {
 		this.score = score;
 	}
@@ -72,4 +58,31 @@ public class Player {
 	public boolean isAlive() {
 		return alive;
 	}
+	
+	public void setAlive(boolean alive)
+	{
+		this.alive = alive;
+	}
+	
+		//1 = upp 2 = höger
+		//3 = ner 4 = vänster
+		public void calcNewCord()
+		{
+				if(course == 1)
+				{
+					point.y = point.y - 1;
+				}
+				else if(course == 2)
+				{
+					point.x = point.x + 1;
+				}
+				else if(course == 3)
+				{
+					point.y = point.y + 1;
+				}
+				else if(course == 4)
+				{
+					point.x = point.x - 1;
+				}
+		}
 }
