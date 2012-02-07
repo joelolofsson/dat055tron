@@ -3,7 +3,12 @@ import java.util.*;
 import java.awt.event.*;
 import javax.swing.Timer;
 
-
+/**
+ * 
+ * @author Carl-Johan Adolfsson, Tobias Hallberg
+ * 
+ * The main class that handles the game server.
+ */
 public class GameEngine implements ActionListener {
 	
 	LinkedHashSet<Point> cords;
@@ -15,6 +20,8 @@ public class GameEngine implements ActionListener {
 		playerList = new LinkedList<Player>();
 		cords = new LinkedHashSet<Point>();
 		timer = new Timer(100, this);
+		
+		//Creates a border that surrounds the game plan.
 		for(int i = 0; i < 399; i ++)
 		{
 			cords.add(new Point(0, i));
@@ -55,17 +62,12 @@ public class GameEngine implements ActionListener {
 	{
 	}
 	
-	public void addCord(Point p)
-	{
-		cords.add(p);
-	}
-	
 	public void actionPerformed(ActionEvent e)
 	{
 		for(Player p : playerList)
 		{
 			p.setCourse(1);
-			p.calcNewCord();
+			p.move();
 			if(checkCrash(p.getPoint()))
 			{
 				addCord(p.getPoint());
@@ -77,10 +79,14 @@ public class GameEngine implements ActionListener {
 		}
 	}
 	
+	public void addCord(Point p)
+	{
+		cords.add(p);
+	}
+	
 	public boolean checkCrash(Point p)
 	{
-		Point temp;
-		temp = new Point(p.x, p.y);
+		Point temp = new Point(p.x, p.y);
 		for(Point pos : cords)
 		{
 			if(pos.equals(temp))
