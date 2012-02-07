@@ -15,6 +15,22 @@ public class GameEngine implements ActionListener {
 		playerList = new LinkedList<Player>();
 		cords = new LinkedHashSet<Point>();
 		timer = new Timer(100, this);
+		for(int i = 0; i < 399; i ++)
+		{
+			cords.add(new Point(0, i));
+		}
+		for(int i = 0; i < 399; i ++)
+		{
+			cords.add(new Point(i, 400));
+		}
+		for(int i = 0; i < 399; i ++)
+		{
+			cords.add(new Point(400, i));
+		}
+		for(int i = 0; i < 399; i ++)
+		{
+			cords.add(new Point(i, 0));
+		}
 	}
 
 	public static void main(String[] args)
@@ -22,38 +38,9 @@ public class GameEngine implements ActionListener {
 		GameEngine gameEngine = new GameEngine();
 	}
 	
-	public void createPlayer(Color color, String name, int pos, int xpos, int ypos)
+	public void createPlayer(Color color, String name, int pos, Point point)
 	{
-		playerList.add(new Player(color, name, pos, xpos, ypos));
-	}
-	
-	//1 = upp 2 = höger
-	//3 = ner 4 = vänster
-	public void calcNewCord()
-	{
-		int tempX;
-		int tempY;
-		for(Player p : playerList)
-		{
-			tempX = p.getPosX();
-			tempY = p.getPosY();
-			if(p.getCourse() == 1)
-			{
-				p.setPosY(tempY - 1);
-			}
-			else if(p.getCourse() == 2)
-			{
-				p.setPosX(tempX + 1);
-			}
-			else if(p.getCourse() == 3)
-			{
-				p.setPosY(tempY + 1);
-			}
-			else if(p.getCourse() == 4)
-			{
-				p.setPosX(tempX - 1);
-			}
-		}
+		playerList.add(new Player(color, name, pos, point));
 	}
 	
 	public void sendPlayerToNet()
@@ -68,13 +55,40 @@ public class GameEngine implements ActionListener {
 	{
 	}
 	
-	public boolean crash()
+	public void addCord(Point p)
 	{
-		return true;
+		cords.add(p);
 	}
 	
 	public void actionPerformed(ActionEvent e)
 	{
+		for(Player p : playerList)
+		{
+			p.setCourse(1);
+			p.calcNewCord();
+			if(checkCrash(p.getPoint()))
+			{
+				addCord(p.getPoint());
+			}
+			else
+			{
+				p.setAlive(false);
+			}
+		}
+	}
+	
+	public boolean checkCrash(Point p)
+	{
+		Point temp;
+		temp = new Point(p.x, p.y);
+		for(Point pos : cords)
+		{
+			if(pos.equals(temp))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 }
