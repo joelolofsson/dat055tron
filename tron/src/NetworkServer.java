@@ -102,6 +102,12 @@ public class NetworkServer extends Observable  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			out.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 		
 		
