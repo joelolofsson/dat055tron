@@ -10,4 +10,13 @@ public class CourseID {
 		
 	}
 	
+	public int getID()
+	{
+		return id;
+	}
+	
+	public int getCourse()
+	{
+		return course;
+	}
 }
