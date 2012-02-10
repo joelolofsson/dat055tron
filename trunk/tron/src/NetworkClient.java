@@ -19,7 +19,7 @@ public class NetworkClient extends Observable implements Observer
 	{
 		try
 		{
-			client = new Socket("",27015);
+			client = new Socket(IP,port);
 			in = new DataInputStream(client.getInputStream());
 			out = new DataOutputStream(client.getOutputStream());
 			
