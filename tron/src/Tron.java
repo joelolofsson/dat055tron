@@ -32,7 +32,8 @@ public class Tron extends JFrame implements ActionListener{
 	private JDialog aboutDialogWindow;
 	public JoinWindow a;
 	public CreateGameWindow b;
-
+	public static GameEngine gameEngine;
+	
 	public Tron() {
 
 		//Set layout of main window
@@ -111,8 +112,7 @@ public class Tron extends JFrame implements ActionListener{
 		Object knappTryck = e.getSource();
 		if(knappTryck  instanceof JMenuItem ){
 			if(knappTryck == newGame)
-				center.init();
-				//b = new CreateGameWindow();
+				b = new CreateGameWindow();
 			if(knappTryck == joinGame)
 				a = new JoinWindow();
 			if(knappTryck == exit)
