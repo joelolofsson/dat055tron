@@ -1,13 +1,18 @@
 import java.io.*;
 import java.net.*;
+import java.util.*;
 
 
-public class NetworkServer {
+public class NetworkServer extends Observable  {
 
+	
+	
 	ServerSocket serversocket;
 	Socket klientSock;
-	DataInputStream in;
+	ObjectInputStream in;
 	DataOutputStream out;
+	
+	int course; 
 	
 	public NetworkServer()
 	{
@@ -23,9 +28,9 @@ public class NetworkServer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+			
 		try {
-			in = new DataInputStream(klientSock.getInputStream());
+			in = new ObjectInputStream(klientSock.getInputStream());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,10 +39,15 @@ public class NetworkServer {
 		try {
 			out = new DataOutputStream(klientSock.getOutputStream());
 		} catch (IOException e) {
+
+		}
+		
+		try {
+			
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 		
 		
