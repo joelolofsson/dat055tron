@@ -1,12 +1,13 @@
 import java.awt.*;
 /**
  * 
- * @author Tobias Hallberg, Carl-Johan Adolfsson
+ * @author Tobias Hallberg, Carl Johan Adolfsson
  * 
  * Class that creates and handles the player-objects.
  */
 public class Player
 {
+
 	private int id;
 	private int course;
 	private Point point;
@@ -22,9 +23,9 @@ public class Player
 		this.point = point;
 	}
 	
-	public Color getColor()
+	public int getId()
 	{
-		return color;
+		return id;
 	}
 	
 	public int getCourse()
@@ -88,23 +89,5 @@ public class Player
 			case 4: point.x = point.x - 1;
 					break;
 		}	
-		
-			/*Old code
-			if(course == 1)
-			{
-				point.y = point.y - 1;
-			}
-			else if(course == 2)
-			{
-				point.x = point.x + 1;
-			}
-			else if(course == 3)
-			{
-				point.y = point.y + 1;
-			}
-			else if(course == 4)
-			{
-				point.x = point.x - 1;
-			}*/
 	}
 }
