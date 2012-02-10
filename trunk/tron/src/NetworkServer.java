@@ -49,8 +49,18 @@ public class NetworkServer extends Observable  {
 		
 		while(true)
 		{
-		course = in.readInt();
-		idCourse = in.readInt();
+		try {
+			course = in.readInt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			idCourse = in.readInt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		setChanged();
 		notifyObservers(new CourseID(course, idCourse));
 		
