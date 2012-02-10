@@ -49,6 +49,7 @@ public class GameWindow extends JPanel implements ActionListener{
 
 	public void actionPerformed(ActionEvent e){
 		Point point = new Point();
+		requestFocus();
 		if(direction == UP){
 			point.y = pointOld.y - mcSize;
 			point.x = pointOld.x;
