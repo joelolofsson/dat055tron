@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.awt.*;
 
 
 public class NetworkServer extends Observable  {
@@ -9,10 +10,13 @@ public class NetworkServer extends Observable  {
 	
 	ServerSocket serversocket;
 	Socket klientSock;
-	ObjectInputStream in;
+	DataInputStream in;
 	DataOutputStream out;
-	
-	int course; 
+	Point point;
+	int id;
+	int course;
+	int x;
+	int y;
 	
 	public NetworkServer()
 	{
@@ -28,13 +32,6 @@ public class NetworkServer extends Observable  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			
-		try {
-			in = new ObjectInputStream(klientSock.getInputStream());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		try {
 			out = new DataOutputStream(klientSock.getOutputStream());
@@ -42,12 +39,34 @@ public class NetworkServer extends Observable  {
 
 		}
 		
-		try {
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		try{
+			in = new DataInputStream(klientSock.getInputStream());
 		}
+		catch(IOException e)
+		{
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	public void sendPoint(Point point, int id)
+	{
+		x = (int) point.getX();
+		y = (int) point.getY();
+		
+		out.writeInt(x);
+		out.writeInt(y);
+		out.writeInt(id);
+	}
 		
 		
 		
