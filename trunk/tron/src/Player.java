@@ -7,17 +7,16 @@ import java.awt.*;
  */
 public class Player
 {
-
-	private Color color;
+	private int id;
 	private int course;
 	private Point point;
 	private String name;
 	private int score = 0;
 	private boolean alive = true;
 	
-	public Player(Color color, String name, int course, Point point)
+	public Player(int id, String name, int course, Point point)
 	{
-		this.color = color;
+		this.id = id;
 		this.name = name;
 		this.course = course;
 		this.point = point;
