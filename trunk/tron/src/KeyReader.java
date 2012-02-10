@@ -1,7 +1,11 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
-
+/* Keyreader
+ * Reads the key input from arrow keys and updates observers
+ * @author Erik, Joel
+ * @ver 1.0
+ */
 
 public class KeyReader extends Observable implements KeyListener {
 	public static final int UP = 1;
