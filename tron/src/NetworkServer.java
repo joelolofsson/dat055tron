@@ -13,13 +13,13 @@ public class NetworkServer extends Observable  {
 	DataInputStream in;
 	DataOutputStream out;
 	Point point;
-	int id;
+	int idCourse;
 	int course;
-	int x;
-	int y;
 	
 	public NetworkServer()
 	{
+		
+		
 		try {
 			serversocket = new ServerSocket(27015);
 		} catch (IOException e) {
@@ -47,6 +47,14 @@ public class NetworkServer extends Observable  {
 			
 		}
 		
+		while(true)
+		{
+		course = in.readInt();
+		idCourse = in.readInt();
+		setChanged();
+		notifyObservers(new CourseID(course, idCourse));
+		
+		}
 		
 		
 		
@@ -60,19 +68,37 @@ public class NetworkServer extends Observable  {
 	
 	public void sendPoint(Point point, int id)
 	{
+		int x;
+		int y;
+		
 		x = (int) point.getX();
 		y = (int) point.getY();
 		
-		out.writeInt(x);
-		out.writeInt(y);
-		out.writeInt(id);
+		try {
+			out.writeInt(x);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			out.writeInt(y);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			out.writeInt(id);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 		
 		
 		
 		
-	}
-	
-	
-	
 }
+	
+	
+	
+
