@@ -52,11 +52,15 @@ public class GameEngine implements ActionListener, Observer {
 				}
 			}
 		}
+		else if(o instanceof NetworkServer && arg instanceof Integer)
+		{
+			createPlayer((Integer)arg, "calle", 1, new Point(20, 40));
+		}
 	}
 	
-	public void createPlayer(int id, String name, int pos, Point point)
+	public void createPlayer(int id, String name, int course, Point point)
 	{
-		playerList.add(new Player(id, name, pos, point));
+		playerList.add(new Player(id, name, course, point));
 	}
 	
 	public void sendPlayerToNet()
