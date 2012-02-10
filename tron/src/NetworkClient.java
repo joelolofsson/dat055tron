@@ -30,6 +30,7 @@ public class NetworkClient extends Observable implements Observer
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			System.out.print("Create Socket fel");
 		}
 	}
 	private void receiveColorPoint()
@@ -59,7 +60,8 @@ public class NetworkClient extends Observable implements Observer
 		}
 		catch(IOException e)
 		{
-			e.printStackTrace();		
+			e.printStackTrace();
+			System.out.print("Receive fel");
 		}
 	}
 	public void update(Observable o, Object arg)
@@ -73,6 +75,7 @@ public class NetworkClient extends Observable implements Observer
 			catch(IOException e)
 			{
 				e.printStackTrace();
+				System.out.print("Update fel");
 			}
 			
 		}
