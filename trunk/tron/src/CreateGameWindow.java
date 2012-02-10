@@ -18,6 +18,7 @@ public class CreateGameWindow extends JDialog implements ActionListener {
 	private int portInt;
 	private int winLimit;
 
+	
 	public CreateGameWindow(){
 		setTitle("Create new game");
 		setLayout(new GridLayout(3,2));
@@ -77,6 +78,7 @@ public class CreateGameWindow extends JDialog implements ActionListener {
 			}
 
 			if(isOK){
+				Tron.gameEngine = new GameEngine();
 				System.out.println("Game created on port " + portInt + " with win limit" + winLimit );
 				dispose();
 			}
