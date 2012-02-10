@@ -3,7 +3,11 @@ import java.net.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
+/*	public class JoinWindow
+ * 	@version 1.0
+ * 	@author Erik, Joel
+ * 
+ */
 public class JoinWindow extends JDialog implements ActionListener {
 	private JButton bConnect;
 	private JButton bCancel;
