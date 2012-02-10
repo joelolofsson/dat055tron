@@ -2,6 +2,12 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
+/*	public class CreateGameWindow
+ * 	@version 1.0
+ * 	@author Erik, Joel
+ * 
+ */
 public class CreateGameWindow extends JDialog implements ActionListener {
 	private JButton bCreate;
 	private JButton bCancel;
