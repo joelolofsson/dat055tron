@@ -3,9 +3,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+/*	public class Tron
+ * 	@version 1.0
+ * 	@author Erik, Joel
+ * 
+ */
+
 public class Tron extends JFrame implements ActionListener{
 	private JPanel west;
-	private JPanel center;
+	private GameWindow center;
 	private JPanel south;
 	private JLabel p1;
 	private JLabel p2;
@@ -28,20 +34,20 @@ public class Tron extends JFrame implements ActionListener{
 	public CreateGameWindow b;
 
 	public Tron() {
-		
+
 		//Set layout of main window
 		setLayout(new BorderLayout());
 		west = new JPanel();
-		center = new JPanel();
+		center = new GameWindow();
 		south = new JPanel();
-		
+
 		//Set labels
 		p1 = new JLabel("Player 1");
 		p2 = new JLabel("Player 2");
 		p3 = new JLabel("Player 3");
 		p4 = new JLabel("Player 4");
 		connected = new JLabel("Connected to server: ");
-		
+
 		//Create menu bar, buttons and items
 		start = new JButton("Start");
 		paus = new JButton("Paus");
@@ -53,9 +59,8 @@ public class Tron extends JFrame implements ActionListener{
 		exit = new JMenuItem("Exit");
 		about = new JMenuItem("About");
 		howToPlay = new JMenuItem("How to play");
-		
+
 		//Add menu to the border layout and correct place in the menu bar
-		add(menu, BorderLayout.NORTH);
 		menu.add(game);
 		menu.add(help);
 		game.add(newGame);
@@ -63,14 +68,14 @@ public class Tron extends JFrame implements ActionListener{
 		game.add(exit);
 		help.add(about);
 		help.add(howToPlay);
-		
+
 		//Initiate action listener for the buttons.
 		newGame.addActionListener(this);
 		joinGame.addActionListener(this);
 		exit.addActionListener(this);
 		about.addActionListener(this);
 		howToPlay.addActionListener(this);
-		
+
 		//Set layout for the west panel for start/paus button and player list.
 		west.setPreferredSize(new Dimension(80,400));
 		west.setLayout(new BoxLayout(west,BoxLayout.Y_AXIS));
@@ -82,18 +87,22 @@ public class Tron extends JFrame implements ActionListener{
 
 		//Set layout of the center panel (gaming window)
 		center.setPreferredSize(new Dimension(400,400));
-		center.setBackground(Color.BLACK);
+		center.setBackground(Color.black);
 		south.add(connected);
-		
+
 		//Add panels to the border layout and initiate visibility, size and exit operation of main window
-		add(center, BorderLayout.CENTER);
 		add(west, BorderLayout.WEST);
 		add(south, BorderLayout.SOUTH);
+		add(menu, BorderLayout.NORTH);
+		add(center, BorderLayout.CENTER);
 		setTitle("Tron");
 		setResizable(false);
+		pack();
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		pack();
+		center.requestFocus();
+
+
 
 
 	}
@@ -102,7 +111,8 @@ public class Tron extends JFrame implements ActionListener{
 		Object knappTryck = e.getSource();
 		if(knappTryck  instanceof JMenuItem ){
 			if(knappTryck == newGame)
-				b = new CreateGameWindow();
+				center.init();
+				//b = new CreateGameWindow();
 			if(knappTryck == joinGame)
 				a = new JoinWindow();
 			if(knappTryck == exit)
