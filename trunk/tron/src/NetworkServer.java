@@ -19,7 +19,7 @@ public class NetworkServer extends Observable  {
 	
 	public NetworkServer()
 	{
-		
+		System.out.println("Nu har vi skapat servern");
 		
 		try {
 			serversocket = new ServerSocket(27015);
