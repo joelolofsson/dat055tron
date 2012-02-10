@@ -15,6 +15,7 @@ public class NetworkServer extends Observable  {
 	Point point;
 	int idCourse;
 	int course=0;
+	int i =1;
 	
 	public NetworkServer()
 	{
@@ -29,6 +30,8 @@ public class NetworkServer extends Observable  {
 		
 		try {
 			klientSock = serversocket.accept();
+			setChanged();
+			notifyObservers(i);
 			System.out.println("Någon har anslutit sig!");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
