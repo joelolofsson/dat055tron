@@ -24,7 +24,7 @@ public class NetworkServer extends Observable implements Runnable {
 		try
 		{
 			System.out.println("Nu har vi skapat servern");
-			serversocket = new ServerSocket(27015);
+			serversocket = new ServerSocket(1337);
 			System.out.println("Vi har skapat socket");
 			thread = new Thread(this);
 		}
@@ -36,13 +36,16 @@ public class NetworkServer extends Observable implements Runnable {
 	
 	public void run()
 	{
+		int i = 0;
 		while(temp)
 		{
 		try
 		{
 			klientSock = serversocket.accept();
 			System.out.println(klientSock.getInetAddress().getHostName() + " har anslutit sig");
+			ServerGui.players[i].setText("Player " + (i+1) + ": " + klientSock.getInetAddress().getHostAddress());
 			new ServerClientHandler(klientSock);
+			i++;
 		}
 		catch (IOException e)
 		{

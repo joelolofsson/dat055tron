@@ -26,5 +26,12 @@ public class ServerClientHandler implements Runnable {
 	}
 	public void run()
 	{
-	}
+		while(true)
+		{
+		try {
+			System.out.println(streamIn.readByte());
+		} catch (IOException e) {
+		}
+		}
+		}
 }
