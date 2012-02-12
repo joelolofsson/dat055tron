@@ -79,8 +79,8 @@ public class CreateGameWindow extends JDialog implements ActionListener {
 
 			if(isOK){
 				dispose();
-				Tron.gameEngine = new GameEngine();
-				Tron.gameEngine.thread.start();
+				//Tron.gameEngine = new GameEngine();
+				//Tron.gameEngine.thread.start();
 				System.out.println("Game created on port " + portInt + " with win limit" + winLimit );
 				
 			}
