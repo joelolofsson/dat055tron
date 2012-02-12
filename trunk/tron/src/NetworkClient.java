@@ -2,9 +2,12 @@ import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.*;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.JLabel;
 
 
 
@@ -24,11 +27,11 @@ public class NetworkClient extends Observable implements Observer
 			client = new Socket(IP,port); // Skapa socket
 			in = new DataInputStream(client.getInputStream()); // Skapa inström
 			out = new DataOutputStream(client.getOutputStream()); // Skapa utström
+			Tron.setConnected(IP.getHostAddress());
 			
 			keyReader = new KeyReader(); // Skapa en tangentbordsläsare
 			keyReader.addObserver(this); // Lägg till att man observerar
-			Tron.setConnected(IP.getHostAddress());
-			receiveColorPoint();
+			//receiveColorPoint();
 		}
 		catch(Exception e)
 		{
