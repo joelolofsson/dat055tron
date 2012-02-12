@@ -30,7 +30,6 @@ public class Tron extends JFrame implements ActionListener{
 	private JMenuItem howToPlay;
 	public JoinWindow a;
 	public CreateGameWindow b;
-	public static GameEngine gameEngine;
 	public NetworkClient networkClient;
 	
 	public Tron() {
