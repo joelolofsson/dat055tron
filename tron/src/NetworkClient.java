@@ -21,12 +21,12 @@ public class NetworkClient extends Observable implements Observer
 		try
 		{
 			
-			client = new Socket(IP,port);
-			in = new DataInputStream(client.getInputStream());
-			out = new DataOutputStream(client.getOutputStream());
+			client = new Socket(IP,port); // Skapa socket
+			in = new DataInputStream(client.getInputStream()); // Skapa inström
+			out = new DataOutputStream(client.getOutputStream()); // Skapa utström
 			
-			keyReader = new KeyReader();
-			keyReader.addObserver(this);
+			keyReader = new KeyReader(); // Skapa en tangentbordsläsare
+			keyReader.addObserver(this); // Lägg till att man observerar
 			receiveColorPoint();
 		}
 		catch(Exception e)
@@ -41,7 +41,7 @@ public class NetworkClient extends Observable implements Observer
 		{
 			while(true)
 			{
-				int x = in.readInt();
+				int x = in.readInt();  //Läs in från inströmmen
 				int y = in.readInt();
 				int tempColor = in.readInt();
 				if(tempColor == 1)
@@ -56,7 +56,7 @@ public class NetworkClient extends Observable implements Observer
 				{
 					color = Color.green;
 				}
-				setChanged();
+				setChanged(); // Säga till observen att de är klart
 				notifyObservers(new ColorPoint(x,y,color));
 			}
 		}
@@ -68,11 +68,11 @@ public class NetworkClient extends Observable implements Observer
 	}
 	public void update(Observable o, Object arg)
 	{
-		if(o instanceof KeyReader && arg instanceof Integer)
+		if(o instanceof KeyReader && arg instanceof Integer) // Kolla så koordinaterna vi får in är från Keyreader och typen är int
 		{
 			try
 			{
-				out.write((Integer)arg);
+				out.write((Integer)arg); 
 			}
 			catch(IOException e)
 			{
