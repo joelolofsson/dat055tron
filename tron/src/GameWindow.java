@@ -31,6 +31,7 @@ public class GameWindow extends JPanel implements ActionListener{
 	public void init(){
 		pointOld = new ColorPoint(30,200,Color.BLUE);
 		pointList.clear();
+		key = new KeyReader();
 		addKeyListener(key);
 		direction = RIGHT;
 		timer.start();

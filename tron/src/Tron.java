@@ -102,7 +102,7 @@ public class Tron extends JFrame implements ActionListener{
 	
 	public static void setConnected(String IP)
 	{
-		connected.setText("Connected to server: " + IP);
+		connected.setText("Connected to server: "+ IP);
 	}
 
 	public void actionPerformed(ActionEvent e){
