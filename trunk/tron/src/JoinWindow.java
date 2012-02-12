@@ -88,8 +88,5 @@ public class JoinWindow extends JDialog implements ActionListener {
 			dispose();
 		}
 
-
-
-
 	}
 }
