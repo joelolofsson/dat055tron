@@ -27,6 +27,7 @@ public class NetworkClient extends Observable implements Observer
 			
 			keyReader = new KeyReader(); // Skapa en tangentbordsläsare
 			keyReader.addObserver(this); // Lägg till att man observerar
+			Tron.setConnected(IP.getHostAddress());
 			receiveColorPoint();
 		}
 		catch(Exception e)

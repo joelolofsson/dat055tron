@@ -17,7 +17,7 @@ public class Tron extends JFrame implements ActionListener{
 	private JLabel p2;
 	private JLabel p3;
 	private JLabel p4;
-	private JLabel connected;
+	private static JLabel connected;
 	private JButton start;
 	private JButton paus;
 	private JMenuBar menu;
@@ -28,8 +28,6 @@ public class Tron extends JFrame implements ActionListener{
 	private JMenu help;
 	private JMenuItem about;
 	private JMenuItem howToPlay;
-	public JoinWindow a;
-	public CreateGameWindow b;
 	public NetworkClient networkClient;
 	
 	public Tron() {
@@ -45,7 +43,7 @@ public class Tron extends JFrame implements ActionListener{
 		p2 = new JLabel("Player 2");
 		p3 = new JLabel("Player 3");
 		p4 = new JLabel("Player 4");
-		connected = new JLabel("Connected to server: ");
+		connected = new JLabel("Connected to server: n/a");
 
 		//Create menu bar, buttons and items
 		start = new JButton("Start");
@@ -100,19 +98,22 @@ public class Tron extends JFrame implements ActionListener{
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		center.requestFocus();
-
-
-
-
+	}
+	
+	public static void setConnected(String IP)
+	{
+		connected.setText("Connected to server: " + IP);
 	}
 
 	public void actionPerformed(ActionEvent e){
 		Object knappTryck = e.getSource();
 		if(knappTryck  instanceof JMenuItem ){
 			if(knappTryck == newGame)
-				//b = new CreateGameWindow();
+			{
+				//new CreateGameWindow();
+			}
 			if(knappTryck == joinGame)
-				a = new JoinWindow(networkClient);
+				new JoinWindow(networkClient);
 			if(knappTryck == exit)
 				System.exit(0);		
 			if(knappTryck == about)
