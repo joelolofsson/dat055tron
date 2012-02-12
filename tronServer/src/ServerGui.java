@@ -4,9 +4,12 @@ import java.awt.event.ActionListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 
 public class ServerGui extends JFrame implements ActionListener {
@@ -17,6 +20,7 @@ public class ServerGui extends JFrame implements ActionListener {
 	private NetworkServer networkServer;
 	private GameEngine gameEngine;
 	InetAddress IP;
+	public static JLabel[] players = new JLabel[4];
 	
 	public ServerGui()
 	{
@@ -25,16 +29,27 @@ public class ServerGui extends JFrame implements ActionListener {
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
+		JPanel meny = new JPanel();
 		connect = new JButton("Connect");
 		start = new JButton("Start");
 		networkServer = new NetworkServer();
 		ipAdress = new JLabel("Created new server on " + IP.getHostAddress());
-		setLayout(new FlowLayout());
+		meny.setLayout(new FlowLayout());
+		meny.add(connect);
+		meny.add(start);
+		meny.add(ipAdress);
+		add(meny);
+		JPanel player = new JPanel();
+		player.setLayout(new BoxLayout(player,BoxLayout.Y_AXIS));
+		for(int i = 0; i < players.length; i++)
+		{
+			players[i] = new JLabel("Player " + (i+1));
+			player.add(players[i]);
+		}
+		add(player);
+		setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
 		connect.addActionListener(this);
 		start.addActionListener(this);
-		add(connect);
-		add(start);
-		add(ipAdress);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		pack();
