@@ -28,14 +28,15 @@ public class Tron extends JFrame implements ActionListener{
 	private JMenu help;
 	private JMenuItem about;
 	private JMenuItem howToPlay;
-	public NetworkClient networkClient;
+	private NetworkClient networkClient;
+	private KeyReader key = new KeyReader();
 	
 	public Tron() {
 
 		//Set layout of main window
 		setLayout(new BorderLayout());
 		west = new JPanel();
-		center = new GameWindow();
+		center = new GameWindow(key);
 		south = new JPanel();
 
 		//Set labels
@@ -113,7 +114,7 @@ public class Tron extends JFrame implements ActionListener{
 				//new CreateGameWindow();
 			}
 			if(knappTryck == joinGame)
-				new JoinWindow(networkClient);
+				new JoinWindow(networkClient, key);
 			if(knappTryck == exit)
 				System.exit(0);		
 			if(knappTryck == about)

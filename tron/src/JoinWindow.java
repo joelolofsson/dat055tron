@@ -21,9 +21,11 @@ public class JoinWindow extends JDialog implements ActionListener {
 	private String nickNameString;
 	private InetAddress ipadress;
 	private NetworkClient networkClient;
+	private KeyReader key;
 
-	public JoinWindow(NetworkClient networkClient){
+	public JoinWindow(NetworkClient networkClient, KeyReader key){
 		setTitle("Join game");
+		this.key = key;
 		setLayout(new GridLayout(4,2));
 		this.networkClient = networkClient;
 
@@ -82,7 +84,7 @@ public class JoinWindow extends JDialog implements ActionListener {
 			if(isOK){
 				System.out.println(ipadress + " : " + portInt + " : " + nickNameString);
 				dispose();
-				networkClient = new NetworkClient(ipadress, portInt, nickNameString);
+				networkClient = new NetworkClient(ipadress, portInt, nickNameString, key);
 			}
 		}if(buttonPressed == bCancel){
 			dispose();
