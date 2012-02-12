@@ -31,6 +31,7 @@ public class Tron extends JFrame implements ActionListener{
 	public JoinWindow a;
 	public CreateGameWindow b;
 	public static GameEngine gameEngine;
+	public NetworkClient networkClient;
 	
 	public Tron() {
 
@@ -112,7 +113,7 @@ public class Tron extends JFrame implements ActionListener{
 			if(knappTryck == newGame)
 				b = new CreateGameWindow();
 			if(knappTryck == joinGame)
-				a = new JoinWindow();
+				a = new JoinWindow(networkClient);
 			if(knappTryck == exit)
 				System.exit(0);		
 			if(knappTryck == about)

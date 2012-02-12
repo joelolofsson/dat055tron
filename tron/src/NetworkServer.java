@@ -23,12 +23,14 @@ public class NetworkServer extends Observable  {
 		
 		try {
 			serversocket = new ServerSocket(27015);
+			System.out.println("Vi har skapat socket");
 		} catch (IOException e) {
 			System.out.println("IOException på new ServerSocket(27015");
 			e.printStackTrace();
 		}
 		
 		try {
+			System.out.println("Väntar på att någon ska ansluta sig");
 			klientSock = serversocket.accept();
 			setChanged();
 			notifyObservers(i);
@@ -68,6 +70,7 @@ public class NetworkServer extends Observable  {
 			e.printStackTrace();
 		}
 		}
+		System.out.println("Kommit ur while true");
 		idCourse = 1;
 		setChanged();
 		notifyObservers(new CourseID(course, idCourse));
