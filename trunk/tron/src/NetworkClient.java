@@ -19,7 +19,7 @@ public class NetworkClient extends Observable implements Observer
 	private DataOutputStream out;
 	private KeyReader keyReader;
 	private Color color;
-	public NetworkClient(InetAddress IP, int port, String nickname)
+	public NetworkClient(InetAddress IP, int port, String nickname, KeyReader key)
 	{
 		try
 		{
@@ -29,7 +29,7 @@ public class NetworkClient extends Observable implements Observer
 			out = new DataOutputStream(client.getOutputStream()); // Skapa utström
 			Tron.setConnected(IP.getHostAddress());
 			
-			keyReader = new KeyReader(); // Skapa en tangentbordsläsare
+			keyReader = key;
 			keyReader.addObserver(this); // Lägg till att man observerar
 			//receiveColorPoint();
 		}
