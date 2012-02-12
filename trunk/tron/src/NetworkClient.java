@@ -2,9 +2,10 @@ import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
+import java.net.*;
 import java.util.Observable;
 import java.util.Observer;
+
 
 
 public class NetworkClient extends Observable implements Observer
@@ -15,10 +16,11 @@ public class NetworkClient extends Observable implements Observer
 	private DataOutputStream out;
 	private KeyReader keyReader;
 	private Color color;
-	public NetworkClient(String IP, int port, String nickname)
+	public NetworkClient(InetAddress IP, int port, String nickname)
 	{
 		try
 		{
+			
 			client = new Socket(IP,port);
 			in = new DataInputStream(client.getInputStream());
 			out = new DataOutputStream(client.getOutputStream());

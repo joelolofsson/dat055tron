@@ -15,12 +15,13 @@ import javax.swing.Timer;
  * 
  * The main class that handles the game server.
  */
-public class GameEngine implements ActionListener, Observer {
+public class GameEngine implements ActionListener, Observer, Runnable {
 	
 	private LinkedHashSet<Point> cords;
 	private java.util.List<Player> playerList;
 	private Timer timer;
 	private NetworkServer networkServer;
+	public Thread thread = new Thread(this);
 	
 	/*
 	 * Skapar NetworkServer objekt
@@ -29,6 +30,12 @@ public class GameEngine implements ActionListener, Observer {
 	 * och en timer
 	 */
 	public GameEngine()
+	{
+		
+		
+	}
+	
+	public void run()
 	{
 		networkServer = new NetworkServer();
 		playerList = new LinkedList<Player>();

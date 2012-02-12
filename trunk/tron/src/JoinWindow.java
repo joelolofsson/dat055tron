@@ -20,10 +20,12 @@ public class JoinWindow extends JDialog implements ActionListener {
 	private int portInt;
 	private String nickNameString;
 	private InetAddress ipadress;
+	private NetworkClient networkClient;
 
-	public JoinWindow(){
+	public JoinWindow(NetworkClient networkClient){
 		setTitle("Join game");
 		setLayout(new GridLayout(4,2));
+		this.networkClient = networkClient;
 
 		//Create text fields
 		ipTextField = new JTextField(11);
@@ -80,6 +82,7 @@ public class JoinWindow extends JDialog implements ActionListener {
 			if(isOK){
 				System.out.println(ipadress + " : " + portInt + " : " + nickNameString);
 				dispose();
+				networkClient = new NetworkClient(ipadress, portInt, nickNameString);
 			}
 		}if(buttonPressed == bCancel){
 			dispose();
