@@ -110,7 +110,7 @@ public class Tron extends JFrame implements ActionListener{
 		Object knappTryck = e.getSource();
 		if(knappTryck  instanceof JMenuItem ){
 			if(knappTryck == newGame)
-				b = new CreateGameWindow();
+				//b = new CreateGameWindow();
 			if(knappTryck == joinGame)
 				a = new JoinWindow(networkClient);
 			if(knappTryck == exit)
