@@ -21,6 +21,7 @@ public class GameEngine implements ActionListener, Observer {
 	private java.util.List<Player> playerList;
 	private Timer timer;
 	private Player player;
+	private ServerClientSender serverClientSender;
 	
 	/*
 	 * Skapar NetworkServer objekt
@@ -52,8 +53,9 @@ public class GameEngine implements ActionListener, Observer {
 		player = new Player(id, name, course, point);
 	}
 	
-	public void addPlayer(ServerClientHandler serverClientHandler)
+	public void addPlayer(ServerClientHandler serverClientHandler, ServerClientSender serverClientSender)
 	{
+		this.serverClientSender = serverClientSender;
 		serverClientHandler.addObserver(this);
 		createPlayer(1, "calle", 1, new Point(20, 20));
 	}
@@ -78,6 +80,7 @@ public class GameEngine implements ActionListener, Observer {
 			{
 				System.out.println("och i if-satsen");
 				System.out.println(player.getPoint().getX());
+				serverClientSender.send(player.getPoint());
 				//addCord(p.getPoint());
 				//networkServer.sendPoint(p.getPoint(), p.getId());
 			}
