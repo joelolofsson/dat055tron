@@ -9,7 +9,7 @@ public class ServerClientHandler implements Runnable {
 	private Thread aktivitet;
 	Socket socket;
 	DataInputStream streamIn;
-	DataOutputStream streamUt;
+
 	
 	public ServerClientHandler(Socket s)
 	{
@@ -17,7 +17,7 @@ public class ServerClientHandler implements Runnable {
 		socket = s;
 		try {
 			streamIn = new DataInputStream(s.getInputStream());
-			streamUt = new DataOutputStream(s.getOutputStream());
+			
 			aktivitet.start();
 		} catch (IOException e) {
 			e.printStackTrace();
