@@ -46,7 +46,7 @@ public class NetworkServer extends Observable implements Runnable {
 			klientSock = serversocket.accept();
 			System.out.println(klientSock.getInetAddress().getHostName() + " har anslutit sig");
 			ServerGui.players[i].setText("Player " + (i+1) + ": " + klientSock.getInetAddress().getHostAddress());
-			gameEngine.addPlayer(new ServerClientHandler(klientSock));
+			gameEngine.addPlayer(new ServerClientHandler(klientSock), new ServerClientSender(klientSock));
 			i++;
 		}
 		catch (IOException e)
@@ -79,36 +79,7 @@ public class NetworkServer extends Observable implements Runnable {
 	
 	public void sendPoint(Point point, int id)
 	{
-		int x;
-		int y;
 		
-		x = (int) point.getX();
-		y = (int) point.getY();
-		
-		try {
-			out.writeInt(x);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			out.writeInt(y);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			out.writeInt(id);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			out.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 		
 		
