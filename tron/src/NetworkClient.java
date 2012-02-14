@@ -27,7 +27,8 @@ public class NetworkClient extends Observable implements Observer
 			client = new Socket(IP,port); // Skapa socket
 			in = new DataInputStream(client.getInputStream()); // Skapa inström
 			out = new DataOutputStream(client.getOutputStream()); // Skapa utström
-			Tron.setConnected(IP.getHostAddress());
+			
+				Tron.setConnected(IP.getHostAddress());
 			
 			keyReader = key;
 			keyReader.addObserver(this); // Lägg till att man observerar
@@ -86,4 +87,12 @@ public class NetworkClient extends Observable implements Observer
 			
 		}
 	}
+	
+	
+	
+
+	
+	
+	
+	
 }
