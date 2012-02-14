@@ -13,7 +13,7 @@ import javax.swing.Timer;
 
 
 
-public class NetworkClient extends Observable implements Observer, ActionListener
+public class NetworkClient extends Observable implements Observer
 {
 	private Socket client;
 	
@@ -21,7 +21,6 @@ public class NetworkClient extends Observable implements Observer, ActionListene
 	private DataOutputStream out;
 	private KeyReader keyReader;
 	private Color color;
-	private Timer timer;
 	public NetworkClient(InetAddress IP, int port, String nickname, KeyReader key)
 	{
 		try
@@ -35,8 +34,7 @@ public class NetworkClient extends Observable implements Observer, ActionListene
 			
 			keyReader = key;
 			keyReader.addObserver(this); // Lägg till att man observerar
-			timer = new Timer(10, this);
-			timer.start();
+			new NetworkClientReceiver(client);
 			//receiveColorPoint();
 		}
 		catch(Exception e)
@@ -46,19 +44,6 @@ public class NetworkClient extends Observable implements Observer, ActionListene
 		}
 	}
 	
-	public void actionPerformed(ActionEvent e)
-	{
-		int x;
-		int y;
-		try {
-			System.out.println("försöker ta emot");
-			x = in.readInt();
-			y = in.readInt();
-			System.out.println("har tagit emot x: " + x + "y: " + y);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-	}
 	private void receiveColorPoint()
 	{
 		try
