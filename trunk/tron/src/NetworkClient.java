@@ -82,6 +82,7 @@ public class NetworkClient extends Observable implements Observer, ActionListene
 				}
 				setChanged(); // Säga till observen att de är klart
 				notifyObservers(new ColorPoint(x,y,color));
+				System.out.println("Vi har fått in kordinater:" + x + " " + y);
 			}
 		}
 		catch(IOException e)

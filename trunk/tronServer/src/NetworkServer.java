@@ -79,8 +79,27 @@ public class NetworkServer extends Observable implements Runnable {
 	
 	public void sendPoint(Point point, int id)
 	{
+		int x;
+		int y;
+		
+		x = (int) point.getX();
+		y = (int) point.getY();
+		
+		try {
+			out.writeInt(x);
+			out.writeInt(y);
+			out.writeInt(id);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
-
+		try {
+			out.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 		
 		
