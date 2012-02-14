@@ -2,9 +2,10 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Observable;
 
 
-public class ServerClientHandler implements Runnable {
+public class ServerClientHandler extends Observable implements Runnable {
 
 	private Thread aktivitet;
 	Socket socket;
@@ -29,7 +30,8 @@ public class ServerClientHandler implements Runnable {
 		while(true)
 		{
 		try {
-			System.out.println(streamIn.readByte());
+			setChanged();
+			notifyObservers(streamIn.readByte());
 		} catch (IOException e) {
 		}
 		}

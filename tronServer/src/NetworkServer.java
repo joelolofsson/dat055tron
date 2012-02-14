@@ -18,6 +18,7 @@ public class NetworkServer extends Observable implements Runnable {
 	int i =1;
 	private boolean temp = true;
 	private Thread thread;
+	private GameEngine gameEngine;
 	
 	public NetworkServer()
 	{	
@@ -27,6 +28,7 @@ public class NetworkServer extends Observable implements Runnable {
 			serversocket = new ServerSocket(1337);
 			System.out.println("Vi har skapat socket");
 			thread = new Thread(this);
+			gameEngine = new GameEngine();
 		}
 		catch (IOException e)
 		{
@@ -44,7 +46,7 @@ public class NetworkServer extends Observable implements Runnable {
 			klientSock = serversocket.accept();
 			System.out.println(klientSock.getInetAddress().getHostName() + " har anslutit sig");
 			ServerGui.players[i].setText("Player " + (i+1) + ": " + klientSock.getInetAddress().getHostAddress());
-			new ServerClientHandler(klientSock);
+			gameEngine.addPlayer(new ServerClientHandler(klientSock));
 			i++;
 		}
 		catch (IOException e)

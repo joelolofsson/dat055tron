@@ -18,7 +18,6 @@ public class ServerGui extends JFrame implements ActionListener {
 	private JButton start;
 	private JLabel ipAdress;
 	private NetworkServer networkServer;
-	private GameEngine gameEngine;
 	InetAddress IP;
 	public static JLabel[] players = new JLabel[4];
 	

@@ -15,14 +15,11 @@ import javax.swing.Timer;
  * 
  * The main class that handles the game server.
  */
-public class GameEngine implements ActionListener, Observer, Runnable {
+public class GameEngine implements ActionListener, Observer {
 	
 	private LinkedHashSet<Point> cords;
 	private java.util.List<Player> playerList;
 	private Timer timer;
-	private NetworkServer networkServer;
-	public Thread thread = new Thread(this);
-	private ServerGui serverGui;
 	
 	/*
 	 * Skapar NetworkServer objekt
@@ -32,15 +29,9 @@ public class GameEngine implements ActionListener, Observer, Runnable {
 	 */
 	public GameEngine()
 	{
-	}
-	
-	public void run()
-	{
-		networkServer = new NetworkServer();
 		playerList = new LinkedList<Player>();
 		cords = new LinkedHashSet<Point>();
-		timer = new Timer(100, this);
-		networkServer.addObserver(this);
+		//timer = new Timer(100, this);
 	}
 	
 	/*
@@ -48,15 +39,9 @@ public class GameEngine implements ActionListener, Observer, Runnable {
 	 */
 	public void update(Observable o, Object arg)
 	{
-		if(o instanceof NetworkServer && arg instanceof CourseID)
+		if(o instanceof ServerClientHandler && arg instanceof Byte)
 		{
-			CourseID temp = (CourseID) arg;
-			for(Player p : playerList)
-			{
-				if(p.getId() == temp.getID())
-				{
-				}
-			}
+		System.out.println("har tagit emot knapptryck");
 		}
 		else if(o instanceof NetworkServer && arg instanceof Integer)
 		{
@@ -69,8 +54,9 @@ public class GameEngine implements ActionListener, Observer, Runnable {
 		playerList.add(new Player(id, name, course, point));
 	}
 	
-	public void sendPlayerToNet()
+	public void addPlayer(ServerClientHandler serverClientHandler)
 	{
+		serverClientHandler.addObserver(this);
 	}
 	
 	public void updateScore()
@@ -91,7 +77,7 @@ public class GameEngine implements ActionListener, Observer, Runnable {
 			if(checkCrash(p.getPoint()))
 			{
 				addCord(p.getPoint());
-				networkServer.sendPoint(p.getPoint(), p.getId());
+				//networkServer.sendPoint(p.getPoint(), p.getId());
 			}
 			else
 			{
