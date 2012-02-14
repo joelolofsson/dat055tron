@@ -82,9 +82,9 @@ public class Player
 		{
 			case 1: point.y = point.y - 1;
 					break;
-			case 2: point.x = point.x + 1;
+			case 2: point.x = point.y + 1;
 					break;
-			case 3: point.y = point.y + 1;
+			case 3: point.y = point.x + 1;
 					break;
 			case 4: point.x = point.x - 1;
 					break;
