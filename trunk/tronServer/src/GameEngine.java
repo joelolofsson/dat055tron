@@ -20,6 +20,7 @@ public class GameEngine implements ActionListener, Observer {
 	private LinkedHashSet<Point> cords;
 	private java.util.List<Player> playerList;
 	private Timer timer;
+	private Player player;
 	
 	/*
 	 * Skapar NetworkServer objekt
@@ -41,22 +42,20 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		if(o instanceof ServerClientHandler && arg instanceof Byte)
 		{
-		System.out.println("har tagit emot knapptryck");
-		}
-		else if(o instanceof NetworkServer && arg instanceof Integer)
-		{
-			createPlayer((Integer)arg, "calle", 1, new Point(20, 40));
+		System.out.println("har tagit emot knapptryck " + (Byte) arg);
+		player.setCourse((Byte)arg);
 		}
 	}
 	
 	public void createPlayer(int id, String name, int course, Point point)
 	{
-		playerList.add(new Player(id, name, course, point));
+		player = new Player(id, name, course, point);
 	}
 	
 	public void addPlayer(ServerClientHandler serverClientHandler)
 	{
 		serverClientHandler.addObserver(this);
+		createPlayer(1, "calle", 1, new Point(20, 20));
 	}
 	
 	public void updateScore()
