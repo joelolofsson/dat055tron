@@ -79,7 +79,8 @@ public class NetworkServer extends Observable implements Runnable {
 	
 	public void sendPoint(Point point, int id)
 	{
-		
+	
+
 	}
 		
 		

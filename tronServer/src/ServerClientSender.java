@@ -28,10 +28,11 @@ public class ServerClientSender extends Observable {
 		int x;
 		int y;
 		
-		x = (int) point.getX();
-		y = (int) point.getY();
+		x = point.x;
+		y = point.y;
 		
 		try {
+			System.out.println("Försöker sända!");
 			streamOut.writeInt(x);
 			streamOut.writeInt(y);
 			//streamOut.writeInt(id);
