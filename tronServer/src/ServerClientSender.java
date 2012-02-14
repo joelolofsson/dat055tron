@@ -38,7 +38,7 @@ public class ServerClientSender extends Observable {
 			//streamOut.writeInt(id);
 			streamOut.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("writeInt IOException");
 			e.printStackTrace();
 		}
 	}
