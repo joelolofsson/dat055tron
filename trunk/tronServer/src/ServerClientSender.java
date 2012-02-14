@@ -32,7 +32,7 @@ public class ServerClientSender extends Observable {
 		y = point.y;
 		
 		try {
-			System.out.println("Försöker sända!");
+			System.out.println("Försöker sända!" + x + " " + y);
 			streamOut.writeInt(x);
 			streamOut.writeInt(y);
 			//streamOut.writeInt(id);
