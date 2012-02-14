@@ -62,6 +62,7 @@ public class NetworkServer extends Observable implements Runnable {
 		try
 		{
 			new Socket(serversocket.getInetAddress(), serversocket.getLocalPort()).close();
+			gameEngine.start();
 		}
 		catch(IOException e)
 		{

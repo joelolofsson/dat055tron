@@ -32,7 +32,7 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		playerList = new LinkedList<Player>();
 		cords = new LinkedHashSet<Point>();
-		//timer = new Timer(100, this);
+		timer = new Timer(100, this);
 	}
 	
 	/*
@@ -70,19 +70,22 @@ public class GameEngine implements ActionListener, Observer {
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		for(Player p : playerList)
-		{
-			p.move();
-			if(checkCrash(p.getPoint()))
+		//for(Player p : playerList)
+		//{
+		System.out.println("går in i action");
+			player.move();
+			if(checkCrash(player.getPoint()))
 			{
-				addCord(p.getPoint());
+				System.out.println("och i if-satsen");
+				System.out.println(player.getPoint().getX());
+				//addCord(p.getPoint());
 				//networkServer.sendPoint(p.getPoint(), p.getId());
 			}
 			else
 			{
-				p.setAlive(false);
+				player.setAlive(false);
 			}
-		}
+		//}
 	}
 	
 	public void addCord(Point p)
@@ -103,6 +106,11 @@ public class GameEngine implements ActionListener, Observer {
 			}
 		}
 		return true;
+	}
+	
+	public void start()
+	{
+		timer.start();
 	}
 
 }
