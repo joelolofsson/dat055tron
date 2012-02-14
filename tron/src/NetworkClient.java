@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -7,11 +9,11 @@ import java.net.Socket;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JLabel;
+import javax.swing.Timer;
 
 
 
-public class NetworkClient extends Observable implements Observer
+public class NetworkClient extends Observable implements Observer, ActionListener
 {
 	private Socket client;
 	
@@ -19,6 +21,7 @@ public class NetworkClient extends Observable implements Observer
 	private DataOutputStream out;
 	private KeyReader keyReader;
 	private Color color;
+	private Timer timer;
 	public NetworkClient(InetAddress IP, int port, String nickname, KeyReader key)
 	{
 		try
@@ -32,12 +35,28 @@ public class NetworkClient extends Observable implements Observer
 			
 			keyReader = key;
 			keyReader.addObserver(this); // Lägg till att man observerar
+			timer = new Timer(10, this);
+			timer.start();
 			//receiveColorPoint();
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 			System.out.print("Create Socket fel");
+		}
+	}
+	
+	public void actionPerformed(ActionEvent e)
+	{
+		int x;
+		int y;
+		try {
+			System.out.println("försöker ta emot");
+			x = in.readInt();
+			y = in.readInt();
+			System.out.println("har tagit emot x: " + x + "y: " + y);
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 	}
 	private void receiveColorPoint()
