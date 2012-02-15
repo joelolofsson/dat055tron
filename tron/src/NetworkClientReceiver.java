@@ -39,9 +39,12 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 			{
 				System.out.println("försöker ta emot");
 				socket.receive(packet);
-				x = Integer.parseInt(new String(packet.getData(), 0, packet.getLength()));
-				socket.receive(packet);
-				y = Integer.parseInt(new String(packet.getData(), 0, packet.getLength()));
+				String tempstring = new String(packet.getData(), 0, packet.getLength());
+//				socket.receive(packet);
+//				y = Integer.parseInt(new String(packet.getData(), 0, packet.getLength()));
+				String[] tempstring2 = tempstring.split(",");
+				x = Integer.parseInt(tempstring2[0]);
+				y = Integer.parseInt(tempstring2[1]);
 				ColorPoint cPoint = new ColorPoint(x,y,Color.BLUE);
 				setChanged();
 				notifyObservers(cPoint);
