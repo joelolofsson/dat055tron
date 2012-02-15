@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -41,10 +42,16 @@ public class GameEngine implements ActionListener, Observer {
 	 */
 	public void update(Observable o, Object arg)
 	{
-		if(o instanceof ServerClientHandler && arg instanceof Byte)
+		int[] recived;
+		if(o instanceof ServerClientHandler)
+		{	
+		recived = (int[]) arg;
+		//JOptionPane.showMessageDialog(null, "" + recived[0] + " " + recived[1]);
+		if(player.getId() == recived[0])
 		{
-		System.out.println("har tagit emot knapptryck " + (Byte) arg);
-		player.setCourse((Byte)arg);
+		player.setCourse(recived[1]);
+		System.out.println("har satt id " + recived[0] + " med kurs " + recived[1]);
+		}
 		}
 	}
 	
@@ -57,7 +64,7 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		this.serverClientSenderUDP = serverClientSenderUDP;
 		serverClientHandler.addObserver(this);
-		createPlayer(1, "calle", 1, new Point(200, 200));
+		createPlayer(serverClientHandler.getID(), "calle", 1, new Point(200, 200));
 	}
 	
 	public void updateScore()
@@ -74,7 +81,7 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		//for(Player p : playerList)
 		//{
-		System.out.println("går in i action");
+		//System.out.println("går in i action");
 			player.move();
 			serverClientSenderUDP.send(player.getPoint());
 			if(checkCrash(player.getPoint()))

@@ -1,19 +1,22 @@
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Observable;
+
+import javax.swing.JOptionPane;
 
 
 public class ServerClientHandler extends Observable implements Runnable {
 
 	private Thread aktivitet;
-	Socket socket;
-	DataInputStream streamIn;
+	private Socket socket;
+	private DataInputStream streamIn;
+	private int id;
 
 	
-	public ServerClientHandler(Socket s)
+	public ServerClientHandler(Socket s, int id)
 	{
+		this.id = id;
 		aktivitet = new Thread(this);
 		socket = s;
 		try {
@@ -23,17 +26,27 @@ public class ServerClientHandler extends Observable implements Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("serverclient hanterare skapad med id " + id);
 		
 	}
 	public void run()
 	{
 		while(true)
 		{
-			try {
+			try
+			{
+				int[] send = {id, streamIn.readByte()};
 				setChanged();
-				notifyObservers(streamIn.readByte());
-			} catch (IOException e) {
+				notifyObservers(send);
+			}
+			catch (IOException e)
+			{
 			}
 		}
-		}
+	}
+	
+	public int getID()
+	{
+		return id;
+	}
 }

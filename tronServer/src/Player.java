@@ -21,6 +21,7 @@ public class Player
 		this.name = name;
 		this.course = course;
 		this.point = point;
+		System.out.println("En spelare skapar med id" + id);
 	}
 	
 	public int getId()
