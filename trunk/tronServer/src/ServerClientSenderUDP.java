@@ -36,8 +36,8 @@ public class ServerClientSenderUDP extends Observable {
 		
 		Integer x = point.x;
 		Integer y = point.y;
-		
-		byte[] data = x.toString().getBytes();
+		String stringtemp = x.toString() + "," + y.toString();
+		byte[] data = stringtemp.getBytes();
 		System.out.println(data.toString());
 		System.out.println(x.toString());
 		try {
@@ -49,16 +49,16 @@ public class ServerClientSenderUDP extends Observable {
 			//e.printStackTrace();
 		}
 		
-		data = y.toString().getBytes();
-		System.out.println(data.toString());
-		
-		try {
-			DatagramPacket packet = new DatagramPacket(data, data.length, toAddr, toPort);
-			System.out.println("Paket skapat");
-			socket.send(packet);
-		} catch (IOException e) {
-			System.out.println("Kan ej skicka datagram");
-			//e.printStackTrace();
-		}
+	//	data = y.toString().getBytes();
+	//	System.out.println(data.toString());
+	//	
+	//	try {
+	//		DatagramPacket packet = new DatagramPacket(data, data.length, toAddr, toPort);
+	//		System.out.println("Paket skapat");
+	//		socket.send(packet);
+	//	} catch (IOException e) {
+	//		System.out.println("Kan ej skicka datagram");
+	//		//e.printStackTrace();
+	//	}
 	}
 }
