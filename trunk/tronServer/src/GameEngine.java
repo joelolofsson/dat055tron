@@ -33,7 +33,7 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		playerList = new LinkedList<Player>();
 		cords = new LinkedHashSet<Point>();
-		timer = new Timer(100, this);
+		timer = new Timer(1000, this);
 	}
 	
 	/*
