@@ -25,14 +25,15 @@ public class NetworkClientReceiver implements Runnable {
 		int y;
 		while(true)
 		{
-		try {
+			try 
+			{
 			System.out.println("försöker ta emot");
 			x = dataInputStream.readInt();
 			y = dataInputStream.readInt();
 			System.out.println("har tagit emot x: " + x + "y: " + y);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 }
