@@ -29,19 +29,14 @@ public class ServerClientSender extends Observable {
 	
 	public void send(Point point)
 	{
-		int x1 = 0;
-		int y1 = 0;
-		
-		x1 = point.x;
-		y1 = point.y;
-		byte x = (byte) x1;
-		byte y = (byte) y1;
+		int x = point.x;
+		int y = point.y;
 		
 		try {
 			System.out.println("Försöker sända!" + x + " " + y);
-			streamOut.write(x);
+			streamOut.writeInt(x);
 			System.out.println("har sänt");
-			streamOut.write(y);
+			streamOut.writeInt(y);
 			//streamOut.writeInt(id);
 			//streamOut.flush();
 		} catch (IOException e) {
