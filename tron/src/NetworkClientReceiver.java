@@ -37,23 +37,8 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 		{
 			try 
 			{
-				Integer xx = 23;
-				String string = xx.toString();
-				byte[] data = string.getBytes();
-				String string2 = new String(data);
-				Integer xxx = Integer.parseInt(string2);
-				if(xx == xxx)
-					System.out.println("lika");
-				
-				
-				
-				
-				
-				
 				System.out.println("försöker ta emot");
 				socket.receive(packet);
-				String test = new String(packet.getData());
-				System.out.println(test);
 				x = Integer.parseInt(new String(packet.getData(), 0, packet.getLength()));
 				socket.receive(packet);
 				y = Integer.parseInt(new String(packet.getData(), 0, packet.getLength()));
