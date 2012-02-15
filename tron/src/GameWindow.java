@@ -1,19 +1,19 @@
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
-
-import javax.swing.*;
+import javax.swing.JPanel;
 
 /*	public class GameWindow
  * 	@version 1.0
  * 	@author Erik, Joel
  * 
  */
-public class GameWindow extends JPanel implements ActionListener, Observer{
+public class GameWindow extends JPanel implements Observer{
 	public int mcSize = 1;
 	private HashSet<ColorPoint> pointList;
 	private LinkedList<ColorPoint> tempList;
@@ -48,19 +48,13 @@ public class GameWindow extends JPanel implements ActionListener, Observer{
 
 
 
-	public void update(Observable o, Object arg){
-		{
-			if(o instanceof NetworkClientReceiver && arg instanceof ColorPoint){
+	public void update(Observable o, Object arg)
+	{
+			if(o instanceof NetworkClientReceiver && arg instanceof ColorPoint)
+			{
 				tempList.add((ColorPoint) arg);
 				repaint();
 			}
-		}
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-
 	}
 }
 
