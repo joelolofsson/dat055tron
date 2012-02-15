@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.Observable;
@@ -10,29 +12,51 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 	
 	private DataInputStream dataInputStream;
 	private Thread thread;
-
-	public NetworkClientReceiver(Socket socket)
+	private DatagramPacket packet;
+	private DatagramSocket socket;
+	public NetworkClientReceiver(DatagramSocket socket)
 	{
-		try {
-			dataInputStream = new DataInputStream(socket.getInputStream());
+		byte[] data = new byte[1024];
+		this.socket=socket;
+		//try {
+			packet = new DatagramPacket(data, data.length);
+			
+		//	dataInputStream = new DataInputStream(socket.getInputStream());
 			thread = new Thread(this);
 			thread.start();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	//	} catch (IOException e) {
+	//		e.printStackTrace();
+	//	}
 	}
 	
 	public void run()
 	{
-		int x;
-		int y;
+		Integer x;
+		Integer y;
 		while(true)
 		{
 			try 
 			{
+				Integer xx = 23;
+				String string = xx.toString();
+				byte[] data = string.getBytes();
+				String string2 = new String(data);
+				Integer xxx = Integer.parseInt(string2);
+				if(xx == xxx)
+					System.out.println("lika");
+				
+				
+				
+				
+				
+				
 				System.out.println("försöker ta emot");
-				x = dataInputStream.readInt();
-				y = dataInputStream.readInt();
+				socket.receive(packet);
+				String test = new String(packet.getData());
+				System.out.println(test);
+				x = Integer.parseInt(new String(packet.getData(), 0, packet.getLength()));
+				socket.receive(packet);
+				y = Integer.parseInt(new String(packet.getData(), 0, packet.getLength()));
 				ColorPoint cPoint = new ColorPoint(x,y,Color.BLUE);
 				setChanged();
 				notifyObservers(cPoint);

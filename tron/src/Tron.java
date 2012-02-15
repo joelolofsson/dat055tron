@@ -13,10 +13,7 @@ public class Tron extends JFrame implements ActionListener{
 	private JPanel west;
 	public static GameWindow center;
 	private JPanel south;
-	private JLabel p1;
-	private JLabel p2;
-	private JLabel p3;
-	private JLabel p4;
+	private JLabel[] playersLabel;
 	private static JLabel connected;
 	private JButton start;
 	private JButton paus;
@@ -40,10 +37,11 @@ public class Tron extends JFrame implements ActionListener{
 		south = new JPanel();
 
 		//Set labels
-		p1 = new JLabel("Player 1");
-		p2 = new JLabel("Player 2");
-		p3 = new JLabel("Player 3");
-		p4 = new JLabel("Player 4");
+		playersLabel = new JLabel[4];
+		for(int i = 0; i < playersLabel.length; i++){
+			playersLabel[i] = new JLabel("P" + (i+1) + " not connected");
+			west.add(playersLabel[i]);
+		}
 		connected = new JLabel("Connected to server: n/a");
 
 		//Create menu bar, buttons and items
@@ -75,9 +73,8 @@ public class Tron extends JFrame implements ActionListener{
 		howToPlay.addActionListener(this);
 
 		//Set layout for the west panel for start/paus button and player list.
-		west.setPreferredSize(new Dimension(80,400));
+		//west.setPreferredSize(new Dimension(80,400));
 		west.setLayout(new BoxLayout(west,BoxLayout.Y_AXIS));
-		west.add(p1); west.add(p2); west.add(p3); west.add(p4);
 		west.add(Box.createVerticalGlue());
 		west.add(Box.createRigidArea(new Dimension(15,0)));
 		west.add(start);

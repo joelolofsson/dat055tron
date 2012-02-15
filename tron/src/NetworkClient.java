@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Observable;
@@ -22,12 +23,15 @@ public class NetworkClient extends Observable implements Observer
 	private KeyReader keyReader;
 	private Color color;
 	private NetworkClientReceiver netWorkClientReceiver;
+	private DatagramSocket datagramSocket;
+	
 	public NetworkClient(InetAddress IP, int port, String nickname, KeyReader key)
 	{
 		try
 		{
 			
 			client = new Socket(IP,port); // Skapa socket
+			datagramSocket = new DatagramSocket((port+1));
 			in = new DataInputStream(client.getInputStream()); // Skapa inström
 			out = new DataOutputStream(client.getOutputStream()); // Skapa utström
 			out.writeChars(nickname);
@@ -36,7 +40,7 @@ public class NetworkClient extends Observable implements Observer
 			
 			keyReader = key;
 			keyReader.addObserver(this); // Lägg till att man observerar
-			netWorkClientReceiver = new NetworkClientReceiver(client);
+			netWorkClientReceiver = new NetworkClientReceiver(datagramSocket);
 			netWorkClientReceiver.addObserver(Tron.center);
 			
 			//receiveColorPoint();
