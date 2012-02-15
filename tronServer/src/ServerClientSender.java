@@ -37,6 +37,7 @@ public class ServerClientSender extends Observable {
 			streamOut.writeInt(x);
 			System.out.println("har sänt");
 			streamOut.writeInt(y);
+			streamOut.flush();
 			//streamOut.writeInt(id);
 			//streamOut.flush();
 		} catch (IOException e) {
