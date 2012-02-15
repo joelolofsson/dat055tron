@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Observable;
 
 
@@ -36,7 +37,9 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 				setChanged();
 				notifyObservers(cPoint);
 			System.out.println("har tagit emot x: " + x + "y: " + y);
-			
+			} catch (SocketException e2) {
+				System.out.println("Connection error!");
+				break;
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
