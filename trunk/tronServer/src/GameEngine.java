@@ -33,7 +33,7 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		playerList = new LinkedList<Player>();
 		cords = new LinkedHashSet<Point>();
-		timer = new Timer(1000, this);
+		timer = new Timer(30, this);
 	}
 	
 	/*
@@ -57,7 +57,7 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		this.serverClientSender = serverClientSender;
 		serverClientHandler.addObserver(this);
-		createPlayer(1, "calle", 1, new Point(20, 20));
+		createPlayer(1, "calle", 1, new Point(200, 200));
 	}
 	
 	public void updateScore()
