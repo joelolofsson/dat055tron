@@ -43,6 +43,8 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 //				socket.receive(packet);
 //				y = Integer.parseInt(new String(packet.getData(), 0, packet.getLength()));
 				String[] tempstring2 = tempstring.split(",");
+				System.out.println(tempstring2[0]);
+				System.out.println(tempstring2[1]);
 				x = Integer.parseInt(tempstring2[0]);
 				y = Integer.parseInt(tempstring2[1]);
 				ColorPoint cPoint = new ColorPoint(x,y,Color.BLUE);
