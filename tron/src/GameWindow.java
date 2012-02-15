@@ -15,7 +15,6 @@ import javax.swing.*;
 public class GameWindow extends JPanel implements ActionListener, Observer{
 	public int mcSize = 3;
 	private HashSet<ColorPoint> pointList;
-	private Timer timer = new Timer(10, this);
 	
 	
 	public GameWindow(KeyReader key){
@@ -26,7 +25,7 @@ public class GameWindow extends JPanel implements ActionListener, Observer{
 	
 	public void init(){
 		pointList.clear();
-		timer.start();
+		
 	}
 	
 
@@ -41,17 +40,18 @@ public class GameWindow extends JPanel implements ActionListener, Observer{
 
 	}
 
-	public void actionPerformed(ActionEvent e){
-		requestFocus();
-		repaint();
-
-	}
 	
 	public void update(Observable o, Object arg){
-		if(o instanceof NetworkClientReceiver && arg instanceof ColorPoint){
+			{
 			pointList.add((ColorPoint) arg);
 			repaint();
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
