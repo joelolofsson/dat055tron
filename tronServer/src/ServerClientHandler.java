@@ -29,11 +29,11 @@ public class ServerClientHandler extends Observable implements Runnable {
 	{
 		while(true)
 		{
-		try {
-			setChanged();
-			notifyObservers(streamIn.readByte());
-		} catch (IOException e) {
-		}
+			try {
+				setChanged();
+				notifyObservers(streamIn.readByte());
+			} catch (IOException e) {
+			}
 		}
 		}
 }

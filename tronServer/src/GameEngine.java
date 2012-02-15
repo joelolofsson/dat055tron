@@ -76,7 +76,8 @@ public class GameEngine implements ActionListener, Observer {
 		//{
 		System.out.println("går in i action");
 			player.move();
-			if(checkCrash(player.getPoint()))
+			serverClientSender.send(player.getPoint());
+			/*if(checkCrash(player.getPoint()))
 			{
 				System.out.println("och i if-satsen");
 				System.out.println(player.getPoint().getX());
@@ -87,7 +88,7 @@ public class GameEngine implements ActionListener, Observer {
 			else
 			{
 				player.setAlive(false);
-			}
+			}*/
 		//}
 	}
 	
