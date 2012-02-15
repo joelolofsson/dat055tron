@@ -24,7 +24,7 @@ public class ServerClientSenderUDP extends Observable {
 		
 		try {
 			socket = new DatagramSocket();
-			System.out.println("Socket skapad");
+			//System.out.println("Socket skapad");
 		} catch (SocketException e) {
 			System.out.println("Socket EJ skapad");
 			e.printStackTrace();
@@ -38,17 +38,30 @@ public class ServerClientSenderUDP extends Observable {
 		Integer y = point.y;
 		String stringtemp = x.toString() + "," + y.toString();
 		byte[] data = stringtemp.getBytes();
-		System.out.println(data.toString());
-		System.out.println(x.toString());
+		//System.out.println(data.toString());
+		//System.out.println(x.toString());
 		try {
 			DatagramPacket packet = new DatagramPacket(data, data.length, toAddr, toPort);
-			System.out.println("Paket skapat");
+			//System.out.println("Paket skapat");
 			socket.send(packet);
 		} catch (IOException e) {
 			System.out.println("Kan ej skicka datagram");
 			//e.printStackTrace();
 		}
+		data = y.toString().getBytes();
+		//System.out.println(data.toString());
 		
+		try
+		{
+			DatagramPacket packet = new DatagramPacket(data, data.length, toAddr, toPort);
+			//System.out.println("Paket skapat");
+			socket.send(packet);
+		}
+		catch (IOException e)
+		{
+			System.out.println("Kan ej skicka datagram");
+			//e.printStackTrace();
+		}
 	//	data = y.toString().getBytes();
 	//	System.out.println(data.toString());
 	//	
