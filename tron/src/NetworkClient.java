@@ -34,7 +34,6 @@ public class NetworkClient extends Observable implements Observer
 			datagramSocket = new DatagramSocket((port+1));
 			in = new DataInputStream(client.getInputStream()); // Skapa inström
 			out = new DataOutputStream(client.getOutputStream()); // Skapa utström
-			out.writeChars(nickname);
 			
 				Tron.setConnected(IP.getHostAddress());
 			
