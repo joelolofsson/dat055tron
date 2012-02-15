@@ -95,6 +95,7 @@ public class NetworkClient extends Observable implements Observer
 			{
 				e.printStackTrace();
 				System.out.print("Update fel");
+				Tron.setConnected("Connection error!");	
 			}
 			
 		}
