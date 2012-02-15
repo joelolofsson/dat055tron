@@ -51,6 +51,7 @@ public class Player
 	
 	public void setCourse(int course)
 	{
+		if(! (Math.abs(this.course-course) == 2))
 		this.course = course;
 	}
 	
