@@ -30,6 +30,7 @@ public class NetworkClient extends Observable implements Observer
 			client = new Socket(IP,port); // Skapa socket
 			in = new DataInputStream(client.getInputStream()); // Skapa inström
 			out = new DataOutputStream(client.getOutputStream()); // Skapa utström
+			out.writeChars(nickname);
 			
 				Tron.setConnected(IP.getHostAddress());
 			
