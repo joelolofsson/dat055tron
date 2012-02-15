@@ -49,32 +49,7 @@ public class ServerClientSenderUDP extends Observable {
 		catch (IOException e)
 		{
 			System.out.println("Kan ej skicka datagram");
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
-		//data = y.toString().getBytes();
-		//System.out.println(data.toString());
-		
-		//try
-		//{
-		//	DatagramPacket packet = new DatagramPacket(data, data.length, toAddr, toPort);
-			//System.out.println("Paket skapat");
-		//	socket.send(packet);
-		//}
-		//catch (IOException e)
-		//{
-		//	System.out.println("Kan ej skicka datagram");
-			//e.printStackTrace();
-		//}
-	//	data = y.toString().getBytes();
-	//	System.out.println(data.toString());
-	//	
-	//	try {
-	//		DatagramPacket packet = new DatagramPacket(data, data.length, toAddr, toPort);
-	//		System.out.println("Paket skapat");
-	//		socket.send(packet);
-	//	} catch (IOException e) {
-	//		System.out.println("Kan ej skicka datagram");
-	//		//e.printStackTrace();
-	//	}
 	}
 }
