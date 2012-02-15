@@ -25,6 +25,7 @@ public class JoinWindow extends JDialog implements ActionListener {
 
 	public JoinWindow(NetworkClient networkClient, KeyReader key){
 		setTitle("Join game");
+		setModal(true);
 		this.key = key;
 		setLayout(new GridLayout(4,2));
 		this.networkClient = networkClient;
