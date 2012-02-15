@@ -13,11 +13,15 @@ public class ServerClientSender extends Observable {
 	
 	public ServerClientSender(Socket s)
 	{
+		System.out.println("skapar vi en serverClientSender");
+		System.out.println(s.getLocalAddress().getHostAddress());
 		socket = s;
 		try {
-			streamOut = new DataOutputStream(s.getOutputStream());
+			streamOut = new DataOutputStream(socket.getOutputStream());
+			System.out.println("skapas ut strömmen");
 			
 		} catch (IOException e) {
+			System.out.println("funkade inte riktigt");
 			e.printStackTrace();
 		}
 		
@@ -25,20 +29,23 @@ public class ServerClientSender extends Observable {
 	
 	public void send(Point point)
 	{
-		int x;
-		int y;
+		int x1 = 0;
+		int y1 = 0;
 		
-		x = point.x;
-		y = point.y;
+		x1 = point.x;
+		y1 = point.y;
+		byte x = (byte) x1;
+		byte y = (byte) y1;
 		
 		try {
 			System.out.println("Försöker sända!" + x + " " + y);
-			streamOut.writeInt(x);
-			streamOut.writeInt(y);
+			streamOut.write(x);
+			System.out.println("har sänt");
+			streamOut.write(y);
 			//streamOut.writeInt(id);
-			streamOut.flush();
+			//streamOut.flush();
 		} catch (IOException e) {
-			System.out.println("writeInt IOException");
+			System.out.println("write IOException");
 			e.printStackTrace();
 		}
 	}

@@ -10,8 +10,6 @@ public class NetworkServer extends Observable implements Runnable {
 	
 	ServerSocket serversocket;
 	Socket klientSock;
-	DataInputStream in;
-	DataOutputStream out;
 	Point point;
 	int idCourse;
 	int course=0;
@@ -39,8 +37,8 @@ public class NetworkServer extends Observable implements Runnable {
 	public void run()
 	{
 		int i = 0;
-		while(temp)
-		{
+		//while(temp)
+		//{
 		try
 		{
 			klientSock = serversocket.accept();
@@ -53,20 +51,20 @@ public class NetworkServer extends Observable implements Runnable {
 		{
 			e.printStackTrace();
 		}
-		}
+		//}
 	}
 	
 	public void start()
 	{
 		temp = false;
-		try
-		{
-			new Socket(serversocket.getInetAddress(), serversocket.getLocalPort()).close();
+		//try
+		//{
+			//new Socket(serversocket.getInetAddress(), serversocket.getLocalPort()).close();
 			gameEngine.start();
-		}
-		catch(IOException e)
-		{
-		}
+		//}
+		//catch(IOException e)
+		//{
+		//}
 		System.out.println("försöker stoppa conent");
 		System.out.println(temp);
 	}
@@ -74,32 +72,6 @@ public class NetworkServer extends Observable implements Runnable {
 	public void connect()
 	{
 		thread.start();
-	}
-	
-	
-	public void sendPoint(Point point, int id)
-	{
-		int x;
-		int y;
-		
-		x = (int) point.getX();
-		y = (int) point.getY();
-		
-		try {
-			out.writeInt(x);
-			out.writeInt(y);
-			out.writeInt(id);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-		try {
-			out.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 		
 		
