@@ -77,18 +77,19 @@ public class GameEngine implements ActionListener, Observer {
 		System.out.println("går in i action");
 			player.move();
 			serverClientSender.send(player.getPoint());
-			/*if(checkCrash(player.getPoint()))
+			if(checkCrash(player.getPoint()))
 			{
 				System.out.println("och i if-satsen");
 				System.out.println(player.getPoint().getX());
 				serverClientSender.send(player.getPoint());
-				//addCord(p.getPoint());
+				addCord(player.getPoint());
 				//networkServer.sendPoint(p.getPoint(), p.getId());
 			}
 			else
 			{
 				player.setAlive(false);
-			}*/
+				//timer.stop();
+			}
 		//}
 	}
 	
