@@ -37,8 +37,8 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 				setChanged();
 				notifyObservers(cPoint);
 			System.out.println("har tagit emot x: " + x + "y: " + y);
-			} catch (SocketException e2) {
-				System.out.println("Connection error!");
+			} catch (SocketException e2) {						//Connection reset
+				Tron.setConnected("Connection error!");			//Set connection status in the game window
 				break;
 			} catch (IOException e1) {
 				e1.printStackTrace();
