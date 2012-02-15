@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  * 
  */
 public class GameWindow extends JPanel implements Observer{
-	public int mcSize = 1;
+	public int mcSize = 4;
 	private HashSet<ColorPoint> pointList;
 	private LinkedList<ColorPoint> tempList;
 
