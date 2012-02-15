@@ -19,10 +19,8 @@ public class ServerClientSenderUDP extends Observable {
 	{
 		
 		toAddr = s.getInetAddress();
-		
 		System.out.println(toAddr.getHostAddress());
-		
-		toPort = 1338;			//Integer.parseInt("1338");
+		toPort = 1338;
 		
 		try {
 			socket = new DatagramSocket();
