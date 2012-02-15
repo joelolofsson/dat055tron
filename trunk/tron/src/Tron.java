@@ -11,7 +11,7 @@ import javax.swing.*;
 
 public class Tron extends JFrame implements ActionListener{
 	private JPanel west;
-	private GameWindow center;
+	public static GameWindow center;
 	private JPanel south;
 	private JLabel p1;
 	private JLabel p2;

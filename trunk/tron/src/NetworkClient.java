@@ -21,6 +21,7 @@ public class NetworkClient extends Observable implements Observer
 	private DataOutputStream out;
 	private KeyReader keyReader;
 	private Color color;
+	private NetworkClientReceiver netWorkClientReceiver;
 	public NetworkClient(InetAddress IP, int port, String nickname, KeyReader key)
 	{
 		try
@@ -34,7 +35,9 @@ public class NetworkClient extends Observable implements Observer
 			
 			keyReader = key;
 			keyReader.addObserver(this); // Lägg till att man observerar
-			new NetworkClientReceiver(client);
+			netWorkClientReceiver = new NetworkClientReceiver(client);
+			netWorkClientReceiver.addObserver(Tron.center);
+			
 			//receiveColorPoint();
 		}
 		catch(Exception e)
