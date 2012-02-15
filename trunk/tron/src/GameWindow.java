@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashSet;
+import java.util.Observable;
+import java.util.Observer;
 
 
 import javax.swing.*;
@@ -10,7 +12,7 @@ import javax.swing.*;
  * 	@author Erik, Joel
  * 
  */
-public class GameWindow extends JPanel implements ActionListener{
+public class GameWindow extends JPanel implements ActionListener, Observer{
 	public int mcSize = 3;
 	private HashSet<ColorPoint> pointList;
 	private Timer timer = new Timer(10, this);
@@ -44,7 +46,13 @@ public class GameWindow extends JPanel implements ActionListener{
 		repaint();
 
 	}
-
+	
+	public void update(Observable o, Object arg){
+		if(o instanceof NetworkClientReceiver && arg instanceof ColorPoint){
+			pointList.add((ColorPoint) arg);
+			repaint();
+		}
+	}
 }
 
 
