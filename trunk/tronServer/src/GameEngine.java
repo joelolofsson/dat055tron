@@ -34,7 +34,7 @@ public class GameEngine implements ActionListener, Observer {
 		playerList = new LinkedList<Player>();
 		serverClientSenderUDPList = new LinkedList<ServerClientSenderUDP>();
 		cords = new LinkedHashSet<Point>();
-		timer = new Timer(1, this);
+		timer = new Timer(10, this);
 	}
 	
 	/*
