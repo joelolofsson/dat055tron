@@ -36,7 +36,7 @@ public class ServerClientSenderUDP extends Observable {
 		String tempS = "";
 		
 		for(Point p : pointList){
-			tempS = tempS + p.x + "," + p.y + ";";
+			tempS = tempS + p.x + "," + p.y + ",";
 		}
 		
 		byte[] data = tempS.getBytes();
