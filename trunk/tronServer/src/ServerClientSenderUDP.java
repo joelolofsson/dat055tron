@@ -3,9 +3,8 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.Socket;
 import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.util.LinkedList;
 import java.util.Observable;
 
 
@@ -15,10 +14,9 @@ public class ServerClientSenderUDP extends Observable {
 	private DatagramSocket socket;
 	private int toPort;
 	
-	public ServerClientSenderUDP(Socket s)
+	public ServerClientSenderUDP(InetAddress toAddr)
 	{
-		
-		toAddr = s.getInetAddress();
+		this.toAddr = toAddr;
 		System.out.println(toAddr.getHostAddress());
 		toPort = 1338;
 		
@@ -31,15 +29,17 @@ public class ServerClientSenderUDP extends Observable {
 		}
 	}
 	
-	public void send(Point point)
+	public void send(LinkedList<Point> pointList)
 	{
 		
-		int x = point.x;
-		int y = point.y;
-		String stringtemp = "" + x + "," + y;
-		byte[] data = stringtemp.getBytes();
-		//System.out.println(data.toString());
-		//System.out.println(x.toString());
+		//String stringtemp = "" + x + "," + y;
+		String tempS = "";
+		
+		for(Point p : pointList){
+			tempS = tempS + p.x + "," + p.y + ";";
+		}
+		
+		byte[] data = tempS.getBytes();
 		try
 		{
 			DatagramPacket packet = new DatagramPacket(data, data.length, toAddr, toPort);
