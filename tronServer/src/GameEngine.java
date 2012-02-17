@@ -47,8 +47,7 @@ public class GameEngine implements ActionListener, Observer {
 		{
 			recived = (int[]) arg;
 
-			System.out.println("Knapptryck från klien id:");
-			System.out.println(recived[0]);
+			System.out.println("Knapptryck från klient-id:" + recived[0]);
 			playerList.get(recived[0]).setCourse(recived[1]);
 			System.out.println("har satt id " + recived[0] + " med kurs " + recived[1]);
 		}
@@ -58,7 +57,6 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		this.serverClientSenderUDP = serverClientSenderUDP;
 		serverClientHandler.addObserver(this);
-
 		playerList.add(new Player(serverClientHandler.getID(), "calle", 1, new Point(200, 200)));
 	}
 	
@@ -74,7 +72,7 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		for(Player p : playerList)
 		{
-		System.out.println("går in i action");
+			System.out.println("går in i action");
 			p.move();
 			serverClientSenderUDP.send(p.getPoint());
 			if(checkCrash(p.getPoint()))
