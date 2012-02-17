@@ -21,7 +21,6 @@ public class GameEngine implements ActionListener, Observer {
 	private LinkedHashSet<Point> cords;
 	private java.util.List<Player> playerList;
 	private Timer timer;
-	private Player player;
 	private ServerClientSenderUDP serverClientSenderUDP;
 	
 	/*
@@ -75,25 +74,20 @@ public class GameEngine implements ActionListener, Observer {
 			System.out.println("går in i action");
 			p.move();
 			serverClientSenderUDP.send(p.getPoint());
-			if(checkCrash(p.getPoint()))
-			{
+			//if(checkCrash(p.getPoint()))
+			//{
 				System.out.println("Spelaren har inte krashat");
 				System.out.println(p.getPoint().getX());
 				serverClientSenderUDP.send(p.getPoint());
-				addCord(p.getPoint());
+				cords.add(p.getPoint());
 				//networkServer.sendPoint(p.getPoint(), p.getId());
-			}
-			else
-			{
-				p.setAlive(false);
+			//}
+			//else
+			//{
+			//	p.setAlive(false);
 				//timer.stop();
-			}
+			//}
 		}
-	}
-	
-	public void addCord(Point p)
-	{
-		cords.add(p);
 	}
 	
 	/*
