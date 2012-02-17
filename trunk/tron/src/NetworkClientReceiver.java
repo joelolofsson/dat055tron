@@ -47,8 +47,10 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 				System.out.println(tempstring2[1]);
 				x = Integer.parseInt(tempstring2[0]);
 				y = Integer.parseInt(tempstring2[1]);
-				for(int i = 0; i < tempstring2.length; i++)
+				for(int i = 0; i < (tempstring2.length); i = i + 2)
 				{
+					x = Integer.parseInt(tempstring2[i]);
+					y = Integer.parseInt(tempstring2[i + 1]);
 					if(i == 0)
 					{
 						setChanged();
