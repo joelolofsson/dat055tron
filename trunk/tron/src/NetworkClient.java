@@ -34,6 +34,9 @@ public class NetworkClient extends Observable implements Observer
 			datagramSocket = new DatagramSocket((port+1));
 			in = new DataInputStream(client.getInputStream()); // Skapa inström
 			out = new DataOutputStream(client.getOutputStream()); // Skapa utström
+
+			//out.writeChars(nickname);
+
 			
 				Tron.setConnected(IP.getHostAddress());
 			
@@ -85,10 +88,13 @@ public class NetworkClient extends Observable implements Observer
 	}
 	public void update(Observable o, Object arg)
 	{
+		
+		
 		if(o instanceof KeyReader && arg instanceof Integer) // Kolla så koordinaterna vi får in är från Keyreader och typen är int
 		{
 			try
 			{
+				
 				out.write((Integer)arg); 
 			}
 			catch(IOException e)
