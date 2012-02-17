@@ -75,7 +75,7 @@ public class Player
 	 * Course translation table:
 	 * 1 = "north/up"
 	 * 2 = "east/right"
-	 * 3 = "south/down"
+	 * 3 = "south/down"	
 	 * 4 = "west/left"
 	 */
 	public void move()
