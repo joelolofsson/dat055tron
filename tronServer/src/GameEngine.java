@@ -21,7 +21,7 @@ public class GameEngine implements ActionListener, Observer {
 	private LinkedHashSet<Point> cords;
 	private java.util.List<Player> playerList;
 	private Timer timer;
-	private ServerClientSenderUDP serverClientSenderUDP;
+	private LinkedList<ServerClientSenderUDP> serverClientSenderUDPList;
 	
 	/*
 	 * Skapar NetworkServer objekt
@@ -32,6 +32,7 @@ public class GameEngine implements ActionListener, Observer {
 	public GameEngine()
 	{
 		playerList = new LinkedList<Player>();
+		serverClientSenderUDPList = new LinkedList<ServerClientSenderUDP>();
 		cords = new LinkedHashSet<Point>();
 		timer = new Timer(1, this);
 	}
@@ -54,7 +55,7 @@ public class GameEngine implements ActionListener, Observer {
 	
 	public void addPlayer(ServerClientHandler serverClientHandler, ServerClientSenderUDP serverClientSenderUDP)
 	{
-		this.serverClientSenderUDP = serverClientSenderUDP;
+		serverClientSenderUDPList.add(serverClientSenderUDP);
 		serverClientHandler.addObserver(this);
 		playerList.add(new Player(serverClientHandler.getID(), "calle", 1, new Point(200, 200)));
 	}
@@ -69,17 +70,23 @@ public class GameEngine implements ActionListener, Observer {
 
 	public void actionPerformed(ActionEvent e)
 	{
+		
+		LinkedList<Point> temp = new LinkedList<Point>();
+		
 		for(Player p : playerList)
 		{
 			System.out.println("går in i action");
+			
+			
 			p.move();
-			serverClientSenderUDP.send(p.getPoint());
+			cords.add(p.getPoint());
+			temp.add(p.getPoint());
+			
+			
 			//if(checkCrash(p.getPoint()))
 			//{
-				System.out.println("Spelaren har inte krashat");
-				System.out.println(p.getPoint().getX());
-				serverClientSenderUDP.send(p.getPoint());
-				cords.add(p.getPoint());
+				//System.out.println("Spelaren har inte krashat");
+				
 				//networkServer.sendPoint(p.getPoint(), p.getId());
 			//}
 			//else
@@ -87,6 +94,12 @@ public class GameEngine implements ActionListener, Observer {
 			//	p.setAlive(false);
 				//timer.stop();
 			//}
+		}
+		
+		for(Player p : playerList)
+		{
+			
+			serverClientSenderUDPList.get(p.getId()).send(temp);
 		}
 	}
 	
