@@ -42,14 +42,35 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 				String tempstring = new String(packet.getData(), 0, packet.getLength());
 //				socket.receive(packet);
 //				y = Integer.parseInt(new String(packet.getData(), 0, packet.getLength()));
-				String[] tempstring2 = tempstring.split(";");
+				String[] tempstring2 = tempstring.split(",");
 				System.out.println(tempstring2[0]);
 				System.out.println(tempstring2[1]);
 				x = Integer.parseInt(tempstring2[0]);
 				y = Integer.parseInt(tempstring2[1]);
-				ColorPoint cPoint = new ColorPoint(x,y,Color.BLUE);
-				setChanged();
-				notifyObservers(cPoint);
+				for(int i = 0; i < tempstring2.length; i++)
+				{
+					if(i == 0)
+					{
+						setChanged();
+						notifyObservers(new ColorPoint(x,y,Color.CYAN));
+					}
+					else if(i == 1)
+					{
+						setChanged();
+						notifyObservers(new ColorPoint(x,y,Color.GREEN));
+					}
+					else if(i == 2)
+					{
+						setChanged();
+						notifyObservers(new ColorPoint(x,y,Color.RED));
+					}
+					else if(i == 3)
+					{
+						setChanged();
+						notifyObservers(new ColorPoint(x,y,Color.BLUE));
+					}
+				}
+				
 			System.out.println("har tagit emot x: " + x + "y: " + y);
 			} catch (SocketException e2) {						//Connection reset
 				Tron.setConnected("Connection error!");			//Set connection status in the game window
