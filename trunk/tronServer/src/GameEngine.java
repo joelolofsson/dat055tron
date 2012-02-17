@@ -108,6 +108,7 @@ public class GameEngine implements ActionListener, Observer {
 		{
 			if(pos.equals(p))// || p.x < 0 || p.x > 400 || p.y < 0 || p.y > 400)
 			{
+				System.out.println("crash");
 				return true;
 			}
 		}
