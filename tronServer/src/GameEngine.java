@@ -44,27 +44,22 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		int[] recived;
 		if(o instanceof ServerClientHandler)
-		{	
-		recived = (int[]) arg;
-		//JOptionPane.showMessageDialog(null, "" + recived[0] + " " + recived[1]);
-		if(player.getId() == recived[0])
 		{
-		player.setCourse(recived[1]);
-		System.out.println("har satt id " + recived[0] + " med kurs " + recived[1]);
+			recived = (int[]) arg;
+
+			System.out.println("Knapptryck från klien id:");
+			System.out.println(recived[0]);
+			playerList.get(recived[0]).setCourse(recived[1]);
+			System.out.println("har satt id " + recived[0] + " med kurs " + recived[1]);
 		}
-		}
-	}
-	
-	public void createPlayer(int id, String name, int course, Point point)
-	{
-		player = new Player(id, name, course, point);
 	}
 	
 	public void addPlayer(ServerClientHandler serverClientHandler, ServerClientSenderUDP serverClientSenderUDP)
 	{
 		this.serverClientSenderUDP = serverClientSenderUDP;
 		serverClientHandler.addObserver(this);
-		createPlayer(serverClientHandler.getID(), "calle", 1, new Point(200, 200));
+
+		playerList.add(new Player(serverClientHandler.getID(), "calle", 1, new Point(200, 200)));
 	}
 	
 	public void updateScore()
@@ -74,30 +69,28 @@ public class GameEngine implements ActionListener, Observer {
 	public void clearGame()
 	{
 	}
-	
-	/*
-	 */
+
 	public void actionPerformed(ActionEvent e)
 	{
-		//for(Player p : playerList)
-		//{
-		//System.out.println("går in i action");
-			player.move();
-			serverClientSenderUDP.send(player.getPoint());
-			if(checkCrash(player.getPoint()))
+		for(Player p : playerList)
+		{
+		System.out.println("går in i action");
+			p.move();
+			serverClientSenderUDP.send(p.getPoint());
+			if(checkCrash(p.getPoint()))
 			{
-				System.out.println("och i if-satsen");
-				System.out.println(player.getPoint().getX());
-				serverClientSenderUDP.send(player.getPoint());
-				addCord(player.getPoint());
+				System.out.println("Spelaren har inte krashat");
+				System.out.println(p.getPoint().getX());
+				serverClientSenderUDP.send(p.getPoint());
+				addCord(p.getPoint());
 				//networkServer.sendPoint(p.getPoint(), p.getId());
 			}
 			else
 			{
-				player.setAlive(false);
+				p.setAlive(false);
 				//timer.stop();
 			}
-		//}
+		}
 	}
 	
 	public void addCord(Point p)
