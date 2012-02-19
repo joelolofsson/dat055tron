@@ -3,9 +3,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-/*	public class Tron
- * 	@version 1.0
- * 	@author Erik, Joel
+/**	public class Tron
+ *
+ * 	@author Grupp 2
  * 
  */
 
@@ -97,12 +97,21 @@ public class Tron extends JFrame implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		center.requestFocus();
 	}
-	
+	/**
+	 * Set text in textfield Connected
+	 * @param IP
+	 * @return void
+	 */
 	public static void setConnected(String IP)
 	{
 		connected.setText("Connected to server: "+ IP);
 	}
-
+	/**
+	 * Action performed
+	 * 
+	 * @param e
+	 * @return void
+	 */
 	public void actionPerformed(ActionEvent e){
 		Object knappTryck = e.getSource();
 		if(knappTryck  instanceof JMenuItem ){
