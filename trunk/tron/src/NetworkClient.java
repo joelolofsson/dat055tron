@@ -25,12 +25,12 @@ public class NetworkClient extends Observable implements Observer
 	{
 		try
 		{
-			client = new Socket(IP,port); // Skapa socket
+			client = new Socket(IP,port);
 			datagramSocket = new DatagramSocket((port+1));
-			out = new DataOutputStream(client.getOutputStream()); // Skapa utström
+			out = new DataOutputStream(client.getOutputStream());
 			Tron.setConnected(IP.getHostAddress());
 			keyReader = key;
-			keyReader.addObserver(this); // Lägg till att man observerar
+			keyReader.addObserver(this);
 			netWorkClientReceiver = new NetworkClientReceiver(datagramSocket);
 			netWorkClientReceiver.addObserver(Tron.center);
 		}
