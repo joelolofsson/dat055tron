@@ -89,10 +89,6 @@ public class CreateGameWindow extends JDialog implements ActionListener {
 		}
 
 
-
-
-
-
 	}
 
 

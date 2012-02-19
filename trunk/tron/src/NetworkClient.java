@@ -46,7 +46,7 @@ public class NetworkClient extends Observable implements Observer
 			//receiveColorPoint();
 		}
 		catch(Exception e)
-		{
+		{ 
 			e.printStackTrace();
 			System.out.print("Create Socket fel");
 		}
