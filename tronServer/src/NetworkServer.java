@@ -8,12 +8,8 @@ public class NetworkServer extends Observable implements Runnable {
 
 	
 	
-	ServerSocket serversocket;
-	Socket klientSock;
-	Point point;
-	int idCourse;
-	int course=0;
-	int i =1;
+	private ServerSocket serversocket;
+	private Socket klientSock;
 	private boolean temp = true;
 	private Thread thread;
 	private GameEngine gameEngine;
@@ -36,40 +32,29 @@ public class NetworkServer extends Observable implements Runnable {
 	
 	public void run()
 	{
-		int i = 0;
-		//while(temp)
-		//{
-		for(int j = 0; j < 2; j++)
+		for(int j = 0; j < 4; j++)
 		{
 		try
 		{
 			klientSock = serversocket.accept();
+			if(temp)
+			{
 			System.out.println(klientSock.getInetAddress().getHostName() + " har anslutit sig");
-			ServerGui.players[i].setText("Player " + (i+1) + ": " + klientSock.getInetAddress().getHostAddress());
+			ServerGui.players[j].setText("Player " + (j+1) + ": " + klientSock.getInetAddress().getHostAddress());
 			gameEngine.addPlayer(new ServerClientHandler(klientSock, j), new ServerClientSenderUDP(klientSock.getInetAddress()));
-			i++;
+			}
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
 		}
-		//}
 	}
 	
 	public void start()
 	{
 		temp = false;
-		//try
-		//{
-			//new Socket(serversocket.getInetAddress(), serversocket.getLocalPort()).close();
-			gameEngine.start();
-		//}
-		//catch(IOException e)
-		//{
-		//}
-		System.out.println("försöker stoppa conent");
-		System.out.println(temp);
+		gameEngine.start();
 	}
 	
 	public void connect()
