@@ -19,9 +19,7 @@ public class NetworkServer extends Observable implements Runnable {
 	{	
 		try
 		{
-			System.out.println("Nu har vi skapat servern");
 			serversocket = new ServerSocket(1337);
-			System.out.println("Vi har skapat socket");
 			thread = new Thread(this);
 			gameEngine = new GameEngine();
 		}
@@ -35,17 +33,17 @@ public class NetworkServer extends Observable implements Runnable {
 	{
 		while(numberOfPlayers < 4)
 		{
-		try
-		{
-			klientSock = serversocket.accept();
-			if(temp)
+			try
 			{
-			System.out.println(klientSock.getInetAddress().getHostName() + " har anslutit sig");
-			ServerGui.players[numberOfPlayers].setText("Player " + (numberOfPlayers+1) + ": " + klientSock.getInetAddress().getHostAddress());
-			gameEngine.addPlayer(new ServerClientHandler(klientSock, numberOfPlayers), new ServerClientSenderUDP(klientSock.getInetAddress()));
-			numberOfPlayers++;
+				klientSock = serversocket.accept();
+				if(temp)
+				{
+					System.out.println(klientSock.getInetAddress().getHostName() + " har anslutit sig");
+					ServerGui.players[numberOfPlayers].setText("Player " + (numberOfPlayers+1) + ": " + klientSock.getInetAddress().getHostAddress());
+					gameEngine.addPlayer(new ServerClientHandler(klientSock, numberOfPlayers), new ServerClientSenderUDP(klientSock.getInetAddress()));
+					numberOfPlayers++;
+				}
 			}
-		}
 		catch (IOException e)
 		{
 			e.printStackTrace();

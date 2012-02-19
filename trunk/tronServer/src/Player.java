@@ -25,7 +25,6 @@ public class Player
 		this.point = point;
 		rX = point.x;
 		rY = point.y;
-		System.out.println("En spelare skapar med id" + id + "och kursen " + course);
 	}
 	
 	public int getId()
@@ -61,7 +60,7 @@ public class Player
 	
 	public void setCourse(int course)
 	{
-		if(! (Math.abs(this.course-course) == 2))
+		if(!(Math.abs(this.course-course) == 2))
 		this.course = course;
 	}
 	

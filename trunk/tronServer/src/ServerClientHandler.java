@@ -9,7 +9,6 @@ import java.util.Observable;
 public class ServerClientHandler extends Observable implements Runnable {
 
 	private Thread aktivitet;
-	private Socket socket;
 	private DataInputStream streamIn;
 	private int id;
 
@@ -17,7 +16,6 @@ public class ServerClientHandler extends Observable implements Runnable {
 	{
 		this.id = id;
 		aktivitet = new Thread(this);
-		socket = s;
 		try
 		{
 			streamIn = new DataInputStream(s.getInputStream());
@@ -27,7 +25,6 @@ public class ServerClientHandler extends Observable implements Runnable {
 		{
 			e.printStackTrace();
 		}
-		System.out.println("serverclient hanterare skapad med id " + id);
 		
 	}
 	public void run()
@@ -42,6 +39,7 @@ public class ServerClientHandler extends Observable implements Runnable {
 			}
 			catch (IOException e)
 			{
+				e.printStackTrace();
 			}
 		}
 	}
