@@ -4,11 +4,18 @@
  * @author Group 2
  * 
  * Handles a players course and id.
+ * 
  */
 public class CourseID {
 
 	private int course, id;
-	
+	/**
+	 * Default constructor for CourseID
+	 * 
+	 * @param int course
+	 * @param int id
+	 * 
+	 */
 	public CourseID(int course, int id)
 	{
 		this.course = course;
@@ -26,7 +33,7 @@ public class CourseID {
 	public int getID()
 	{
 		return id;
-	}
+	}	
 	
 	/**
  	* 
