@@ -37,14 +37,14 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 		{
 			try 
 			{
-				System.out.println("försöker ta emot");
+				//System.out.println("försöker ta emot");
 				socket.receive(packet);
 				String tempstring = new String(packet.getData(), 0, packet.getLength());
 //				socket.receive(packet);
 //				y = Integer.parseInt(new String(packet.getData(), 0, packet.getLength()));
 				String[] tempstring2 = tempstring.split(",");
-				System.out.println(tempstring2[0]);
-				System.out.println(tempstring2[1]);
+				//System.out.println(tempstring2[0]);
+				//System.out.println(tempstring2[1]);
 				x = Integer.parseInt(tempstring2[0]);
 				y = Integer.parseInt(tempstring2[1]);
 				for(int i = 0; i < (tempstring2.length); i = i + 2)
@@ -73,7 +73,7 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 					}
 				}
 				
-			System.out.println("har tagit emot x: " + x + "y: " + y);
+			//System.out.println("har tagit emot x: " + x + "y: " + y);
 			} catch (SocketException e2) {						//Connection reset
 				Tron.setConnected("Connection error!");			//Set connection status in the game window
 				break;

@@ -16,8 +16,8 @@ import javax.swing.Timer;
 
 public class NetworkClient extends Observable implements Observer
 {
-	private Socket client;
 	
+	private Socket client;
 	private DataInputStream in;
 	private DataOutputStream out;
 	private KeyReader keyReader;
@@ -94,7 +94,6 @@ public class NetworkClient extends Observable implements Observer
 		{
 			try
 			{
-				
 				out.write((Integer)arg); 
 			}
 			catch(IOException e)
