@@ -18,11 +18,11 @@ public class CourseID {
 	
 
 	/**
- 	* 
- 	* @author Group 2
- 	* 
- 	* Returns ID
- 	*/
+    * 
+    * Returns the ID
+    * 
+    * @return int
+	*/
 	public int getID()
 	{
 		return id;
@@ -30,9 +30,9 @@ public class CourseID {
 	
 	/**
  	* 
- 	* @author Group 2
+ 	* Returns the course
  	* 
- 	* Returns course
+ 	* @return int
  	*/
 	public int getCourse()
 	{
