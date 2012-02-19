@@ -13,8 +13,6 @@ public class ServerClientHandler extends Observable implements Runnable {
 	private DataInputStream streamIn;
 	private int id;
 
-	
-	@SuppressWarnings("deprecation")
 	public ServerClientHandler(Socket s, int id)
 	{
 		this.id = id;
