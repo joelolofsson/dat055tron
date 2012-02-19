@@ -22,6 +22,8 @@ public class GameEngine implements ActionListener, Observer {
 	private java.util.List<Player> playerList;
 	private Timer timer;
 	private LinkedList<ServerClientSenderUDP> serverClientSenderUDPList;
+	private int numberOfPlayers;
+	private int reset;
 	
 	/*
 	 * Skapar NetworkServer objekt
@@ -58,7 +60,7 @@ public class GameEngine implements ActionListener, Observer {
 		int id = serverClientHandler.getID();
 		serverClientSenderUDPList.add(serverClientSenderUDP);
 		serverClientHandler.addObserver(this);
-		playerList.add(new Player(id, "calle", 1, new Point((((id + 1) % 2) + 1) * 100, ((id / 2) + 1) * 40)));
+		playerList.add(new Player(id, "calle", 3, new Point((((id + 1) % 2) + 1) * 150, ((id / 2) + 1) * 150)));
 	}
 	
 	public void updateScore()
@@ -67,6 +69,22 @@ public class GameEngine implements ActionListener, Observer {
 	
 	public void clearGame()
 	{
+		cords.clear();
+		try
+		{
+			Thread.sleep(5000);
+		}
+		catch (InterruptedException e1)
+		{
+			e1.printStackTrace();
+		}
+		System.out.println("omgången slut");
+		for(Player p : playerList)
+		{
+			p.reset();
+			p.setAlive(true);
+		}
+		numberOfPlayers = reset;
 	}
 
 	public void actionPerformed(ActionEvent e)
@@ -74,6 +92,13 @@ public class GameEngine implements ActionListener, Observer {
 		
 		LinkedList<Point> temp = new LinkedList<Point>();
 		
+		if(numberOfPlayers < 2)
+		{
+			clearGame();
+			temp.add(new Point(0, 0));
+		}
+		else
+		{
 		for(Player p : playerList)
 		{
 			//System.out.println("går in i action");
@@ -81,10 +106,10 @@ public class GameEngine implements ActionListener, Observer {
 			if(p.isAlive())
 			{
 				p.move();
-				System.out.println("Spelare " + p.getId() + "lever.");
+				//System.out.println("Spelare " + p.getId() + "lever.");
 				if(checkCrash(p.getPoint()))
 				{
-					System.out.println("Spelare " + p.getId() + "är död!");
+					//System.out.println("Spelare " + p.getId() + "är död!");
 					p.setAlive(false);
 				}
 				cords.add(p.getPoint());
@@ -93,11 +118,10 @@ public class GameEngine implements ActionListener, Observer {
 			temp.add(p.getPoint());
 			
 		}
-		
-		for(Player p : playerList)
+		}
+		for(ServerClientSenderUDP s : serverClientSenderUDPList)
 		{
-			
-			serverClientSenderUDPList.get(p.getId()).send(temp);
+			s.send(temp);
 		}
 	}
 	
@@ -108,20 +132,23 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		for(Point pos : cords)
 		{
-			System.out.println("lista " + pos);
-			System.out.println("postition " + p);
+			//System.out.println("lista " + pos);
+			//System.out.println("postition " + p);
 			if(pos.equals(p) || p.x < 0 || p.x > 400 || p.y < 0 || p.y > 400)
 			{
-				System.out.println("crash");
+				//System.out.println("crash");
+				numberOfPlayers--;
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public void start()
+	public void start(int numberOfPlayers)
 	{
 		timer.start();
+		this.numberOfPlayers = numberOfPlayers;
+		reset = numberOfPlayers;
 	}
 
 }

@@ -14,6 +14,8 @@ public class Player
 	private String name;
 	private int score = 0;
 	private boolean alive = true;
+	private int rX;
+	private int rY;
 	
 	public Player(int id, String name, int course, Point point)
 	{
@@ -21,6 +23,8 @@ public class Player
 		this.name = name;
 		this.course = course;
 		this.point = point;
+		rX = point.x;
+		rY = point.y;
 		System.out.println("En spelare skapar med id" + id + "och kursen " + course);
 	}
 	
@@ -37,6 +41,12 @@ public class Player
 	public Point getPoint()
 	{
 		return new Point(point.x, point.y);
+	}
+	
+	public void reset()
+	{
+		point.x = rX;
+		point.y = rY;
 	}
 	
 	public String getName()

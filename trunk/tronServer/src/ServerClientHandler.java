@@ -1,9 +1,9 @@
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.Observable;
-
-import javax.swing.JOptionPane;
 
 
 public class ServerClientHandler extends Observable implements Runnable {
@@ -14,16 +14,19 @@ public class ServerClientHandler extends Observable implements Runnable {
 	private int id;
 
 	
+	@SuppressWarnings("deprecation")
 	public ServerClientHandler(Socket s, int id)
 	{
 		this.id = id;
 		aktivitet = new Thread(this);
 		socket = s;
-		try {
+		try
+		{
 			streamIn = new DataInputStream(s.getInputStream());
-			
 			aktivitet.start();
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace();
 		}
 		System.out.println("serverclient hanterare skapad med id " + id);
