@@ -59,17 +59,17 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 						setChanged();
 						notifyObservers(new ColorPoint(x,y,Color.CYAN));
 					}
-					else if(i == 1)
+					else if(j == 1)
 					{
 						setChanged();
 						notifyObservers(new ColorPoint(x,y,Color.GREEN));
 					}
-					else if(i == 2)
+					else if(j == 2)
 					{
 						setChanged();
 						notifyObservers(new ColorPoint(x,y,Color.RED));
 					}
-					else if(i == 3)
+					else if(j == 3)
 					{
 						setChanged();
 						notifyObservers(new ColorPoint(x,y,Color.BLUE));
