@@ -55,6 +55,10 @@ public class GameWindow extends JPanel implements Observer{
 				tempList.add((ColorPoint) arg);
 				repaint();
 			}
+			else if(o instanceof NetworkClientReceiver && arg instanceof String)
+			{
+				pointList.clear();
+			}
 	}
 }
 

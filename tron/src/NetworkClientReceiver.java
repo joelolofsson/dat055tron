@@ -45,13 +45,16 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 				String[] tempstring2 = tempstring.split(",");
 				//System.out.println(tempstring2[0]);
 				//System.out.println(tempstring2[1]);
-				x = Integer.parseInt(tempstring2[0]);
-				y = Integer.parseInt(tempstring2[1]);
 				for(int i = 0; i < (tempstring2.length); i = i + 2)
 				{
 					x = Integer.parseInt(tempstring2[i]);
 					y = Integer.parseInt(tempstring2[i + 1]);
-					if(i == 0)
+					if(tempstring2.length == 2)
+					{
+						setChanged();
+						notifyObservers("Reset");
+					}
+					else if(i == 0)
 					{
 						setChanged();
 						notifyObservers(new ColorPoint(x,y,Color.CYAN));
