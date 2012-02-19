@@ -28,6 +28,11 @@ public class Tron extends JFrame implements ActionListener{
 	private NetworkClient networkClient;
 	private KeyReader key = new KeyReader();
 	
+	/**
+	 * Default constructor for Tron
+	 * 
+	 */
+	
 	public Tron() {
 
 		//Set layout of main window
@@ -98,8 +103,8 @@ public class Tron extends JFrame implements ActionListener{
 		center.requestFocus();
 	}
 	/**
-	 * Set text in textfield Connected
-	 * @param IP
+	 * Set text in the textfield Connected
+	 * @param String IP
 	 * @return void
 	 */
 	public static void setConnected(String IP)
@@ -109,7 +114,7 @@ public class Tron extends JFrame implements ActionListener{
 	/**
 	 * Action performed
 	 * 
-	 * @param e
+	 * @param ActionEvent e
 	 * @return void
 	 */
 	public void actionPerformed(ActionEvent e){
