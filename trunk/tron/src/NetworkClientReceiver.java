@@ -45,7 +45,7 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 				String[] tempstring2 = tempstring.split(",");
 				//System.out.println(tempstring2[0]);
 				//System.out.println(tempstring2[1]);
-				for(int i = 0; i < (tempstring2.length); i = i + 2)
+				for(int i = 0, j = 0; i < (tempstring2.length); j = j + 1, i = i + 2)
 				{
 					x = Integer.parseInt(tempstring2[i]);
 					y = Integer.parseInt(tempstring2[i + 1]);
@@ -54,7 +54,7 @@ public class NetworkClientReceiver extends Observable implements Runnable {
 						setChanged();
 						notifyObservers("Reset");
 					}
-					else if(i == 0)
+					else if(j == 0)
 					{
 						setChanged();
 						notifyObservers(new ColorPoint(x,y,Color.CYAN));
