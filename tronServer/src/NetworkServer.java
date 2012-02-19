@@ -13,6 +13,7 @@ public class NetworkServer extends Observable implements Runnable {
 	private boolean temp = true;
 	private Thread thread;
 	private GameEngine gameEngine;
+	private int numberOfPlayers = 0;
 	
 	public NetworkServer()
 	{	
@@ -32,7 +33,7 @@ public class NetworkServer extends Observable implements Runnable {
 	
 	public void run()
 	{
-		for(int j = 0; j < 4; j++)
+		while(numberOfPlayers < 4)
 		{
 		try
 		{
@@ -40,8 +41,9 @@ public class NetworkServer extends Observable implements Runnable {
 			if(temp)
 			{
 			System.out.println(klientSock.getInetAddress().getHostName() + " har anslutit sig");
-			ServerGui.players[j].setText("Player " + (j+1) + ": " + klientSock.getInetAddress().getHostAddress());
-			gameEngine.addPlayer(new ServerClientHandler(klientSock, j), new ServerClientSenderUDP(klientSock.getInetAddress()));
+			ServerGui.players[numberOfPlayers].setText("Player " + (numberOfPlayers+1) + ": " + klientSock.getInetAddress().getHostAddress());
+			gameEngine.addPlayer(new ServerClientHandler(klientSock, numberOfPlayers), new ServerClientSenderUDP(klientSock.getInetAddress()));
+			numberOfPlayers++;
 			}
 		}
 		catch (IOException e)
@@ -54,7 +56,7 @@ public class NetworkServer extends Observable implements Runnable {
 	public void start()
 	{
 		temp = false;
-		gameEngine.start();
+		gameEngine.start(numberOfPlayers);
 	}
 	
 	public void connect()
