@@ -36,7 +36,7 @@ public class GameEngine implements ActionListener, Observer {
 	public void update(Observable o, Object arg)
 	{
 		int[] recived;
-		if(o instanceof ServerClientHandler)
+		if(o instanceof ServerClientHandler && arg instanceof int[])
 		{
 			recived = (int[]) arg;
 			playerList.get(recived[0]).setCourse(recived[1]);
@@ -66,7 +66,6 @@ public class GameEngine implements ActionListener, Observer {
 		{
 			e1.printStackTrace();
 		}
-		System.out.println("omgången slut");
 		for(Player p : playerList)
 		{
 			p.reset();
@@ -87,21 +86,19 @@ public class GameEngine implements ActionListener, Observer {
 		}
 		else
 		{
-		for(Player p : playerList)
-		{	
-			if(p.isAlive())
-			{
-				p.move();
-				if(checkCrash(p.getPoint()))
+			for(Player p : playerList)
+			{	
+				if(p.isAlive())
 				{
-					p.setAlive(false);
+					p.move();
+					if(checkCrash(p.getPoint()))
+					{
+						p.setAlive(false);
+					}
+					cords.add(p.getPoint());
 				}
-				cords.add(p.getPoint());
+				temp.add(p.getPoint());
 			}
-			
-			temp.add(p.getPoint());
-			
-		}
 		}
 		for(ServerClientSenderUDP s : serverClientSenderUDPList)
 		{
