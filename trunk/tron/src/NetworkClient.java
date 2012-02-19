@@ -16,10 +16,8 @@ public class NetworkClient extends Observable implements Observer
 {
 	
 	private Socket client;
-	private DataInputStream in;
 	private DataOutputStream out;
 	private KeyReader keyReader;
-	private Color color;
 	private NetworkClientReceiver netWorkClientReceiver;
 	private DatagramSocket datagramSocket;
 	
@@ -29,21 +27,12 @@ public class NetworkClient extends Observable implements Observer
 		{
 			client = new Socket(IP,port); // Skapa socket
 			datagramSocket = new DatagramSocket((port+1));
-			in = new DataInputStream(client.getInputStream()); // Skapa inström
 			out = new DataOutputStream(client.getOutputStream()); // Skapa utström
-			//out.writeBytes(nickname);
-
-			//out.writeChars(nickname);
-
-			
-				Tron.setConnected(IP.getHostAddress());
-			
+			Tron.setConnected(IP.getHostAddress());
 			keyReader = key;
 			keyReader.addObserver(this); // Lägg till att man observerar
 			netWorkClientReceiver = new NetworkClientReceiver(datagramSocket);
 			netWorkClientReceiver.addObserver(Tron.center);
-			
-			//receiveColorPoint();
 		}
 		catch(Exception e)
 		{ 
@@ -52,38 +41,6 @@ public class NetworkClient extends Observable implements Observer
 		}
 	}
 	
-	private void receiveColorPoint()
-	{
-		try
-		{
-			while(true)
-			{
-				int x = in.readInt();  //Läs in från inströmmen
-				int y = in.readInt();
-				int tempColor = in.readInt();
-				if(tempColor == 1)
-				{
-					color = Color.red;
-				}
-				else if(tempColor == 2)
-				{
-					color = Color.blue;
-				}
-				else if(tempColor == 3)
-				{
-					color = Color.green;
-				}
-				setChanged(); // Säga till observen att de är klart
-				notifyObservers(new ColorPoint(x,y,color));
-				System.out.println("Vi har fått in kordinater:" + x + " " + y);
-			}
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-			System.out.print("Receive fel");
-		}
-	}
 	public void update(Observable o, Object arg)
 	{
 		
@@ -103,12 +60,4 @@ public class NetworkClient extends Observable implements Observer
 			
 		}
 	}
-	
-	
-	
-
-	
-	
-	
-	
 }
