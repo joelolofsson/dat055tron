@@ -18,14 +18,17 @@ public class ServerGui extends JFrame implements ActionListener {
 	private JButton start;
 	private JLabel ipAdress;
 	private NetworkServer networkServer;
-	InetAddress IP;
+	private InetAddress IP;
 	public static JLabel[] players = new JLabel[4];
 	
 	public ServerGui()
 	{
-		try {
+		try
+		{
 			IP = InetAddress.getLocalHost();
-		} catch (UnknownHostException e) {
+		}
+		catch (UnknownHostException e)
+		{
 			e.printStackTrace();
 		}
 		JPanel meny = new JPanel();
@@ -70,6 +73,4 @@ public class ServerGui extends JFrame implements ActionListener {
 	{
 		ServerGui serverGui = new ServerGui();
 	}
-	
-
 }

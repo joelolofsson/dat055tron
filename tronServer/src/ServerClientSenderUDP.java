@@ -17,38 +17,34 @@ public class ServerClientSenderUDP extends Observable {
 	public ServerClientSenderUDP(InetAddress toAddr)
 	{
 		this.toAddr = toAddr;
-		System.out.println(toAddr.getHostAddress());
 		toPort = 1338;
 		
-		try {
+		try
+		{
 			socket = new DatagramSocket();
-			//System.out.println("Socket skapad");
-		} catch (SocketException e) {
-			System.out.println("Socket EJ skapad");
+		}
+		catch (SocketException e)
+		{
 			e.printStackTrace();
 		}
 	}
 	
 	public void send(LinkedList<Point> pointList)
 	{
-		
-		//String stringtemp = "" + x + "," + y;
 		String tempS = "";
 		
-		for(Point p : pointList){
+		for(Point p : pointList)
+		{
 			tempS = tempS + p.x + "," + p.y + ",";
 		}
-		
 		byte[] data = tempS.getBytes();
 		try
 		{
 			DatagramPacket packet = new DatagramPacket(data, data.length, toAddr, toPort);
-			//System.out.println("Paket skapat");
 			socket.send(packet);
 		}
 		catch (IOException e)
 		{
-			System.out.println("Kan ej skicka datagram");
 			e.printStackTrace();
 		}
 	}
