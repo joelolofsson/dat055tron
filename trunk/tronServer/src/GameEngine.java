@@ -55,9 +55,10 @@ public class GameEngine implements ActionListener, Observer {
 	
 	public void addPlayer(ServerClientHandler serverClientHandler, ServerClientSenderUDP serverClientSenderUDP)
 	{
+		int id = serverClientHandler.getID();
 		serverClientSenderUDPList.add(serverClientSenderUDP);
 		serverClientHandler.addObserver(this);
-		playerList.add(new Player(serverClientHandler.getID(), "calle", 1, new Point((serverClientHandler.getID() + 1)*30, 200)));
+		playerList.add(new Player(id, "calle", 1, new Point((((id + 1) % 2) + 1) * 100, ((id / 2) + 1) * 40)));
 	}
 	
 	public void updateScore()
@@ -75,9 +76,10 @@ public class GameEngine implements ActionListener, Observer {
 		
 		for(Player p : playerList)
 		{
-			System.out.println("går in i action");
+			//System.out.println("går in i action");
 			
-			if(p.isAlive()){
+			if(p.isAlive())
+			{
 				p.move();
 				System.out.println("Spelare " + p.getId() + "lever.");
 				if(checkCrash(p.getPoint()))
@@ -106,7 +108,9 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		for(Point pos : cords)
 		{
-			if(pos.equals(p))// || p.x < 0 || p.x > 400 || p.y < 0 || p.y > 400)
+			System.out.println("lista " + pos);
+			System.out.println("postition " + p);
+			if(pos.equals(p) || p.x < 0 || p.x > 400 || p.y < 0 || p.y > 400)
 			{
 				System.out.println("crash");
 				return true;
