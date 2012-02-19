@@ -1,16 +1,14 @@
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Observable;
 import java.util.Observer;
-
-import javax.swing.Timer;
 
 
 
@@ -29,11 +27,11 @@ public class NetworkClient extends Observable implements Observer
 	{
 		try
 		{
-			
 			client = new Socket(IP,port); // Skapa socket
 			datagramSocket = new DatagramSocket((port+1));
 			in = new DataInputStream(client.getInputStream()); // Skapa inström
 			out = new DataOutputStream(client.getOutputStream()); // Skapa utström
+			//out.writeBytes(nickname);
 
 			//out.writeChars(nickname);
 
