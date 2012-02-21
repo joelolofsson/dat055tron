@@ -22,6 +22,7 @@ public class GameEngine implements ActionListener, Observer {
 	private java.util.List<Player> playerList;
 	private Timer timer;
 	private LinkedList<ServerClientSenderUDP> serverClientSenderUDPList;
+	private LinkedList<ServerClientSenderTCP> serverClientSenderTCPList;
 	private int numberOfPlayers;
 	private int reset;
 	
@@ -32,13 +33,13 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		playerList = new LinkedList<Player>();
 		serverClientSenderUDPList = new LinkedList<ServerClientSenderUDP>();
+		serverClientSenderTCPList = new LinkedList<ServerClientSenderTCP>();
 		cords = new LinkedHashSet<Point>();
 		timer = new Timer(10, this);
 	}
 	
 	public void update(Observable o, Object arg)
 	{
-		System.out.println("i updatefunktionen");
 		int[] recived;
 		if(o instanceof ServerClientHandler && arg instanceof int[])
 		{
@@ -54,11 +55,12 @@ public class GameEngine implements ActionListener, Observer {
 	 * @param ServerClientHandler serverClientHandler
 	 * @param ServerClientSenderUDP serverClientSenderUDP
 	 */
-	public void addPlayer(ServerClientHandler serverClientHandler, ServerClientSenderUDP serverClientSenderUDP)
+	public void addPlayer(ServerClientHandler serverClientHandler, ServerClientSenderUDP serverClientSenderUDP, ServerClientSenderTCP serverClientSenderTCP)
 	{
 		String namn;
 		int id = serverClientHandler.getID();
 		serverClientSenderUDPList.add(serverClientSenderUDP);
+		serverClientSenderTCPList.add(serverClientSenderTCP);
 		namn = serverClientHandler.namn();
 		System.out.println(namn.toString());
 		serverClientHandler.addObserver(this);
@@ -68,7 +70,6 @@ public class GameEngine implements ActionListener, Observer {
 	public void updateScore()
 	{
 	}
-	
 	
 	public void clearGame()
 	{
@@ -158,6 +159,12 @@ public class GameEngine implements ActionListener, Observer {
 		timer.start();
 		this.numberOfPlayers = numberOfPlayers;
 		reset = numberOfPlayers;
+		System.out.println("Startar game");
+		for(ServerClientSenderTCP s : serverClientSenderTCPList) //Skickar ut namn till klienter
+		{
+			s.send("Zotty,Kalle...");
+			System.out.println("Skickar namn...");
+		}
 	}
 
 }
