@@ -22,7 +22,11 @@ public class KeyReader extends Observable implements KeyListener {
 	{
 		
 	}
-	
+	/**
+	 * Handles pressed keys and notify observers
+	 * 
+	 * @param KeyEvent e
+	 */
 	public void keyPressed(KeyEvent e)
 	{
 		if(e.getKeyCode() == KeyEvent.VK_UP){
