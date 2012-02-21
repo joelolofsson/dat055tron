@@ -70,7 +70,11 @@ public class GameEngine implements ActionListener, Observer {
 	public void updateScore()
 	{
 	}
-	
+	/**
+	 * Starts the timer which starts the game.
+	 * 
+	 * @param int numberOfPlayers
+	 */
 	public void clearGame()
 	{
 		cords.clear();

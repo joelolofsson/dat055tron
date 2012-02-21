@@ -4,13 +4,21 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Observable;
 
-
+/**
+ * @author Group 2
+ * 
+ * Handles Outputdata to client
+ */
 public class ServerClientSender extends Observable {
 
 	Socket socket;
 	DataOutputStream streamOut;
 
-	
+	/**
+	 * Default constructor for ServerClientSender
+	 * 
+	 * @param Socket s
+	 */
 	public ServerClientSender(Socket s)
 	{
 		System.out.println("skapar vi en serverClientSender");
@@ -27,6 +35,11 @@ public class ServerClientSender extends Observable {
 		
 	}
 	
+	/**
+	 * Sends a Point to client
+	 * 
+	 * @param Point point
+	 */
 	public void send(Point point)
 	{
 		int x = point.x;
