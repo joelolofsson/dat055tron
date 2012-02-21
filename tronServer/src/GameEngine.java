@@ -12,9 +12,9 @@ import javax.swing.Timer;
 
 /**
  * 
- * @author Carl-Johan Adolfsson, Tobias Hallberg
+ * @author Group 2
  * 
- * The main class that handles the game server.
+ * Handles all gamelogic
  */
 public class GameEngine implements ActionListener, Observer {
 	
@@ -25,6 +25,9 @@ public class GameEngine implements ActionListener, Observer {
 	private int numberOfPlayers;
 	private int reset;
 	
+	/**
+	 * Default constructor for GameEngine
+	 */
 	public GameEngine()
 	{
 		playerList = new LinkedList<Player>();
@@ -43,6 +46,13 @@ public class GameEngine implements ActionListener, Observer {
 		}
 	}
 	
+	/**
+	 * 
+	 * Creates and add player to playerlist.  
+	 * 
+	 * @param ServerClientHandler serverClientHandler
+	 * @param ServerClientSenderUDP serverClientSenderUDP
+	 */
 	public void addPlayer(ServerClientHandler serverClientHandler, ServerClientSenderUDP serverClientSenderUDP)
 	{
 		int id = serverClientHandler.getID();
@@ -54,6 +64,7 @@ public class GameEngine implements ActionListener, Observer {
 	public void updateScore()
 	{
 	}
+	
 	
 	public void clearGame()
 	{
@@ -114,6 +125,12 @@ public class GameEngine implements ActionListener, Observer {
 		}
 	}
 	
+	/**
+	 * Checks if a players cordinate already exists in the list
+	 * if returned true, a crash has been detected
+	 * @param Point p
+	 * @return boolean
+	 */
 	public boolean checkCrash(Point p)
 	{
 		for(Point pos : cords)
@@ -127,6 +144,11 @@ public class GameEngine implements ActionListener, Observer {
 		return false;
 	}
 	
+	/**
+	 * Starts the timer which starts the game.
+	 * 
+	 * @param int numberOfPlayers
+	 */
 	public void start(int numberOfPlayers)
 	{
 		timer.start();
