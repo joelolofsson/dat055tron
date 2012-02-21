@@ -52,7 +52,8 @@ public class NetworkClient extends Observable implements Observer
 		{
 			try
 			{
-				out.write((Integer)arg); 
+				out.write((Integer)arg);
+				System.out.println("har skickat kordinat");
 			}
 			catch(IOException e)
 			{

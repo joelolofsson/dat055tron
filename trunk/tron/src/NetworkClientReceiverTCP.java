@@ -33,7 +33,26 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
                         String[] temp = s.split(",");
                         for(int i = 0; i < temp.length; i++)
                         {
-                        	Tron.playersLabel[i].setText(temp[i]);
+                        	if(i == 0)
+                        	{
+                        		Tron.playersLabel[i].setText(temp[i]);
+                        		Tron.playersLabel[i].setForeground(Color.cyan);
+                        	}
+                        	else if(i == 1)
+                        	{
+                        		Tron.playersLabel[i].setText(temp[i]);
+                        		Tron.playersLabel[i].setForeground(Color.green);
+                        	}
+                        	else if(i == 2)
+                        	{
+                        		Tron.playersLabel[i].setText(temp[i]);
+                        		Tron.playersLabel[i].setForeground(Color.red);
+                        	}
+                        	else if(i == 3)
+                        	{
+                        		Tron.playersLabel[i].setText(temp[i]);
+                        		Tron.playersLabel[i].setForeground(Color.blue);
+                        	}
                         }
                         }
                         catch (IOException e1)

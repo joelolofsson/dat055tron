@@ -39,6 +39,7 @@ public class Tron extends JFrame implements ActionListener{
 		//Set layout of main window
 		setLayout(new BorderLayout());
 		west = new JPanel();
+		west.setBackground(Color.DARK_GRAY);
 		center = new GameWindow(key);
 		south = new JPanel();
 
