@@ -167,7 +167,7 @@ public class GameEngine implements ActionListener, Observer {
 			{
 				sTemp = sTemp + p.getName() + ",";
 			}
-			s.send("Zotty,Kalle...");
+			s.send(sTemp);
 			System.out.println("Skickar namn...");
 		}
 	}
