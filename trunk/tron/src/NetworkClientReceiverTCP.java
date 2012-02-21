@@ -44,7 +44,7 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
                         
                         if(clientId == -1)
                         {
-                        	clientId = dataInputStream.readInt();
+                        	clientId = new Integer(dataInputStream.readUTF().toString()).intValue();
                         }
                         
                         String s = dataInputStream.readUTF().toString();
