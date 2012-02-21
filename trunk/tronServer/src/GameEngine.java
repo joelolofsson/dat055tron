@@ -41,7 +41,7 @@ public class GameEngine implements ActionListener, Observer {
 	public void update(Observable o, Object arg)
 	{
 		int[] recived;
-		if(o instanceof ServerClientHandler && arg instanceof int[])
+		if(o instanceof ServerClientHandlerUDP && arg instanceof int[])
 		{
 			recived = (int[]) arg;
 			playerList.get(recived[0]).setCourse(recived[1]);
@@ -55,15 +55,15 @@ public class GameEngine implements ActionListener, Observer {
 	 * @param ServerClientHandler serverClientHandler
 	 * @param ServerClientSenderUDP serverClientSenderUDP
 	 */
-	public void addPlayer(ServerClientHandler serverClientHandler, ServerClientSenderUDP serverClientSenderUDP, ServerClientSenderTCP serverClientSenderTCP)
+	public void addPlayer(ServerClientHandler serverClientHandler, ServerClientHandlerUDP serverClientHandlerUDP, ServerClientSenderUDP serverClientSenderUDP, ServerClientSenderTCP serverClientSenderTCP)
 	{
 		String namn;
-		int id = serverClientHandler.getID();
+		int id = serverClientHandlerUDP.getID();
 		serverClientSenderUDPList.add(serverClientSenderUDP);
 		serverClientSenderTCPList.add(serverClientSenderTCP);
 		namn = serverClientHandler.namn();
 		System.out.println(namn.toString());
-		serverClientHandler.addObserver(this);
+		serverClientHandlerUDP.addObserver(this);
 		playerList.add(new Player(id, namn, 3, new Point((((id + 1) % 2) + 1) * 150, ((id / 2) + 1) * 150)));
 	}
 	
@@ -163,6 +163,7 @@ public class GameEngine implements ActionListener, Observer {
 		this.numberOfPlayers = numberOfPlayers;
 		reset = numberOfPlayers;
 		System.out.println("Startar game");
+		int i = 0;
 		for(ServerClientSenderTCP s : serverClientSenderTCPList) //Skickar ut namn till klienter
 		{
 			String sTemp = "";
@@ -170,7 +171,7 @@ public class GameEngine implements ActionListener, Observer {
 			{
 				sTemp = sTemp + p.getName() + ",";
 			}
-			s.send(sTemp);
+			s.send(sTemp, i++);
 			System.out.println("Skickar namn...");
 		}
 		timer.start();

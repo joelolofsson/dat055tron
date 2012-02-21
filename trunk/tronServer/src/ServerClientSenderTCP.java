@@ -9,6 +9,7 @@ public class ServerClientSenderTCP extends Observable {
 
 	Socket socket;
 	DataOutputStream streamOut;
+	boolean idNotSent = true;
 
 	
 	public ServerClientSenderTCP(Socket s)
@@ -27,11 +28,16 @@ public class ServerClientSenderTCP extends Observable {
 		
 	}
 	
-	public void send(String sTemp)
+	public void send(String sTemp, int id)
 	{
 		
 		try {
 			System.out.println("Försöker sända namn!");
+			
+			if(idNotSent)
+			{
+				streamOut.writeInt(id);	//Skickar id i varje paket
+			}
 			
 			streamOut.writeUTF(sTemp);
 			
