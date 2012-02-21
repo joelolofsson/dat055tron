@@ -50,18 +50,14 @@ public class GameWindow extends JPanel implements Observer{
 
 	public void update(Observable o, Object arg)
 	{
-			if(o instanceof NetworkClientReceiver && arg instanceof ColorPoint)
+			if(o instanceof NetworkClientReceiverUDP && arg instanceof ColorPoint)
 			{
 				tempList.add((ColorPoint) arg);
 				repaint();
 			}
-			else if(o instanceof NetworkClientReceiver && arg instanceof String)
+			else if(o instanceof NetworkClientReceiverUDP && arg instanceof String)
 			{
 				pointList.clear();
-			}
-			else if(o instanceof NetworkClientReceiverTCP && arg instanceof String)
-			{
-				System.out.println(arg);
 			}
 	}
 }

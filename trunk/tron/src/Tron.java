@@ -14,7 +14,7 @@ public class Tron extends JFrame implements ActionListener{
 	private JPanel west;
 	public static GameWindow center;
 	private JPanel south;
-	private JLabel[] playersLabel;
+	public static JLabel[] playersLabel;
 	private static JLabel connected;
 	private JButton start;
 	private JButton paus;

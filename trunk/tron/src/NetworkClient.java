@@ -18,7 +18,7 @@ public class NetworkClient extends Observable implements Observer
 	private Socket client;
 	private DataOutputStream out;
 	private KeyReader keyReader;
-	private NetworkClientReceiver netWorkClientReceiver;
+	private NetworkClientReceiverUDP netWorkClientReceiver;
 	private NetworkClientReceiverTCP netWorkClientReceiverTCP;
 	private DatagramSocket datagramSocket;
 	
@@ -33,11 +33,9 @@ public class NetworkClient extends Observable implements Observer
 			Tron.setConnected(IP.getHostAddress());
 			keyReader = key;
 			keyReader.addObserver(this);
-			netWorkClientReceiver = new NetworkClientReceiver(datagramSocket);
+			netWorkClientReceiver = new NetworkClientReceiverUDP(datagramSocket);
 			netWorkClientReceiver.addObserver(Tron.center);
-			
 			netWorkClientReceiverTCP = new NetworkClientReceiverTCP(client);
-			netWorkClientReceiverTCP.addObserver(Tron.center);
 		}
 		catch(Exception e)
 		{ 

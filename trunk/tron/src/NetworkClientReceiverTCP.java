@@ -30,9 +30,14 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
                         System.out.println("försöker ta emot");
                         String s = dataInputStream.readUTF().toString();
                         System.out.println("har tagit emot namn" + s);
-                        setChanged();
-						notifyObservers(s);
-                        } catch (IOException e1) {
+                        String[] temp = s.split(",");
+                        for(int i = 0; i < temp.length; i++)
+                        {
+                        	Tron.playersLabel[i].setText(temp[i]);
+                        }
+                        }
+                        catch (IOException e1)
+                        {
                                 e1.printStackTrace();
                         }
                 }
