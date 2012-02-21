@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.Observable;
-
+/**
+ * @author Group 2
+ * 
+ * Handles the Indata from a client
+ */
 
 public class ServerClientHandler extends Observable implements Runnable {
 
@@ -12,6 +16,12 @@ public class ServerClientHandler extends Observable implements Runnable {
 	private DataInputStream streamIn;
 	private int id;
 
+	/**
+	 * Default constructor for ServerClientHandler
+	 * 
+	 * @param Socket s
+	 * @param int id
+	 */
 	public ServerClientHandler(Socket s, int id)
 	{
 		this.id = id;
@@ -27,6 +37,12 @@ public class ServerClientHandler extends Observable implements Runnable {
 		}
 		
 	}
+	
+	/**
+	 * Notifies observers if a event is recieved
+	 * 
+	 * 
+	 */
 	public void run()
 	{
 		while(true)
@@ -44,6 +60,11 @@ public class ServerClientHandler extends Observable implements Runnable {
 		}
 	}
 	
+	/**
+	 * Returns the name of a connected player
+	 * 
+	 * @return String
+	 */
 	public String namn()
 	{
 		String n = "";
@@ -58,7 +79,21 @@ public class ServerClientHandler extends Observable implements Runnable {
 		aktivitet.start();
 		return n;
 	}
+
+	/**
+	 * Starts the thread
+	 */
+	public void start()
+	{
+		aktivitet.start();
+	}
 	
+
+	/**
+	 * Returns the id for the connected player
+	 * 
+	 * @return int
+	 */
 	public int getID()
 	{
 		return id;
