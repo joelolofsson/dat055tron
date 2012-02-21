@@ -10,7 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/**
+ * @author Group 2
+ * 
+ * Creates a GUI for server application
+ * 
+ */
 
 public class ServerGui extends JFrame implements ActionListener {
 	
@@ -21,6 +26,10 @@ public class ServerGui extends JFrame implements ActionListener {
 	private InetAddress IP;
 	public static JLabel[] players = new JLabel[4];
 	
+	/**
+	 * Default constructor for CourseID
+	 * 
+	 */
 	public ServerGui()
 	{
 		try
@@ -57,6 +66,11 @@ public class ServerGui extends JFrame implements ActionListener {
 		pack();
 	}
 	
+	/**
+	 * Handles actions from pressed buttons
+	 * 
+	 * @param ActionEvent e
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == connect)
@@ -69,6 +83,11 @@ public class ServerGui extends JFrame implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Creates a server GUI
+	 * 
+	 * @param String[] arg
+	 */
 	public static void main(String[] arg)
 	{
 		ServerGui serverGui = new ServerGui();
