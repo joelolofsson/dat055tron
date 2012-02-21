@@ -59,6 +59,10 @@ public class GameWindow extends JPanel implements Observer{
 			{
 				pointList.clear();
 			}
+			else if(o instanceof NetworkClientReceiverTCP && arg instanceof String)
+			{
+				System.out.println(arg);
+			}
 	}
 }
 
