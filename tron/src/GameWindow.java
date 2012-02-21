@@ -8,30 +8,41 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-/*	public class GameWindow
- * 	@version 1.0
- * 	@author Erik, Joel
- * 
+/**	
+ * 	@author Group 2
+ *  
+ *  Updates the active gamewindow
  */
 public class GameWindow extends JPanel implements Observer{
 	public int mcSize = 4;
 	private HashSet<ColorPoint> pointList;
 	private LinkedList<ColorPoint> tempList;
 
-
+	/**
+	 * Default constructor for GameWindow
+	 * 
+	 * @param KeyReader key
+	 */
 	public GameWindow(KeyReader key){
 		super(true);
 		pointList = new HashSet<ColorPoint>();
 		tempList = new LinkedList<ColorPoint>();
 		addKeyListener(key);
 	}
-
+	
+	/**
+	 * Clears the pointlist
+	 */
 	public void init(){
 		pointList.clear();
 
 	}
 
-
+	/**
+	 * Draw all points from pointlist
+	 * 
+	 * @param Graphics g
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		for(ColorPoint point : pointList){
@@ -47,7 +58,12 @@ public class GameWindow extends JPanel implements Observer{
 
 
 
-
+	/**
+	 * Handles new point from NetworkClientReceiverUDP
+	 * 
+	 * @param Observable o
+	 * @param Object arg
+	 */
 	public void update(Observable o, Object arg)
 	{
 			if(o instanceof NetworkClientReceiverUDP && arg instanceof ColorPoint)

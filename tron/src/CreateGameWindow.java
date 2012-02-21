@@ -3,10 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-/**	public class CreateGameWindow
- * 	@version 1.0
- * 	@author Erik, Joel
+/**	
+ * 	@author Group 2
  * 
+ *  
  */
 public class CreateGameWindow extends JDialog implements ActionListener {
 	private JButton bCreate;
