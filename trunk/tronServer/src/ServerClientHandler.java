@@ -55,12 +55,8 @@ public class ServerClientHandler extends Observable implements Runnable {
 		{
 			e.printStackTrace();
 		}
-		return n;
-	}
-	
-	public void start()
-	{
 		aktivitet.start();
+		return n;
 	}
 	
 	public int getID()
