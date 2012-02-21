@@ -80,7 +80,7 @@ public class NetworkClient extends Observable implements Observer
 			//Använd detta för knapptryckningar via UDP
 			byte[] data = arg.toString().getBytes();
 			System.out.println(arg.toString());
-			DatagramPacket packet = new DatagramPacket(data, data.length, IP, port+2);
+			DatagramPacket packet = new DatagramPacket(data, data.length, IP, 1348);
 			byte[] receiptData = new byte[1024];
 			DatagramPacket receipt = new DatagramPacket(receiptData, receiptData.length);
 			while(true)
@@ -90,13 +90,14 @@ public class NetworkClient extends Observable implements Observer
 					datagramSocketSend.send(packet);
 					datagramSocketSend.receive(receipt);
 					String string = new String(receipt.getData(), 0, receipt.getLength());
-					if(string.matches("OK")){
+					System.out.println("Har tagit emot kvitto: " + string);
+					//if(string.matches("OK")){
 						break;
-					}
+					//}
 					
 				}
 				catch (SocketTimeoutException e2){
-					//No recepit within specified time limit, send again.
+					//No reciept within specified time limit, send again.
 					
 				}
 				catch(IOException e)
