@@ -28,6 +28,8 @@ public class NetworkClient extends Observable implements Observer
 			client = new Socket(IP,port);
 			datagramSocket = new DatagramSocket((port+1));
 			out = new DataOutputStream(client.getOutputStream());
+			//out.writeByte(0);
+			out.writeUTF(nickname);
 			Tron.setConnected(IP.getHostAddress());
 			keyReader = key;
 			keyReader.addObserver(this);
