@@ -17,6 +17,14 @@ public class Player
 	private int rX;
 	private int rY;
 	
+	/**
+	 * Default constructor for Players
+	 * 
+	 * @param int id
+	 * @param String name
+	 * @param int course
+	 * @param Point point
+	 */
 	public Player(int id, String name, int course, Point point)
 	{
 		this.id = id;
