@@ -19,8 +19,7 @@ public class ServerClientHandler extends Observable implements Runnable {
 		try
 		{
 			streamIn = new DataInputStream(s.getInputStream());
-			System.out.println(streamIn.readUTF().toString());
-			aktivitet.start();
+			System.out.println("har tagit emot");
 		}
 		catch (IOException e)
 		{
@@ -35,10 +34,6 @@ public class ServerClientHandler extends Observable implements Runnable {
 			try
 			{
 				int[] send = {id, streamIn.readByte()};
-				//if (send[1] == 0){
-					//System.out.println(streamIn.readUTF().toString());
-					
-				//}
 				setChanged();
 				notifyObservers(send);
 			}
@@ -47,6 +42,25 @@ public class ServerClientHandler extends Observable implements Runnable {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public String namn()
+	{
+		String n = "";
+		try
+		{
+			n = streamIn.readUTF().toString();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		return n;
+	}
+	
+	public void start()
+	{
+		aktivitet.start();
 	}
 	
 	public int getID()
