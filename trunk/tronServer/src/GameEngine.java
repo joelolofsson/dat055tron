@@ -162,6 +162,11 @@ public class GameEngine implements ActionListener, Observer {
 		System.out.println("Startar game");
 		for(ServerClientSenderTCP s : serverClientSenderTCPList) //Skickar ut namn till klienter
 		{
+			String sTemp = "";
+			for(Player p : playerList)
+			{
+				sTemp = sTemp + p.getName() + ",";
+			}
 			s.send("Zotty,Kalle...");
 			System.out.println("Skickar namn...");
 		}
