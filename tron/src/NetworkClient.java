@@ -12,7 +12,11 @@ import java.net.SocketTimeoutException;
 import java.util.Observable;
 import java.util.Observer;
 
-
+/**
+ * @author Group 2
+ * 
+ * Creates and sends event to server
+ */
 
 public class NetworkClient extends Observable implements Observer
 {
@@ -27,6 +31,14 @@ public class NetworkClient extends Observable implements Observer
 	private InetAddress IP;
 	private int port;
 	
+	/**
+	 * Default constructor for NetworkClient
+	 * 
+	 * @param InetAddress IP
+	 * @param int port
+	 * @param String nickname
+	 * @param KeyReader key
+	 */
 	public NetworkClient(InetAddress IP, int port, String nickname, KeyReader key)
 	{
 		try
@@ -53,6 +65,12 @@ public class NetworkClient extends Observable implements Observer
 		}
 	}
 	
+	/**
+	 * Sends data to server
+	 * 
+	 * @param Observable o
+	 * @param Object arg
+	 */
 	public void update(Observable o, Object arg)
 	{
 		
