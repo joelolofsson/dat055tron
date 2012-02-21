@@ -48,7 +48,7 @@ public class NetworkServer extends Observable implements Runnable {
 				{
 					System.out.println(klientSock.getInetAddress().getHostName() + " har anslutit sig");
 					ServerGui.players[numberOfPlayers].setText("Player " + (numberOfPlayers+1) + ": " + klientSock.getInetAddress().getHostAddress());
-					gameEngine.addPlayer(new ServerClientHandler(klientSock, numberOfPlayers), new ServerClientSenderUDP(klientSock.getInetAddress()), new ServerClientSenderTCP(klientSock));
+					gameEngine.addPlayer(new ServerClientHandler(klientSock, numberOfPlayers), new ServerClientHandlerUDP(numberOfPlayers), new ServerClientSenderUDP(klientSock.getInetAddress()), new ServerClientSenderTCP(klientSock));
 					numberOfPlayers++;
 				}
 			}

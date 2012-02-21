@@ -49,7 +49,8 @@ public class ServerClientHandler extends Observable implements Runnable {
 		{
 			try
 			{
-				int[] send = {id, streamIn.readByte()};
+				int[] send = {id, streamIn.readByte()};	//Tar emot knapptryck via TCP
+				System.out.println("Tog emot en knapptryckning");
 				setChanged();
 				notifyObservers(send);
 			}
