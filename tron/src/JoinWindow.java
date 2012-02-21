@@ -42,6 +42,9 @@ public class JoinWindow extends JDialog implements ActionListener {
 		portTextField = new JTextField(5);
 		nickNameTextField = new JTextField(30);
 
+		//Set default values
+		portTextField.setText("1337");
+		
 		//Create buttons
 		bConnect = new JButton("Connect");
 		bCancel = new JButton("Cancel");
