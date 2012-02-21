@@ -3,13 +3,22 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Observable;
-
+/**
+ * @author Group 2
+ * 
+ * Handles Indata from server with protocoll TCP
+ * 
+ */
 
 public class NetworkClientReceiverTCP extends Observable implements Runnable {
         
         private DataInputStream dataInputStream;
         private Thread thread;
 
+        /**
+         * Default constructor for NetworkClientReceiverTCP
+         * @param Socket socket
+         */
         public NetworkClientReceiverTCP(Socket socket)
         {
                 try {
@@ -21,6 +30,9 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
                 }
         }
         
+        /**
+         * Receives and handle playername
+         */
         public void run()
         {
                 while(true)
