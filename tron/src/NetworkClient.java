@@ -80,7 +80,7 @@ public class NetworkClient extends Observable implements Observer
 			//Använd detta för knapptryckningar via UDP
 			byte[] data = arg.toString().getBytes();
 			System.out.println("Skickar knapp (UDP): " + arg.toString());
-			DatagramPacket packet = new DatagramPacket(data, data.length, IP, 1348);
+			DatagramPacket packet = new DatagramPacket(data, data.length, IP, 1339 + netWorkClientReceiverTCP.getClientId());
 			byte[] receiptData = new byte[1024];
 			DatagramPacket receipt = new DatagramPacket(receiptData, receiptData.length);
 			while(true)
@@ -92,6 +92,7 @@ public class NetworkClient extends Observable implements Observer
 					String string = new String(receipt.getData(), 0, receipt.getLength());
 					System.out.println("Har tagit emot kvitto: " + string);
 					if(string.matches("OK")){
+						System.out.println("Kvitto accepterat");
 						break;
 					}
 					

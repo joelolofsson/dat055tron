@@ -14,6 +14,7 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
         
         private DataInputStream dataInputStream;
         private Thread thread;
+        private int clientId = -1;
 
         /**
          * Default constructor for NetworkClientReceiverTCP
@@ -40,6 +41,12 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
                         try 
                         {
                         System.out.println("försöker ta emot");
+                        
+                        if(clientId == -1)
+                        {
+                        	clientId = dataInputStream.readInt();
+                        }
+                        
                         String s = dataInputStream.readUTF().toString();
                         System.out.println("har tagit emot namn" + s);
                         String[] temp = s.split(",");
@@ -73,4 +80,14 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
                         }
                 }
         }
+        public int getClientId()
+        {
+        	return clientId;
+        }
+        
+        public void setClientId(int clientId)
+        {
+        	this.clientId =  clientId;
+        }
+        
 }
