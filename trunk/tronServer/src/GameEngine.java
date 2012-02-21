@@ -38,6 +38,7 @@ public class GameEngine implements ActionListener, Observer {
 	
 	public void update(Observable o, Object arg)
 	{
+		System.out.println("i updatefunktionen");
 		int[] recived;
 		if(o instanceof ServerClientHandler && arg instanceof int[])
 		{
@@ -55,10 +56,13 @@ public class GameEngine implements ActionListener, Observer {
 	 */
 	public void addPlayer(ServerClientHandler serverClientHandler, ServerClientSenderUDP serverClientSenderUDP)
 	{
+		String namn;
 		int id = serverClientHandler.getID();
 		serverClientSenderUDPList.add(serverClientSenderUDP);
+		namn = serverClientHandler.namn();
+		System.out.println(namn.toString());
 		serverClientHandler.addObserver(this);
-		playerList.add(new Player(id, "calle", 3, new Point((((id + 1) % 2) + 1) * 150, ((id / 2) + 1) * 150)));
+		playerList.add(new Player(id, namn, 3, new Point((((id + 1) % 2) + 1) * 150, ((id / 2) + 1) * 150)));
 	}
 	
 	public void updateScore()
