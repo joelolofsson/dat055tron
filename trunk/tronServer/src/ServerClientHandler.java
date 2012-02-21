@@ -19,6 +19,7 @@ public class ServerClientHandler extends Observable implements Runnable {
 		try
 		{
 			streamIn = new DataInputStream(s.getInputStream());
+			System.out.println(streamIn.readUTF().toString());
 			aktivitet.start();
 		}
 		catch (IOException e)
@@ -34,6 +35,10 @@ public class ServerClientHandler extends Observable implements Runnable {
 			try
 			{
 				int[] send = {id, streamIn.readByte()};
+				//if (send[1] == 0){
+					//System.out.println(streamIn.readUTF().toString());
+					
+				//}
 				setChanged();
 				notifyObservers(send);
 			}
