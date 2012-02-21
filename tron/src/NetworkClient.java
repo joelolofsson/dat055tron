@@ -4,9 +4,11 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -21,13 +23,20 @@ public class NetworkClient extends Observable implements Observer
 	private NetworkClientReceiverUDP netWorkClientReceiver;
 	private NetworkClientReceiverTCP netWorkClientReceiverTCP;
 	private DatagramSocket datagramSocket;
+	private DatagramSocket datagramSocketSend;
+	private InetAddress IP;
+	private int port;
 	
 	public NetworkClient(InetAddress IP, int port, String nickname, KeyReader key)
 	{
 		try
 		{
+			this.IP = IP;
+			this.port = port;
 			client = new Socket(IP,port);
 			datagramSocket = new DatagramSocket((port+1));
+			datagramSocketSend = new DatagramSocket();
+			datagramSocketSend.setSoTimeout(100);
 			out = new DataOutputStream(client.getOutputStream());
 			out.writeUTF(nickname);
 			Tron.setConnected(IP.getHostAddress());
@@ -50,17 +59,49 @@ public class NetworkClient extends Observable implements Observer
 		
 		if(o instanceof KeyReader && arg instanceof Integer) // Kolla så koordinaterna vi får in är från Keyreader och typen är int
 		{
-			try
+			byte[] data = arg.toString().getBytes();
+			System.out.println(arg.toString());
+			DatagramPacket packet = new DatagramPacket(data, data.length, IP, port+2);
+			byte[] receiptData = new byte[1024];
+			DatagramPacket receipt = new DatagramPacket(receiptData, receiptData.length);
+			while(true)
 			{
-				out.write((Integer)arg);
-				System.out.println("har skickat kordinat");
+				try
+				{
+					datagramSocketSend.send(packet);
+					datagramSocketSend.receive(receipt);
+					String string = new String(receipt.getData(), 0, receipt.getLength());
+					if(string.matches("OK")){
+						break;
+					}
+					
+				}
+				catch (SocketTimeoutException e2){
+					//No recepit within specified time limit, send again.
+					
+				}
+				catch(IOException e)
+				{
+					e.printStackTrace();
+					System.out.print("Update fel");
+					Tron.setConnected("Connection error!");	
+				}
 			}
-			catch(IOException e)
-			{
-				e.printStackTrace();
-				System.out.print("Update fel");
-				Tron.setConnected("Connection error!");	
-			}
+			
+			
+		//	try
+		//	{
+		//		out.write((Integer)arg); 
+			//	String string = arg.toString();
+			//	System.out.println(string)
+				
+		//	}
+		//	catch(IOException e)
+		//	{
+		//		e.printStackTrace();
+		//		System.out.print("Update fel");
+		//		Tron.setConnected("Connection error!");	
+		//	}
 			
 		}
 	}
