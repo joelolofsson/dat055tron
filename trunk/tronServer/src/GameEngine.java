@@ -81,6 +81,13 @@ public class GameEngine implements ActionListener, Observer {
 		
 		if(numberOfPlayers < 2)
 		{
+			for(Player p : playerList)
+			{
+				if(p.isAlive() == true)
+				{
+					p.setScore(reset-numberOfPlayers);
+				}
+			}
 			clearGame();
 			temp.add(new Point(0, 0));
 		}
@@ -93,6 +100,7 @@ public class GameEngine implements ActionListener, Observer {
 					p.move();
 					if(checkCrash(p.getPoint()))
 					{
+						p.setScore(reset - numberOfPlayers - 1);
 						p.setAlive(false);
 					}
 					cords.add(p.getPoint());
