@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-/*	public class CreateGameWindow
+/**	public class CreateGameWindow
  * 	@version 1.0
  * 	@author Erik, Joel
  * 
