@@ -156,7 +156,6 @@ public class GameEngine implements ActionListener, Observer {
 	 */
 	public void start(int numberOfPlayers)
 	{
-		timer.start();
 		this.numberOfPlayers = numberOfPlayers;
 		reset = numberOfPlayers;
 		System.out.println("Startar game");
@@ -170,6 +169,7 @@ public class GameEngine implements ActionListener, Observer {
 			s.send(sTemp);
 			System.out.println("Skickar namn...");
 		}
+		timer.start();
 	}
 
 }
