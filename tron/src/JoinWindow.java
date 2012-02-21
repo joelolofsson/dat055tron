@@ -3,9 +3,10 @@ import java.net.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-/*	public class JoinWindow
- * 	@version 1.0
- * 	@author Erik, Joel
+/**	
+ * 	@author Group 2
+ * 
+ * Handles the JoinWindow GUI and creates NetworkClients for connection to server.
  * 
  */
 public class JoinWindow extends JDialog implements ActionListener {
@@ -22,7 +23,13 @@ public class JoinWindow extends JDialog implements ActionListener {
 	private InetAddress ipadress;
 	private NetworkClient networkClient;
 	private KeyReader key;
-
+	
+	/**
+	 * Default constructor for JoinWindow
+	 * 
+	 * @param NetworkClient networkClient
+	 * @param KeyReader key
+	 */
 	public JoinWindow(NetworkClient networkClient, KeyReader key){
 		setTitle("Join game");
 		setModal(true);
@@ -57,8 +64,12 @@ public class JoinWindow extends JDialog implements ActionListener {
 	
 	}
 
-
-
+	
+	/**
+	 * Handles actions from pressed buttons 
+	 * and takes care of the user inputdata
+	 * @param ActionEvent e
+	 */
 	public void actionPerformed(ActionEvent e){
 		JButton buttonPressed = (JButton) e.getSource();
 		boolean isOK = true;
