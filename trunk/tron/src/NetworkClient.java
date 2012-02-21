@@ -77,7 +77,8 @@ public class NetworkClient extends Observable implements Observer
 		
 		if(o instanceof KeyReader && arg instanceof Integer) // Kolla så koordinaterna vi får in är från Keyreader och typen är int
 		{
-			/*byte[] data = arg.toString().getBytes();
+			//Använd detta för knapptryckningar via UDP
+			byte[] data = arg.toString().getBytes();
 			System.out.println(arg.toString());
 			DatagramPacket packet = new DatagramPacket(data, data.length, IP, port+2);
 			byte[] receiptData = new byte[1024];
@@ -106,8 +107,9 @@ public class NetworkClient extends Observable implements Observer
 				}
 			}
 			
-			*/
-			try
+			
+			/*
+			try		//Använd detta för knapptryckningar via TCP
 			{
 				out.write((Integer)arg); 
 				String string = arg.toString();
@@ -120,7 +122,7 @@ public class NetworkClient extends Observable implements Observer
 				System.out.print("Update fel");
 				Tron.setConnected("Connection error!");	
 			}
-			
+			*/
 		}
 	}
 }
