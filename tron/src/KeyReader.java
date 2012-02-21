@@ -1,10 +1,11 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
-/* Keyreader
+/** 
+ * @author Group 2
  * Reads the key input from arrow keys and updates observers
- * @author Erik, Joel
- * @ver 1.0
+ * 
+ * 
  */
 
 public class KeyReader extends Observable implements KeyListener {
@@ -14,12 +15,16 @@ public class KeyReader extends Observable implements KeyListener {
 	public static final int LEFT = 4;
 	private int direction;
 	
-	public KeyReader(){
-		
+	/**
+	 * Default constructor for KeyReader
+	 */
+	public KeyReader()
+	{
 		
 	}
 	
-	public void keyPressed(KeyEvent e){
+	public void keyPressed(KeyEvent e)
+	{
 		if(e.getKeyCode() == KeyEvent.VK_UP){
 			direction=UP;
 			setChanged();
