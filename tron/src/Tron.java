@@ -154,7 +154,11 @@ public class Tron extends JFrame implements ActionListener{
 
 	}
 
-
+	/**
+	 * Creates a Tron GUI
+	 * 
+	 * @param String[] arg
+	 */
 	public static void main(String[] arg){
 		Tron tron = new Tron();
 
