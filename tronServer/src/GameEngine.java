@@ -65,6 +65,8 @@ public class GameEngine implements ActionListener, Observer {
 		System.out.println(namn.toString());
 		serverClientHandlerUDP.addObserver(this);
 		playerList.add(new Player(id, namn, 3, new Point((((id + 1) % 2) + 1) * 150, ((id / 2) + 1) * 150)));
+		serverClientSenderTCP.send(new Integer(id).toString());			//Skickar id till klient
+		sendPlayers();
 	}
 	
 	public void updateScore()
@@ -163,7 +165,24 @@ public class GameEngine implements ActionListener, Observer {
 		this.numberOfPlayers = numberOfPlayers;
 		reset = numberOfPlayers;
 		System.out.println("Startar game");
-		int i = 0;
+		
+		sendPlayers();
+		
+		/*for(ServerClientSenderTCP s : serverClientSenderTCPList) //Skickar ut namn till klienter
+		{
+			String sTemp = "";
+			for(Player p : playerList)
+			{
+				sTemp = sTemp + p.getName() + ",";
+			}
+			s.send(sTemp);
+			System.out.println("Skickar namn...");
+		}*/
+		timer.start();
+	}
+
+	private void sendPlayers()
+	{
 		for(ServerClientSenderTCP s : serverClientSenderTCPList) //Skickar ut namn till klienter
 		{
 			String sTemp = "";
@@ -171,10 +190,8 @@ public class GameEngine implements ActionListener, Observer {
 			{
 				sTemp = sTemp + p.getName() + ",";
 			}
-			s.send(sTemp, i++);
+			s.send(sTemp);
 			System.out.println("Skickar namn...");
 		}
-		timer.start();
 	}
-
 }
