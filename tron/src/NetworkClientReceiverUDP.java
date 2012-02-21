@@ -8,12 +8,12 @@ import java.net.SocketException;
 import java.util.Observable;
 
 
-public class NetworkClientReceiver extends Observable implements Runnable {
+public class NetworkClientReceiverUDP extends Observable implements Runnable {
 	
 	private Thread thread;
 	private DatagramPacket packet;
 	private DatagramSocket socket;
-	public NetworkClientReceiver(DatagramSocket socket)
+	public NetworkClientReceiverUDP(DatagramSocket socket)
 	{
 		byte[] data = new byte[1024];
 		this.socket=socket;
