@@ -28,22 +28,12 @@ public class ServerClientSenderTCP extends Observable {
 		
 	}
 	
-	public void send(String sTemp, int id)
+	public void send(String sTemp)
 	{
-		
 		try {
 			System.out.println("Försöker sända namn!");
-			
-			if(idNotSent)
-			{
-				streamOut.writeInt(id);	//Skickar id i varje paket
-			}
-			
-			streamOut.writeUTF(sTemp);
-			
+			streamOut.writeUTF(sTemp);		
 			streamOut.flush();
-			//streamOut.writeInt(id);
-			//streamOut.flush();
 		} catch (IOException e) {
 			System.out.println("write IOException");
 			e.printStackTrace();
