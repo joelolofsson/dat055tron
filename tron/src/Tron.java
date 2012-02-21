@@ -3,9 +3,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-/**	public class Tron
- *
- * 	@author Grupp 2
+/**	
+ *@author Group 2
+ * 
+ * 	Handles the main GUI and menu. 
  * 
  */
 
