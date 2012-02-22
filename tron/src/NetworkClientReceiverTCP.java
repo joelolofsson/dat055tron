@@ -48,7 +48,7 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
 	                        {
 	                        	clientId = new Integer(dataInputStream.readUTF().toString()).intValue();
 	                        }
-	                        else if(packetId == 2)
+	                        else if(packetId == 1)
 		                    {
 	                        
 	                        	//Vi har fått namn
