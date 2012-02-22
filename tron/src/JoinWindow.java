@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -56,12 +57,16 @@ public class JoinWindow extends JDialog implements ActionListener
 		//Set default values
 		portTextField.setText("1337");
 
+		
 		//Create buttons
 		bConnect = new JButton("Connect");
 		bCancel = new JButton("Cancel");
 		bConnect.addActionListener(this);
 		bCancel.addActionListener(this);
 
+		//Sets the default button
+		getRootPane().setDefaultButton(bConnect);
+		
 		//Create Labels for each text field
 		ipLabel = new JLabel("IP adress:");
 		portLabel = new JLabel("Port:");
