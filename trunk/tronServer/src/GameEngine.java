@@ -65,7 +65,7 @@ public class GameEngine implements ActionListener, Observer {
 		System.out.println(namn.toString());
 		serverClientHandlerUDP.addObserver(this);
 		playerList.add(new Player(id, namn, 3, new Point((((id + 1) % 2) + 1) * 150, ((id / 2) + 1) * 150)));
-		serverClientSenderTCP.send(new Integer(id).toString());			//Skickar id till klient
+		serverClientSenderTCP.send(1, new Integer(id).toString());			//Skickar namn till klient
 		sendPlayers();
 	}
 	
@@ -113,7 +113,7 @@ public class GameEngine implements ActionListener, Observer {
 			}
 			for(ServerClientSenderTCP s : serverClientSenderTCPList)
 			{
-				s.send(poang);
+				s.send(2, poang);
 			}
 			clearGame();
 			temp.add(new Point(0, 0));
@@ -172,30 +172,19 @@ public class GameEngine implements ActionListener, Observer {
 		System.out.println("Startar game");
 		
 		sendPlayers();
-		
-		/*for(ServerClientSenderTCP s : serverClientSenderTCPList) //Skickar ut namn till klienter
-		{
-			String sTemp = "";
-			for(Player p : playerList)
-			{
-				sTemp = sTemp + p.getName() + ",";
-			}
-			s.send(sTemp);
-			System.out.println("Skickar namn...");
-		}*/
 		timer.start();
 	}
 
 	private void sendPlayers()
 	{
-		for(ServerClientSenderTCP s : serverClientSenderTCPList) //Skickar ut namn till klienter
+		for(ServerClientSenderTCP s : serverClientSenderTCPList)
 		{
 			String sTemp = "";
 			for(Player p : playerList)
 			{
 				sTemp = sTemp + p.getName() + ",";
 			}
-			s.send(sTemp);
+			s.send(1, sTemp);
 			System.out.println("Skickar namn...");
 		}
 	}
