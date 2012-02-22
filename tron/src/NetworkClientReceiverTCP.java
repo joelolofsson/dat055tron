@@ -85,8 +85,6 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable
 	    							Tron.playersLabel[i].setText(Tron.playersLabel[i].getText().split(" ")[0] + " " + Integer.parseInt(temp[i]));
 	    						}
 	                        }
-
-	                       
                         }
                         catch (IOException e1)
                         {
@@ -111,5 +109,4 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable
         {
         	this.clientId =  clientId;
         }
-        
 }
