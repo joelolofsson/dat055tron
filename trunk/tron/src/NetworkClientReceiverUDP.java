@@ -1,9 +1,7 @@
 import java.awt.Color;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.Socket;
 import java.net.SocketException;
 import java.util.Observable;
 /**
@@ -12,14 +10,14 @@ import java.util.Observable;
  * Handles in data with the protocol UDP
  */
 
-public class NetworkClientReceiverUDP extends Observable implements Runnable {
-	
+public class NetworkClientReceiverUDP extends Observable implements Runnable
+{	
 	private Thread thread;
 	private DatagramPacket packet;
 	private DatagramSocket socket;
 	
     /**
-     * Default constructor for NetworkClientReceiverTCP
+     * Default constructor for NetworkClientReceiverUDP
      * @param DatagramSocket socket
      */
 	public NetworkClientReceiverUDP(DatagramSocket socket)
