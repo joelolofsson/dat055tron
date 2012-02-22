@@ -84,7 +84,7 @@ public class Tron extends JFrame implements ActionListener{
 		//Set layout for the west panel for start/paus button and player list.
 		//west.setPreferredSize(new Dimension(80,400));
 		west.setLayout(new BoxLayout(west,BoxLayout.Y_AXIS));
-		west.setPreferredSize(new Dimension(50,400));
+		west.setPreferredSize(new Dimension(90,400));
 		west.add(Box.createVerticalGlue());
 	//	west.add(Box.createRigidArea(new Dimension(15,0)));
 		west.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.darkGray));
