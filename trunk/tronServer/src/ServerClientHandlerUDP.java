@@ -6,7 +6,7 @@ import java.util.Observable;
 /**
  * @author Group 2
  * 
- * Handles the Indata from a client
+ * Handles the Indata from a client via UDP
  */
 
 public class ServerClientHandlerUDP extends Observable implements Runnable
