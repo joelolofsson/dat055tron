@@ -83,7 +83,6 @@ public class NetworkClient extends Observable implements Observer
 					{
 						break;
 					}
-					
 				}
 				catch (SocketTimeoutException e2)
 				{
