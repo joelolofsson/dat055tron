@@ -16,10 +16,18 @@ public class Player
 	private boolean alive = true;
 	private int startX;
 	private int startY;
+<<<<<<< .mine
+	private boolean allowTurn = true;
+	public static final int UP = 1;
+	public static final int RIGHT = 2;
+	public static final int DOWN = 3;
+	public static final int LEFT = 4;
+=======
 	private final int UP = 1;
 	private final int RIGHT = 2;
 	private final int DOWN = 3;
 	private final int LEFT = 4;
+>>>>>>> .r261
 	
 	/**
 	 * Default constructor for Players
@@ -114,9 +122,10 @@ public class Player
 	*/
 	public void setCourse(int course)
 	{
-		if(!(Math.abs(this.course-course) == 2))
+		if(!(Math.abs(this.course-course) == 2) && allowTurn)
 		{
 			this.course = course;
+			allowTurn = false;
 		}
 		
 	}
@@ -172,5 +181,6 @@ public class Player
 			case LEFT: point.x = point.x - 1;
 					break;
 		}	
+		allowTurn = true;
 	}
 }
