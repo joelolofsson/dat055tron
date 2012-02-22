@@ -49,7 +49,8 @@ public class GameWindow extends JPanel implements Observer{
 			g.setColor(point.color);
 			g.fillRect(point.x - 1, point.y - 1, mcSize, mcSize);
 			//		System.out.println(point);
-		}while(!tempList.isEmpty()){
+		}
+		while(!tempList.isEmpty()){
 			try
 			{
 			pointList.add(tempList.get(0));
@@ -58,7 +59,7 @@ public class GameWindow extends JPanel implements Observer{
 			catch(NullPointerException e)
 			{
 				System.out.println("blev fel");
-				pointList.clear();
+				break;
 			}
 
 		}
