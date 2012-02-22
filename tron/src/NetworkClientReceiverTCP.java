@@ -42,17 +42,17 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
                         {
 	                        System.out.println("Försöker ta emot data");
 	                        
-	                        if(clientId == -1)
+	                        
+	                        int packetId = dataInputStream.readInt();
+	                        if(packetId == 0)
 	                        {
 	                        	clientId = new Integer(dataInputStream.readUTF().toString()).intValue();
 	                        }
+	                        else if(packetId == 2)
+		                    {
 	                        
-	                        int packetId = dataInputStream.readInt();
-	                        String s;
-	                        if(packetId == 1)
-	                        {
 	                        	//Vi har fått namn
-	                        	s = dataInputStream.readUTF().toString();
+	                        	String s = dataInputStream.readUTF().toString();
 	                        	System.out.println("har tagit emot namn" + s);
 	                        	
 	                        	String[] temp = s.split(",");
