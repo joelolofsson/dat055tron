@@ -81,11 +81,16 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
 	 	                        }
 	                        } else if(packetId == 2)
 	                        {
-	                        	//Vi har fått poäng
-	                        	s = dataInputStream.readUTF().toString();
-	                        	System.out.println("har tagit emot poäng" + s);
+	                        	String poang;
+	                        	String[] temp;
+	                        	System.out.println("har tagit emot poäng");
 	                        	
-	                        	//Lägg koden här
+	                        	poang = dataInputStream.readUTF().toString();
+	    						temp = poang.split(",");
+	    						for(int i = 0; i < temp.length; i++)
+	    						{
+	    							Tron.playersLabel[i].setText(Tron.playersLabel[i].getText().split(" ")[0] + " " + Integer.parseInt(temp[i]));
+	    						}
 	                        }
 
 	                       
