@@ -20,7 +20,7 @@ public class GameEngine implements ActionListener, Observer {
 	
 	private LinkedHashSet<Point> cords;
 	private java.util.List<Player> playerList;
-	private Timer timer;
+	private Timer timer; 
 	private LinkedList<ServerClientSenderUDP> serverClientSenderUDPList;
 	private LinkedList<ServerClientSenderTCP> serverClientSenderTCPList;
 	private int numberOfPlayers;
@@ -100,7 +100,7 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		
 		LinkedList<Point> temp = new LinkedList<Point>();
-		
+		String poang = "";
 		if(numberOfPlayers < 2)
 		{
 			for(Player p : playerList)
@@ -109,6 +109,11 @@ public class GameEngine implements ActionListener, Observer {
 				{
 					p.setScore(reset-numberOfPlayers);
 				}
+				poang = poang + p.getScore() + ",";
+			}
+			for(ServerClientSenderTCP s : serverClientSenderTCPList)
+			{
+				s.send(poang);
 			}
 			clearGame();
 			temp.add(new Point(0, 0));
