@@ -6,7 +6,7 @@ import java.util.Observable;
 /**
  * @author Group 2
  * 
- * Handles Indata from server with protocoll TCP
+ * Handles indata from server with protocol TCP
  * 
  */
 
@@ -101,11 +101,19 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
                         }
                 }
         }
+        /**
+         * Returns the id of a specified client
+         * @return int clientId
+         */
         public int getClientId()
         {
         	return clientId;
         }
         
+        /**
+         * Set the id of a specified client
+         * @param int clientId
+         */
         public void setClientId(int clientId)
         {
         	this.clientId =  clientId;
