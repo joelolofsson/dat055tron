@@ -29,7 +29,7 @@ public class ServerClientHandler extends Observable implements Runnable {
 		try
 		{
 			streamIn = new DataInputStream(s.getInputStream());
-			System.out.println("har tagit emot");
+			//System.out.println("har tagit emot");
 		}
 		catch (IOException e)
 		{
@@ -50,7 +50,7 @@ public class ServerClientHandler extends Observable implements Runnable {
 			try
 			{
 				int[] send = {id, streamIn.readByte()};	//Tar emot knapptryck via TCP
-				System.out.println("Tog emot en knapptryckning");
+				//System.out.println("Tog emot en knapptryckning");
 				setChanged();
 				notifyObservers(send);
 			}

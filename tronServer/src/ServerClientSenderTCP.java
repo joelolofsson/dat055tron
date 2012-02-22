@@ -31,7 +31,7 @@ public class ServerClientSenderTCP extends Observable {
 	public void send(int  typ, String sTemp)
 	{
 		try {
-			System.out.println("Försöker sända namn!");
+			//System.out.println("Försöker sända namn!");
 			streamOut.writeInt(typ);
 			streamOut.writeUTF(sTemp);		
 			streamOut.flush();
