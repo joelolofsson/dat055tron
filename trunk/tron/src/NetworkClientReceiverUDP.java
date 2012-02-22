@@ -6,13 +6,22 @@ import java.net.DatagramSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.Observable;
-
+/**
+ *@author Group 2 
+ * 
+ * Handles in data with the protocol UDP
+ */
 
 public class NetworkClientReceiverUDP extends Observable implements Runnable {
 	
 	private Thread thread;
 	private DatagramPacket packet;
 	private DatagramSocket socket;
+	
+    /**
+     * Default constructor for NetworkClientReceiverTCP
+     * @param DatagramSocket socket
+     */
 	public NetworkClientReceiverUDP(DatagramSocket socket)
 	{
 		byte[] data = new byte[1024];
@@ -22,6 +31,10 @@ public class NetworkClientReceiverUDP extends Observable implements Runnable {
 			thread.start();
 	}
 	
+	/**
+	 * Converts recieved datagram to text and x- y-coordinates
+	 * Notifies listeners in the class GameWindow
+	 */
 	public void run()
 	{
 		Integer x;
