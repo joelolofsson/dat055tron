@@ -29,7 +29,6 @@ public class NetworkClient extends Observable implements Observer
 	private DatagramSocket datagramSocket;
 	private DatagramSocket datagramSocketSend;
 	private InetAddress IP;
-	private int port;
 	
 	/**
 	 * Default constructor for NetworkClient
@@ -44,7 +43,6 @@ public class NetworkClient extends Observable implements Observer
 		try
 		{
 			this.IP = IP;
-			this.port = port;
 			client = new Socket(IP,port);
 			datagramSocket = new DatagramSocket((port+1));
 			datagramSocketSend = new DatagramSocket();
@@ -79,7 +77,7 @@ public class NetworkClient extends Observable implements Observer
 		{
 			//Använd detta för knapptryckningar via UDP
 			byte[] data = arg.toString().getBytes();
-			System.out.println("Skickar knapp (UDP): " + arg.toString());
+			//System.out.println("Skickar knapp (UDP): " + arg.toString());
 			DatagramPacket packet = new DatagramPacket(data, data.length, IP, 1339 + netWorkClientReceiverTCP.getClientId());
 			byte[] receiptData = new byte[1024];
 			DatagramPacket receipt = new DatagramPacket(receiptData, receiptData.length);
@@ -90,9 +88,9 @@ public class NetworkClient extends Observable implements Observer
 					datagramSocketSend.send(packet);
 					datagramSocketSend.receive(receipt);
 					String string = new String(receipt.getData(), 0, receipt.getLength());
-					System.out.println("Har tagit emot kvitto: " + string);
+					//System.out.println("Har tagit emot kvitto: " + string);
 					if(string.matches("OK")){
-						System.out.println("Kvitto accepterat");
+						//System.out.println("Kvitto accepterat");
 						break;
 					}
 					

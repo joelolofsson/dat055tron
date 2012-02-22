@@ -83,7 +83,7 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
 	                        {
 	                        	String poang;
 	                        	String[] temp;
-	                        	System.out.println("har tagit emot poäng");
+	                        	//System.out.println("har tagit emot poäng");
 	                        	
 	                        	poang = dataInputStream.readUTF().toString();
 	    						temp = poang.split(",");

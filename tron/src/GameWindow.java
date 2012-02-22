@@ -50,8 +50,15 @@ public class GameWindow extends JPanel implements Observer{
 			g.fillRect(point.x - 1, point.y - 1, mcSize, mcSize);
 			//		System.out.println(point);
 		}while(!tempList.isEmpty()){
+			try
+			{
 			pointList.add(tempList.get(0));
 			tempList.remove(0);
+			}
+			catch(NullPointerException e)
+			{
+				System.out.println("blev fel");
+			}
 
 		}
 	}
