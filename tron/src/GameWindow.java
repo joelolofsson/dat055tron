@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  */
 public class GameWindow extends JPanel implements Observer
 {
-	public int mcSize = 3;
+	private int mcSize = 3;
 	private HashSet<ColorPoint> pointList;
 	private LinkedList<ColorPoint> tempList;
 	
@@ -48,7 +48,7 @@ public class GameWindow extends JPanel implements Observer
 		super.paintComponent(g);
 		for(ColorPoint point : pointList)
 		{
-			g.setColor(point.color);
+			g.setColor(point.getColor());
 			g.fillRect(point.x, point.y, mcSize, mcSize);
 		}
 		while(!tempList.isEmpty())
