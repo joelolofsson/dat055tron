@@ -86,7 +86,7 @@ public class GameEngine implements ActionListener, Observer
 	/**
 	 * Empty cords, reset player start course and sleeps for 5 sec
 	 */
-	public void clearGame()
+	private void clearGame()
 	{
 		cords.clear();
 		try
@@ -169,7 +169,7 @@ public class GameEngine implements ActionListener, Observer
 	 * @param Point p
 	 * @return boolean
 	 */
-	public boolean checkCrash(Point p)
+	private boolean checkCrash(Point p)
 	{
 		for(Point pos : cords)
 		{
