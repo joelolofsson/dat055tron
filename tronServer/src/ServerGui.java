@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,8 +16,8 @@ import javax.swing.JPanel;
  * 
  */
 
-public class ServerGui extends JFrame implements ActionListener {
-	
+public class ServerGui extends JFrame implements ActionListener
+{	
 	private JButton connect;
 	private JButton start;
 	private JLabel ipAdress;
@@ -45,6 +44,7 @@ public class ServerGui extends JFrame implements ActionListener {
 		start = new JButton("Start");
 		networkServer = new NetworkServer();
 		ipAdress = new JLabel("Created new server on " + IP.getHostAddress());
+		setTitle("TronServer");
 		meny.setLayout(new FlowLayout());
 		meny.add(connect);
 		meny.add(start);

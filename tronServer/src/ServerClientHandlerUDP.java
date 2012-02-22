@@ -9,8 +9,8 @@ import java.util.Observable;
  * Handles the Indata from a client
  */
 
-public class ServerClientHandlerUDP extends Observable implements Runnable {
-
+public class ServerClientHandlerUDP extends Observable implements Runnable
+{
 	private Thread aktivitet;
 	private DatagramPacket packet;
 	private DatagramSocket socket;
@@ -25,9 +25,11 @@ public class ServerClientHandlerUDP extends Observable implements Runnable {
 	public ServerClientHandlerUDP(int id)
 	{
 		this.id = id;
-		try {
+		try 
+		{
 			socket = new DatagramSocket(1339 + id);
-		} catch (SocketException e) {
+		} catch (SocketException e)
+		{
 			e.printStackTrace();
 		}
 		byte[] data = new byte[1024];
@@ -39,30 +41,22 @@ public class ServerClientHandlerUDP extends Observable implements Runnable {
 	/**
 	 * Notifies observers if a event is recieved
 	 * 
-	 * 
 	 */
 	public void run()
 	{
 		while(true)
 		{
-			
-			
-				try {
+				try
+				{
 					socket.receive(packet);
-					String tempstring = new String(packet.getData(), 0, packet.getLength());
-					//System.out.println("Tog emot knapptryck (UDP): " + tempstring);
-					
+					String tempstring = new String(packet.getData(), 0, packet.getLength());					
 					int[] send = {id, new Integer(tempstring).intValue()};
 					setChanged();
-					notifyObservers(send);
-					
+					notifyObservers(send);					
 					DatagramSocket sendSocket = new DatagramSocket();
-					
-					byte[] data = new String("OK").getBytes();
-					
+					byte[] data = new String("OK").getBytes();					
 					DatagramPacket sendPacket = new DatagramPacket(data, data.length, packet.getAddress(), packet.getPort());
-					sendSocket.send(sendPacket);
-					
+					sendSocket.send(sendPacket);//Sends receipt
 				}
 				catch (IOException e)
 				{
@@ -70,12 +64,14 @@ public class ServerClientHandlerUDP extends Observable implements Runnable {
 				}
 		}
 		}
-				
+	
+	/**
+	 * Start the thread
+	 */
 	public void start()
 	{
 		aktivitet.start();
 	}
-	
 
 	/**
 	 * Returns the id for the connected player

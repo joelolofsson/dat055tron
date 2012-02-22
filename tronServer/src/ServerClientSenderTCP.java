@@ -4,39 +4,49 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Observable;
 
+/**
+ * @author Group 2
+ * 
+ * Sends name and score to client via TCP
+ */
 
-public class ServerClientSenderTCP extends Observable {
-
-	Socket socket;
-	DataOutputStream streamOut;
-	boolean idNotSent = true;
-
+public class ServerClientSenderTCP extends Observable
+{
+	private DataOutputStream streamOut;
 	
+	/**
+	 * Default constructor for ServerClientSender
+	 * @param Socket s
+	 */
 	public ServerClientSenderTCP(Socket s)
 	{
-		System.out.println("skapar vi en serverClientSender");
-		System.out.println(s.getLocalAddress().getHostAddress());
-		socket = s;
-		try {
-			streamOut = new DataOutputStream(socket.getOutputStream());
-			System.out.println("skapas ut strömmen");
-			
-		} catch (IOException e) {
-			System.out.println("funkade inte riktigt");
+		try 
+		{
+			streamOut = new DataOutputStream(s.getOutputStream());	
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
 		}
-		
 	}
 	
-	public void send(int  typ, String sTemp)
+	/**
+	 * Sends name and score to client
+	 * 
+	 * @param int msgType
+	 * @param String data
+	 */
+	public void send(int msgType, String data)
 	{
-		try {
-			//System.out.println("Försöker sända namn!");
-			streamOut.writeInt(typ);
-			streamOut.writeUTF(sTemp);		
+		try 
+		{
+			//If msgType = 1, send name. If msgType = 2, send score.
+			streamOut.writeInt(msgType);
+			streamOut.writeUTF(data);		
 			streamOut.flush();
-		} catch (IOException e) {
-			System.out.println("write IOException");
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
 		}
 	}
