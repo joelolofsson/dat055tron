@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -133,6 +134,17 @@ public class Tron extends JFrame implements ActionListener
 		Object knappTryck = e.getSource();
 		if(knappTryck  instanceof JMenuItem )
 		{
+			if(knappTryck == newGame)
+			{
+				try
+				{	
+					Process proc = Runtime.getRuntime().exec("java -jar tronserver.jar");
+				}
+				catch(IOException e1)
+				{
+					e1.printStackTrace();
+				}
+			}
 			if(knappTryck == joinGame)
 				new JoinWindow(networkClient, key);
 			if(knappTryck == exit)
