@@ -15,6 +15,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import static java.awt.event.InputEvent.CTRL_DOWN_MASK;
 
 /**	
  *@author Group 2
@@ -69,6 +71,7 @@ public class Tron extends JFrame implements ActionListener
 		help = new JMenu("Help");
 		newGame = new JMenuItem("Create new game");
 		joinGame = new JMenuItem("Join game");
+		joinGame.setAccelerator(KeyStroke.getKeyStroke('J', CTRL_DOWN_MASK));
 		exit = new JMenuItem("Exit");
 		about = new JMenuItem("About");
 		howToPlay = new JMenuItem("How to play");
