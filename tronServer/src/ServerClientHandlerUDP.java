@@ -50,7 +50,7 @@ public class ServerClientHandlerUDP extends Observable implements Runnable {
 				try {
 					socket.receive(packet);
 					String tempstring = new String(packet.getData(), 0, packet.getLength());
-					System.out.println("Tog emot knapptryck (UDP): " + tempstring);
+					//System.out.println("Tog emot knapptryck (UDP): " + tempstring);
 					
 					int[] send = {id, new Integer(tempstring).intValue()};
 					setChanged();
@@ -63,9 +63,13 @@ public class ServerClientHandlerUDP extends Observable implements Runnable {
 					DatagramPacket sendPacket = new DatagramPacket(data, data.length, packet.getAddress(), packet.getPort());
 					sendSocket.send(sendPacket);
 					
-				} catch (IOException e) {
+				}
+				catch (IOException e)
+				{
 					e.printStackTrace();
 				}
+		}
+		}
 				
 	public void start()
 	{
