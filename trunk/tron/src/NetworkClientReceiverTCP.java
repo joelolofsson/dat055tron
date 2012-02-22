@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Observable;
 
 /**
@@ -41,7 +42,7 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable
                 {
                         try 
                         {
-	                        int packetId = dataInputStream.readInt();
+                        	int packetId = dataInputStream.readInt();
 	                        if(packetId == 0)//ID
 	                        {
 	                        	clientId = new Integer(dataInputStream.readUTF().toString()).intValue();
@@ -85,6 +86,10 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable
 	    							Tron.playersLabel[i].setText(Tron.playersLabel[i].getText().split(" ")[0] + " " + Integer.parseInt(temp[i]));
 	    						}
 	                        }
+                        }
+                        catch (SocketException e1)
+                        {
+                        	Tron.setConnected("Connection error!");
                         }
                         catch (IOException e1)
                         {
