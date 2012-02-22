@@ -1,6 +1,9 @@
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import javax.swing.JButton;
@@ -30,7 +33,7 @@ public class JoinWindow extends JDialog implements ActionListener
 	private InetAddress ipadress;
 	private NetworkClient networkClient;
 	private KeyReader key;
-	
+
 	/**
 	 * Default constructor for JoinWindow
 	 * 
@@ -52,7 +55,7 @@ public class JoinWindow extends JDialog implements ActionListener
 
 		//Set default values
 		portTextField.setText("1337");
-		
+
 		//Create buttons
 		bConnect = new JButton("Connect");
 		bCancel = new JButton("Cancel");
@@ -69,10 +72,11 @@ public class JoinWindow extends JDialog implements ActionListener
 		add(portLabel); add(portTextField);
 		add(nickNameLabel); add(nickNameTextField);
 		add(bConnect); add(bCancel);
+		nickNameTextField.addKeyListener(enter);
 		pack();
 		setVisible(true);
 	}
-	
+
 	/**
 	 * Handles actions from pressed buttons 
 	 * and takes care of the user inputdata
@@ -81,40 +85,66 @@ public class JoinWindow extends JDialog implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		JButton buttonPressed = (JButton) e.getSource();
-		boolean isOK = true;
 		if(buttonPressed == bConnect)
 		{
-			try
-			{
-				ipadress = InetAddress.getByName(ipTextField.getText());
-			}
-			catch (UnknownHostException fel)	
-			{
-				isOK = false;
-				JOptionPane.showMessageDialog(this,
-						"You need to enter a correct ip adress", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-			try
-			{
-				portInt = Integer.parseInt(portTextField.getText());
-			} 
-			catch (NumberFormatException fel)
-			{
-				isOK = false;
-				JOptionPane.showMessageDialog(this,
-						"Only numbers 0-9 is allowed for port number", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-			nickNameString = nickNameTextField.getText();
-			if(isOK)
-			{
-				System.out.println(ipadress + " : " + portInt + " : " + nickNameString);
-				dispose();
-				networkClient = new NetworkClient(ipadress, portInt, nickNameString, key);
-			}
+			connectPressed();
 		}
 		if(buttonPressed == bCancel)
 		{
 			dispose();
 		}
 	}
+
+	public void connectPressed()
+	{
+		boolean isOK = true;
+		try
+		{
+			ipadress = InetAddress.getByName(ipTextField.getText());
+		}
+		catch (UnknownHostException fel)	
+		{
+			isOK = false;
+			JOptionPane.showMessageDialog(this,
+					"You need to enter a correct ip adress", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		try
+		{
+			portInt = Integer.parseInt(portTextField.getText());
+		} 
+		catch (NumberFormatException fel)
+		{
+			isOK = false;
+			JOptionPane.showMessageDialog(this,
+					"Only numbers 0-9 is allowed for port number", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		nickNameString = nickNameTextField.getText();
+		if(isOK)
+		{
+			System.out.println(ipadress + " : " + portInt + " : " + nickNameString);
+			dispose();
+			networkClient = new NetworkClient(ipadress, portInt, nickNameString, key);
+		}
+	}
+
+	/**
+	 * Keylistener for nickname textfield. Hitting "Enter" in this textfield
+	 * will execute same command as if the button "Connect" was pressed.
+	 * 
+	 */
+	KeyListener enter = new KeyAdapter()
+	{
+		public void keyReleased( KeyEvent e )
+		{
+			if( e.getKeyCode() == KeyEvent.VK_ENTER )
+			{
+				connectPressed();
+
+
+			}
+
+
+
+		}
+	};
 }
