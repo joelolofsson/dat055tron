@@ -48,6 +48,7 @@ public class Tron extends JFrame implements ActionListener{
 		for(int i = 0; i < playersLabel.length; i++){
 			//playersLabel[i] = new JLabel("P" + (i+1) + " not connected");
 			playersLabel[i] = new JLabel("Player " + (i+1));
+			playersLabel[i].setForeground(Color.WHITE);
 			west.add(playersLabel[i]);
 		}
 		connected = new JLabel("Connected to server: n/a");
@@ -83,8 +84,10 @@ public class Tron extends JFrame implements ActionListener{
 		//Set layout for the west panel for start/paus button and player list.
 		//west.setPreferredSize(new Dimension(80,400));
 		west.setLayout(new BoxLayout(west,BoxLayout.Y_AXIS));
+		west.setPreferredSize(new Dimension(50,400));
 		west.add(Box.createVerticalGlue());
-		west.add(Box.createRigidArea(new Dimension(15,0)));
+	//	west.add(Box.createRigidArea(new Dimension(15,0)));
+		west.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.darkGray));
 		//west.add(start);
 		//west.add(paus);
 
