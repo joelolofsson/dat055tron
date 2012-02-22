@@ -28,6 +28,7 @@ public class ServerClientSenderUDP extends Observable
 		try
 		{
 			socket = new DatagramSocket();
+			socket.setSoTimeout(100);
 		}
 		catch (SocketException e)
 		{
@@ -48,14 +49,25 @@ public class ServerClientSenderUDP extends Observable
 			coordsString = coordsString + p.x + "," + p.y + ",";
 		}
 		byte[] data = coordsString.getBytes();
-		try
+		DatagramPacket packet = new DatagramPacket(data, data.length, toAddr, toPort);
+		byte[] receiptData = new byte[1024];
+		DatagramPacket receipt = new DatagramPacket(receiptData, receiptData.length);
+		while(true)
 		{
-			DatagramPacket packet = new DatagramPacket(data, data.length, toAddr, toPort);
-			socket.send(packet);
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
+			try
+			{
+				socket.send(packet);
+				socket.receive(receipt);
+				String string = new String(receipt.getData(), 0, receipt.getLength());
+				if(string.matches("OK"))
+				{
+					break;
+				}
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 }
