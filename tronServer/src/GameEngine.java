@@ -52,10 +52,10 @@ public class GameEngine implements ActionListener, Observer {
 	 * 
 	 * Creates and add player to playerlist.  
 	 * 
-	 * @param ServerClientHandler serverClientHandler
+	 * @param ServerClientHandlerTCP serverClientHandler
 	 * @param ServerClientSenderUDP serverClientSenderUDP
 	 */
-	public void addPlayer(ServerClientHandler serverClientHandler, ServerClientHandlerUDP serverClientHandlerUDP, ServerClientSenderUDP serverClientSenderUDP, ServerClientSenderTCP serverClientSenderTCP)
+	public void addPlayer(ServerClientHandlerTCP serverClientHandler, ServerClientHandlerUDP serverClientHandlerUDP, ServerClientSenderUDP serverClientSenderUDP, ServerClientSenderTCP serverClientSenderTCP)
 	{
 		String namn;
 		int id = serverClientHandlerUDP.getID();
