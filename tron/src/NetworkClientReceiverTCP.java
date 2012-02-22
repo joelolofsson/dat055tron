@@ -6,12 +6,12 @@ import java.util.Observable;
 /**
  * @author Group 2
  * 
- * Handles indata from server with protocol TCP
+ * Handles Indata from server with TCP
  * 
  */
 
-public class NetworkClientReceiverTCP extends Observable implements Runnable {
-        
+public class NetworkClientReceiverTCP extends Observable implements Runnable 
+{
         private DataInputStream dataInputStream;
         private Thread thread;
         private int clientId = -1;
@@ -22,7 +22,8 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
          */
         public NetworkClientReceiverTCP(Socket socket)
         {
-                try {
+                try
+                {
                         dataInputStream = new DataInputStream(socket.getInputStream());
                         thread = new Thread(this);
                         thread.start();
@@ -32,7 +33,7 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
         }
         
         /**
-         * Receives and handle playername
+         * Receives and handle playername and score
          */
         public void run()
         {
@@ -40,21 +41,14 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
                 {
                         try 
                         {
-	                        //System.out.println("Försöker ta emot data");
-	                        
-	                        
 	                        int packetId = dataInputStream.readInt();
-	                        if(packetId == 0)
+	                        if(packetId == 0)//ID
 	                        {
 	                        	clientId = new Integer(dataInputStream.readUTF().toString()).intValue();
 	                        }
-	                        else if(packetId == 1)
-		                    {
-	                        
-	                        	//Vi har fått namn
+	                        else if(packetId == 1)//Name
+	                        {
 	                        	String s = dataInputStream.readUTF().toString();
-	                        	//System.out.println("har tagit emot namn" + s);
-	                        	
 	                        	String[] temp = s.split(",");
 	 	                        for(int i = 0; i < temp.length; i++)
 	 	                        {
@@ -79,12 +73,11 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
 	 	                        		Tron.playersLabel[i].setForeground(Color.blue);
 	 	                        	}
 	 	                        }
-	                        } else if(packetId == 2)
+	                        } 
+	                        else if(packetId == 2)//Score
 	                        {
 	                        	String poang;
 	                        	String[] temp;
-	                        	//System.out.println("har tagit emot poäng");
-	                        	
 	                        	poang = dataInputStream.readUTF().toString();
 	    						temp = poang.split(",");
 	    						for(int i = 0; i < temp.length; i++)

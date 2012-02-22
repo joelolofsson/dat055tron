@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JPanel;
 
 /**	
@@ -13,17 +12,19 @@ import javax.swing.JPanel;
  *  
  *  Updates the active gamewindow
  */
-public class GameWindow extends JPanel implements Observer{
-	public int mcSize = 1;
+public class GameWindow extends JPanel implements Observer
+{
+	public int mcSize = 3;
 	private HashSet<ColorPoint> pointList;
 	private LinkedList<ColorPoint> tempList;
-
+	
 	/**
 	 * Default constructor for GameWindow
 	 * 
 	 * @param KeyReader key
 	 */
-	public GameWindow(KeyReader key){
+	public GameWindow(KeyReader key)
+	{
 		super(true);
 		pointList = new HashSet<ColorPoint>();
 		tempList = new LinkedList<ColorPoint>();
@@ -33,9 +34,9 @@ public class GameWindow extends JPanel implements Observer{
 	/**
 	 * Clears the pointlist
 	 */
-	public void init(){
+	public void init()
+	{
 		pointList.clear();
-
 	}
 
 	/**
@@ -43,14 +44,16 @@ public class GameWindow extends JPanel implements Observer{
 	 * 
 	 * @param Graphics g
 	 */
-	public void paintComponent(Graphics g){
+	public void paintComponent(Graphics g)
+	{
 		super.paintComponent(g);
-		for(ColorPoint point : pointList){
+		for(ColorPoint point : pointList)
+		{
 			g.setColor(point.color);
 			g.fillRect(point.x, point.y, mcSize, mcSize);
-			//		System.out.println(point);
 		}
-		while(!tempList.isEmpty()){
+		while(!tempList.isEmpty())
+		{
 			try
 			{
 			pointList.add(tempList.get(0));
@@ -58,15 +61,11 @@ public class GameWindow extends JPanel implements Observer{
 			}
 			catch(NullPointerException e)
 			{
-				System.out.println("blev fel");
 				tempList.clear();
 				break;
 			}
-
 		}
 	}
-
-
 
 	/**
 	 * Handles new point from NetworkClientReceiverUDP

@@ -1,9 +1,5 @@
-import java.awt.Color;
-import java.io.BufferedWriter;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -17,7 +13,6 @@ import java.util.Observer;
  * 
  * Creates and sends event to server
  */
-
 public class NetworkClient extends Observable implements Observer
 {
 	
@@ -64,20 +59,16 @@ public class NetworkClient extends Observable implements Observer
 	}
 	
 	/**
-	 * Sends data to server
+	 * Sends data to server via UDP
 	 * 
 	 * @param Observable o
 	 * @param Object arg
 	 */
 	public void update(Observable o, Object arg)
-	{
-		
-		
-		if(o instanceof KeyReader && arg instanceof Integer) // Kolla så koordinaterna vi får in är från Keyreader och typen är int
+	{	
+		if(o instanceof KeyReader && arg instanceof Integer)
 		{
-			//Använd detta för knapptryckningar via UDP
 			byte[] data = arg.toString().getBytes();
-			//System.out.println("Skickar knapp (UDP): " + arg.toString());
 			DatagramPacket packet = new DatagramPacket(data, data.length, IP, 1339 + netWorkClientReceiverTCP.getClientId());
 			byte[] receiptData = new byte[1024];
 			DatagramPacket receipt = new DatagramPacket(receiptData, receiptData.length);
@@ -88,16 +79,14 @@ public class NetworkClient extends Observable implements Observer
 					datagramSocketSend.send(packet);
 					datagramSocketSend.receive(receipt);
 					String string = new String(receipt.getData(), 0, receipt.getLength());
-					//System.out.println("Har tagit emot kvitto: " + string);
-					if(string.matches("OK")){
-						//System.out.println("Kvitto accepterat");
+					if(string.matches("OK"))
+					{
 						break;
 					}
 					
 				}
-				catch (SocketTimeoutException e2){
-					//No reciept within specified time limit, send again.
-					
+				catch (SocketTimeoutException e2)
+				{
 				}
 				catch(IOException e)
 				{
@@ -106,23 +95,6 @@ public class NetworkClient extends Observable implements Observer
 					Tron.setConnected("Connection error!");	
 				}
 			}
-			
-			
-			/*
-			try		//Använd detta för knapptryckningar via TCP
-			{
-				out.write((Integer)arg); 
-				String string = arg.toString();
-				System.out.println(string);
-				
-			}
-			catch(IOException e)
-			{
-				e.printStackTrace();
-				System.out.print("Update fel");
-				Tron.setConnected("Connection error!");	
-			}
-			*/
 		}
 	}
 }
