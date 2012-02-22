@@ -65,7 +65,7 @@ public class GameEngine implements ActionListener, Observer {
 		System.out.println(namn.toString());
 		serverClientHandlerUDP.addObserver(this);
 		playerList.add(new Player(id, namn, 3, new Point((((id + 1) % 2) + 1) * 150, ((id / 2) + 1) * 150)));
-		serverClientSenderTCP.send(1, new Integer(id).toString());			//Skickar namn till klient
+		serverClientSenderTCP.send(0, new Integer(id).toString());			//Skickar id till klient
 		sendPlayers();
 	}
 	
