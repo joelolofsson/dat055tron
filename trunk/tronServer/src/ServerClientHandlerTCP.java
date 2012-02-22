@@ -10,7 +10,7 @@ import java.util.Observable;
  * Handles the Indata from a client
  */
 
-public class ServerClientHandler extends Observable implements Runnable {
+public class ServerClientHandlerTCP extends Observable implements Runnable {
 
 	private Thread aktivitet;
 	private DataInputStream streamIn;
@@ -22,7 +22,7 @@ public class ServerClientHandler extends Observable implements Runnable {
 	 * @param Socket s
 	 * @param int id
 	 */
-	public ServerClientHandler(Socket s, int id)
+	public ServerClientHandlerTCP(Socket s, int id)
 	{
 		this.id = id;
 		aktivitet = new Thread(this);
