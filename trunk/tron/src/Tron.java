@@ -162,8 +162,8 @@ public class Tron extends JFrame implements ActionListener
 				JOptionPane.showMessageDialog(this,
 						"To create a game:" +
 								"\nChoose 'Game' from main menu -> 'Create game' "+
-								"\nEnter the port number and the score limit required to win the game." +
-								"\nWait for users to enter and then press start." +
+								"\nPress connect to accept new connections to the server." +
+								"\nTo start the game, press start." +
 								"\n"+
 								"\nTo connect to a game:"+
 								"\nChoose 'Game' from main menu -> 'Join game'."+
