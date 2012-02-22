@@ -58,6 +58,7 @@ public class GameWindow extends JPanel implements Observer{
 			catch(NullPointerException e)
 			{
 				System.out.println("blev fel");
+				pointList.clear();
 			}
 
 		}
