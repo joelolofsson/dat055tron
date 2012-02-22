@@ -2,6 +2,7 @@
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Observable;
 
 /**
@@ -13,6 +14,7 @@ import java.util.Observable;
 public class ServerClientSenderTCP extends Observable
 {
 	private DataOutputStream streamOut;
+	private boolean connected;
 	
 	/**
 	 * Default constructor for ServerClientSender
@@ -20,6 +22,7 @@ public class ServerClientSenderTCP extends Observable
 	 */
 	public ServerClientSenderTCP(Socket s)
 	{
+		connected = true;
 		try 
 		{
 			streamOut = new DataOutputStream(s.getOutputStream());	
@@ -30,6 +33,7 @@ public class ServerClientSenderTCP extends Observable
 		}
 	}
 	
+
 	/**
 	 * Sends name and score to client
 	 * 
@@ -45,6 +49,15 @@ public class ServerClientSenderTCP extends Observable
 			streamOut.writeUTF(data);		
 			streamOut.flush();
 		} 
+		catch (SocketException e) 
+		{
+			try {
+				streamOut.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 		catch (IOException e) 
 		{
 			e.printStackTrace();
