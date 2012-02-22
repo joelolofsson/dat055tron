@@ -2,12 +2,12 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Observable;
+
 /**
  * @author Group 2
  * 
  * Handles the Indata from a client
  */
-
 public class ServerClientHandlerTCP extends Observable
 {
 	private DataInputStream streamIn;
@@ -22,7 +22,6 @@ public class ServerClientHandlerTCP extends Observable
 	public ServerClientHandlerTCP(Socket s, int id)
 	{
 		this.id = id;
-		
 		try
 		{
 			streamIn = new DataInputStream(s.getInputStream());
@@ -31,7 +30,6 @@ public class ServerClientHandlerTCP extends Observable
 		{
 			e.printStackTrace();
 		}
-		
 	}
 	
 	/**
