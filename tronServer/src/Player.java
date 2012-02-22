@@ -16,18 +16,11 @@ public class Player
 	private boolean alive = true;
 	private int startX;
 	private int startY;
-<<<<<<< .mine
 	private boolean allowTurn = true;
-	public static final int UP = 1;
-	public static final int RIGHT = 2;
-	public static final int DOWN = 3;
-	public static final int LEFT = 4;
-=======
 	private final int UP = 1;
 	private final int RIGHT = 2;
 	private final int DOWN = 3;
 	private final int LEFT = 4;
->>>>>>> .r261
 	
 	/**
 	 * Default constructor for Players
