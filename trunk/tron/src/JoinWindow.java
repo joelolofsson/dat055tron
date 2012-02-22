@@ -1,7 +1,13 @@
-import java.awt.*;
-import java.net.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**	
  * 	@author Group 2
@@ -9,7 +15,8 @@ import javax.swing.*;
  * Handles the JoinWindow GUI and creates NetworkClients for connection to server.
  * 
  */
-public class JoinWindow extends JDialog implements ActionListener {
+public class JoinWindow extends JDialog implements ActionListener 
+{
 	private JButton bConnect;
 	private JButton bCancel;
 	private JLabel ipLabel;
@@ -30,7 +37,8 @@ public class JoinWindow extends JDialog implements ActionListener {
 	 * @param NetworkClient networkClient
 	 * @param KeyReader key
 	 */
-	public JoinWindow(NetworkClient networkClient, KeyReader key){
+	public JoinWindow(NetworkClient networkClient, KeyReader key)
+	{
 		setTitle("Join game");
 		setModal(true);
 		this.key = key;
@@ -51,7 +59,6 @@ public class JoinWindow extends JDialog implements ActionListener {
 		bConnect.addActionListener(this);
 		bCancel.addActionListener(this);
 
-
 		//Create Labels for each text field
 		ipLabel = new JLabel("IP adress:");
 		portLabel = new JLabel("Port:");
@@ -64,46 +71,50 @@ public class JoinWindow extends JDialog implements ActionListener {
 		add(bConnect); add(bCancel);
 		pack();
 		setVisible(true);
-	
 	}
-
 	
 	/**
 	 * Handles actions from pressed buttons 
 	 * and takes care of the user inputdata
 	 * @param ActionEvent e
 	 */
-	public void actionPerformed(ActionEvent e){
+	public void actionPerformed(ActionEvent e)
+	{
 		JButton buttonPressed = (JButton) e.getSource();
 		boolean isOK = true;
-		if(buttonPressed == bConnect){
-			//ipString = ipTextField.getText();
-			try{
+		if(buttonPressed == bConnect)
+		{
+			try
+			{
 				ipadress = InetAddress.getByName(ipTextField.getText());
 			}
-			catch (UnknownHostException fel)	{
+			catch (UnknownHostException fel)	
+			{
 				isOK = false;
 				JOptionPane.showMessageDialog(this,
 						"You need to enter a correct ip adress", "Error", JOptionPane.ERROR_MESSAGE);
 			}
-			try{
+			try
+			{
 				portInt = Integer.parseInt(portTextField.getText());
 			} 
-			catch (NumberFormatException fel){
+			catch (NumberFormatException fel)
+			{
 				isOK = false;
 				JOptionPane.showMessageDialog(this,
 						"Only numbers 0-9 is allowed for port number", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			nickNameString = nickNameTextField.getText();
-
-			if(isOK){
+			if(isOK)
+			{
 				System.out.println(ipadress + " : " + portInt + " : " + nickNameString);
 				dispose();
 				networkClient = new NetworkClient(ipadress, portInt, nickNameString, key);
 			}
-		}if(buttonPressed == bCancel){
+		}
+		if(buttonPressed == bCancel)
+		{
 			dispose();
 		}
-
 	}
 }
