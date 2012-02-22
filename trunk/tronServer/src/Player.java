@@ -14,6 +14,7 @@ public class Player
 	private String name;
 	private int score = 0;
 	private boolean alive = true;
+	private boolean blockTurn = false;
 	private int rX;
 	private int rY;
 	
@@ -110,8 +111,12 @@ public class Player
 	*/
 	public void setCourse(int course)
 	{
-		if(!(Math.abs(this.course-course) == 2))
-		this.course = course;
+		if(!(Math.abs(this.course-course) == 2 && !blockTurn))
+		{
+			this.course = course;
+			blockTurn = true;
+		}
+		
 	}
 	
 	/**
@@ -169,5 +174,6 @@ public class Player
 			case 4: point.x = point.x - 1;
 					break;
 		}	
+		blockTurn = false;
 	}
 }
