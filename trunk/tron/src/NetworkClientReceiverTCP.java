@@ -3,13 +3,13 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Observable;
+
 /**
  * @author Group 2
  * 
  * Handles Indata from server with TCP
  * 
  */
-
 public class NetworkClientReceiverTCP extends Observable implements Runnable 
 {
         private DataInputStream dataInputStream;

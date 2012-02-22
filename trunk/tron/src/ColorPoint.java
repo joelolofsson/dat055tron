@@ -9,7 +9,7 @@ import java.awt.Point;
 public class ColorPoint extends Point 
 {
 
-	public Color color;
+	private Color color;
 
 	/**
 	 * Default constructor for ColorPoint
@@ -22,5 +22,14 @@ public class ColorPoint extends Point
 	{
 		super(x,y);
 		this.color = color;
+	}
+	
+	/**
+	 * Returns color
+	 * @return Color
+	 */
+	public Color getColor()
+	{
+		return color;
 	}
 }
