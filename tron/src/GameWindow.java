@@ -59,6 +59,7 @@ public class GameWindow extends JPanel implements Observer{
 			catch(NullPointerException e)
 			{
 				System.out.println("blev fel");
+				tempList.clear();
 				break;
 			}
 
