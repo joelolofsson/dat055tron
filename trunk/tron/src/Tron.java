@@ -1,7 +1,20 @@
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**	
  *@author Group 2
@@ -9,15 +22,13 @@ import javax.swing.*;
  * 	Handles the main GUI and menu. 
  * 
  */
-
-public class Tron extends JFrame implements ActionListener{
+public class Tron extends JFrame implements ActionListener
+{
 	private JPanel west;
 	public static GameWindow center;
 	private JPanel south;
 	public static JLabel[] playersLabel;
 	private static JLabel connected;
-	private JButton start;
-	private JButton paus;
 	private JMenuBar menu;
 	private JMenu game;
 	private JMenuItem newGame;
@@ -33,9 +44,8 @@ public class Tron extends JFrame implements ActionListener{
 	 * Default constructor for Tron
 	 * 
 	 */
-	
-	public Tron() {
-
+	public Tron() 
+	{
 		//Set layout of main window
 		setLayout(new BorderLayout());
 		west = new JPanel();
@@ -45,8 +55,8 @@ public class Tron extends JFrame implements ActionListener{
 
 		//Set labels
 		playersLabel = new JLabel[4];
-		for(int i = 0; i < playersLabel.length; i++){
-			//playersLabel[i] = new JLabel("P" + (i+1) + " not connected");
+		for(int i = 0; i < playersLabel.length; i++)
+		{
 			playersLabel[i] = new JLabel("Player " + (i+1));
 			playersLabel[i].setForeground(Color.WHITE);
 			west.add(playersLabel[i]);
@@ -54,8 +64,6 @@ public class Tron extends JFrame implements ActionListener{
 		connected = new JLabel("Connected to server: n/a");
 
 		//Create menu bar, buttons and items
-		//start = new JButton("Start");
-		//paus = new JButton("Paus");
 		menu = new JMenuBar();
 		game = new JMenu("Game");
 		help = new JMenu("Help");
@@ -82,14 +90,10 @@ public class Tron extends JFrame implements ActionListener{
 		howToPlay.addActionListener(this);
 
 		//Set layout for the west panel for start/paus button and player list.
-		//west.setPreferredSize(new Dimension(80,400));
 		west.setLayout(new BoxLayout(west,BoxLayout.Y_AXIS));
 		west.setPreferredSize(new Dimension(90,400));
 		west.add(Box.createVerticalGlue());
-	//	west.add(Box.createRigidArea(new Dimension(15,0)));
 		west.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.darkGray));
-		//west.add(start);
-		//west.add(paus);
 
 		//Set layout of the center panel (gaming window)
 		center.setPreferredSize(new Dimension(400,400));
@@ -108,6 +112,7 @@ public class Tron extends JFrame implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		center.requestFocus();
 	}
+	
 	/**
 	 * Set text in the textfield Connected
 	 * @param String IP
@@ -117,19 +122,18 @@ public class Tron extends JFrame implements ActionListener{
 	{
 		connected.setText("Connected to server: "+ IP);
 	}
+	
 	/**
 	 * Action performed
 	 * 
 	 * @param ActionEvent e
 	 * @return void
 	 */
-	public void actionPerformed(ActionEvent e){
+	public void actionPerformed(ActionEvent e)
+	{
 		Object knappTryck = e.getSource();
-		if(knappTryck  instanceof JMenuItem ){
-			if(knappTryck == newGame)
-			{
-				//new CreateGameWindow();
-			}
+		if(knappTryck  instanceof JMenuItem )
+		{
 			if(knappTryck == joinGame)
 				new JoinWindow(networkClient, key);
 			if(knappTryck == exit)
@@ -154,9 +158,6 @@ public class Tron extends JFrame implements ActionListener{
 								"\nTry to avoid hitting the edges of the game area, your own or other players previous track."+
 								"\nIf you hit either of this object's you die. Last man standing wins the current round.", "About", JOptionPane.DEFAULT_OPTION);
 		}
-
-
-
 	}
 
 	/**
@@ -164,9 +165,9 @@ public class Tron extends JFrame implements ActionListener{
 	 * 
 	 * @param String[] arg
 	 */
-	public static void main(String[] arg){
+	public static void main(String[] arg)
+	{
 		Tron tron = new Tron();
-
 	}
 }
 
