@@ -10,9 +10,8 @@ import java.util.Observable;
  * Handles the Indata from a client
  */
 
-public class ServerClientHandlerTCP extends Observable implements Runnable {
-
-	private Thread aktivitet;
+public class ServerClientHandlerTCP extends Observable
+{
 	private DataInputStream streamIn;
 	private int id;
 
@@ -25,40 +24,16 @@ public class ServerClientHandlerTCP extends Observable implements Runnable {
 	public ServerClientHandlerTCP(Socket s, int id)
 	{
 		this.id = id;
-		aktivitet = new Thread(this);
+		
 		try
 		{
 			streamIn = new DataInputStream(s.getInputStream());
-			//System.out.println("har tagit emot");
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
 		
-	}
-	
-	/**
-	 * Notifies observers if a event is recieved
-	 * 
-	 * 
-	 */
-	public void run()
-	{
-		while(true)
-		{
-			try
-			{
-				int[] send = {id, streamIn.readByte()};	//Tar emot knapptryck via TCP
-				//System.out.println("Tog emot en knapptryckning");
-				setChanged();
-				notifyObservers(send);
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-		}
 	}
 	
 	/**
@@ -77,18 +52,12 @@ public class ServerClientHandlerTCP extends Observable implements Runnable {
 		{
 			e.printStackTrace();
 		}
-		aktivitet.start();
+		if(n.equals(""))
+		{
+			n = "TheStig";
+		}
 		return n;
 	}
-
-	/**
-	 * Starts the thread
-	 */
-	public void start()
-	{
-		aktivitet.start();
-	}
-	
 
 	/**
 	 * Returns the id for the connected player

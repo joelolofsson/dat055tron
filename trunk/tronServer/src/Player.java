@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.awt.Point;
+
 /**
  * 
  * @author Group 2
@@ -7,15 +8,18 @@ import java.awt.*;
  */
 public class Player
 {
-
 	private int id;
 	private int course;
 	private Point point;
 	private String name;
 	private int score = 0;
 	private boolean alive = true;
-	private int rX;
-	private int rY;
+	private int startX;
+	private int startY;
+	public static final int UP = 1;
+	public static final int RIGHT = 2;
+	public static final int DOWN = 3;
+	public static final int LEFT = 4;
 	
 	/**
 	 * Default constructor for Players
@@ -31,8 +35,8 @@ public class Player
 		this.name = name;
 		this.course = course;
 		this.point = point;
-		rX = point.x;
-		rY = point.y;
+		startX = point.x;
+		startY = point.y;
 	}
 	
 	/**
@@ -76,8 +80,8 @@ public class Player
 	*/
 	public void reset()
 	{
-		point.x = rX;
-		point.y = rY;
+		point.x = startX;
+		point.y = startY;
 	}
 	
 	/**
@@ -153,23 +157,19 @@ public class Player
 
 	
 	/**
-	 * Course translation table:
-	 * 1 = "north/up"
-	 * 2 = "east/right"
-	 * 3 = "south/down"	
-	 * 4 = "west/left"
+	 * Moves player one point
 	 */
 	public void move()
 	{
 		switch(course)
 		{
-			case 1: point.y = point.y - 1;
+			case UP: point.y = point.y - 1;
 					break;
-			case 2: point.x = point.x + 1;
+			case RIGHT: point.x = point.x + 1;
 					break;
-			case 3: point.y = point.y + 1;
+			case DOWN: point.y = point.y + 1;
 					break;
-			case 4: point.x = point.x - 1;
+			case LEFT: point.x = point.x - 1;
 					break;
 		}	
 	}

@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +6,6 @@ import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -16,8 +14,8 @@ import javax.swing.Timer;
  * 
  * Handles all gamelogic
  */
-public class GameEngine implements ActionListener, Observer {
-	
+public class GameEngine implements ActionListener, Observer
+{	
 	private LinkedHashSet<Point> cords;
 	private java.util.List<Player> playerList;
 	private Timer timer; 
@@ -38,6 +36,14 @@ public class GameEngine implements ActionListener, Observer {
 		timer = new Timer(10, this);
 	}
 	
+	/**
+	 * Sets course for each player
+	 * @param Observable o
+	 * @param Object arg
+	 * arg is int[] 
+	 * int[0] = Player ID
+	 * int[1] = Player course
+	 */
 	public void update(Observable o, Object arg)
 	{
 		int[] recived;
@@ -52,30 +58,33 @@ public class GameEngine implements ActionListener, Observer {
 	 * 
 	 * Creates and add player to playerlist.  
 	 * 
-	 * @param ServerClientHandlerTCP serverClientHandler
+	 * @param ServerClientHandlerTCP serverClientHandlerTCP
+	 * @param ServerClientHandlerUDP serverClientHandlerUDP
 	 * @param ServerClientSenderUDP serverClientSenderUDP
+	 * @param ServerClientSenderTCP serverClientSenderTCP
 	 */
-	public void addPlayer(ServerClientHandlerTCP serverClientHandler, ServerClientHandlerUDP serverClientHandlerUDP, ServerClientSenderUDP serverClientSenderUDP, ServerClientSenderTCP serverClientSenderTCP)
+	public void addPlayer(ServerClientHandlerTCP serverClientHandlerTCP, ServerClientHandlerUDP serverClientHandlerUDP,
+			ServerClientSenderUDP serverClientSenderUDP, ServerClientSenderTCP serverClientSenderTCP)
 	{
-		String namn;
-		int id = serverClientHandlerUDP.getID();
+		
+		int id = serverClientHandlerUDP.getID();//Gets connected client id
 		serverClientSenderUDPList.add(serverClientSenderUDP);
 		serverClientSenderTCPList.add(serverClientSenderTCP);
-		namn = serverClientHandler.namn();
-		System.out.println(namn.toString());
+		String namn = serverClientHandlerTCP.namn();
 		serverClientHandlerUDP.addObserver(this);
-		playerList.add(new Player(id, namn, 3, new Point((((id + 1) % 2) + 1) * 150, ((id / 2) + 1) * 150)));
-		serverClientSenderTCP.send(0, new Integer(id).toString());			//Skickar id till klient
+		/*
+		 * Creates new player and sets start coordinates and course
+		 */
+		int x,y;
+		x = (((id + 1) % 2) + 1) * 150;
+		y = ((id / 2) + 1) * 150;
+		playerList.add(new Player(id, namn, 3, new Point(x, y)));
+		serverClientSenderTCP.send(0, new Integer(id).toString());
 		sendPlayers();
 	}
 	
-	public void updateScore()
-	{
-	}
 	/**
-	 * Starts the timer which starts the game.
-	 * 
-	 * @param int numberOfPlayers
+	 * Empty cords, reset player start course and sleeps for 5 sec
 	 */
 	public void clearGame()
 	{
@@ -95,26 +104,39 @@ public class GameEngine implements ActionListener, Observer {
 		}
 		numberOfPlayers = reset;
 	}
-
+	
+	/**
+	 * Sends score to clients
+	 */
+	private void endOfGame()
+	{
+		String score = "";
+		for(Player p : playerList)
+		{
+			if(p.isAlive() == true)
+			{
+				p.setScore(reset-numberOfPlayers);
+			}
+			score = score + p.getScore() + ",";
+		}
+		for(ServerClientSenderTCP s : serverClientSenderTCPList)
+		{
+			s.send(2, score);
+		}
+	}
+	
+	/**
+	 * Updates cords, if a active game
+	 * if not a active game, send score to clients and reset game.
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		
 		LinkedList<Point> temp = new LinkedList<Point>();
-		String poang = "";
+		
 		if(numberOfPlayers < 2)
 		{
-			for(Player p : playerList)
-			{
-				if(p.isAlive() == true)
-				{
-					p.setScore(reset-numberOfPlayers);
-				}
-				poang = poang + p.getScore() + ",";
-			}
-			for(ServerClientSenderTCP s : serverClientSenderTCPList)
-			{
-				s.send(2, poang);
-			}
+			endOfGame();
 			clearGame();
 			temp.add(new Point(0, 0));
 		}
@@ -151,7 +173,7 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		for(Point pos : cords)
 		{
-			if(pos.equals(p) || p.x < 0 || p.x > 400 || p.y < 0 || p.y > 400)
+			if(pos.equals(p) || p.x < 0 || p.x >= 398 || p.y < 0 || p.y >= 398)
 			{
 				numberOfPlayers--;
 				return true;
@@ -169,12 +191,13 @@ public class GameEngine implements ActionListener, Observer {
 	{
 		this.numberOfPlayers = numberOfPlayers;
 		reset = numberOfPlayers;
-		System.out.println("Startar game");
-		
 		sendPlayers();
 		timer.start();
 	}
-
+	
+	/**
+	 * Send playernames to clients
+	 */
 	private void sendPlayers()
 	{
 		for(ServerClientSenderTCP s : serverClientSenderTCPList)
@@ -185,7 +208,6 @@ public class GameEngine implements ActionListener, Observer {
 				sTemp = sTemp + p.getName() + ",";
 			}
 			s.send(1, sTemp);
-			System.out.println("Skickar namn...");
 		}
 	}
 }

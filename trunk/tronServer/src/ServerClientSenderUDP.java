@@ -7,18 +7,24 @@ import java.net.SocketException;
 import java.util.LinkedList;
 import java.util.Observable;
 
-
-public class ServerClientSenderUDP extends Observable {
-
+/**
+ * @author Group 2
+ *
+ * Send coordinates to client via UDP
+ */
+public class ServerClientSenderUDP extends Observable 
+{
 	private InetAddress toAddr;
 	private DatagramSocket socket;
-	private int toPort;
+	private int toPort = 1338;
 	
+	/**
+	 * Default constructor for ServerClientSenderUDP
+	 * @param InetAddress toAddr
+	 */
 	public ServerClientSenderUDP(InetAddress toAddr)
 	{
 		this.toAddr = toAddr;
-		toPort = 1338;
-		
 		try
 		{
 			socket = new DatagramSocket();
@@ -29,15 +35,19 @@ public class ServerClientSenderUDP extends Observable {
 		}
 	}
 	
+	/**
+	 * Send coordinates to client
+	 * 
+	 * @param LinkedList<Point> pointList
+	 */
 	public void send(LinkedList<Point> pointList)
 	{
-		String tempS = "";
-		
+		String coordsString = "";
 		for(Point p : pointList)
 		{
-			tempS = tempS + p.x + "," + p.y + ",";
+			coordsString = coordsString + p.x + "," + p.y + ",";
 		}
-		byte[] data = tempS.getBytes();
+		byte[] data = coordsString.getBytes();
 		try
 		{
 			DatagramPacket packet = new DatagramPacket(data, data.length, toAddr, toPort);

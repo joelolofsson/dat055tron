@@ -9,13 +9,11 @@ import java.util.Observable;
  * maintain a connetion to the network
  */
 
-public class NetworkServer extends Observable implements Runnable {
-
-	
-	
-	private ServerSocket serversocket;
-	private Socket klientSock;
-	private boolean temp = true;
+public class NetworkServer extends Observable implements Runnable 
+{
+	private ServerSocket serverSocket;
+	private Socket clientSocket;
+	private boolean accConnections = true;
 	private Thread thread;
 	private GameEngine gameEngine;
 	private int numberOfPlayers = 0;
@@ -27,7 +25,7 @@ public class NetworkServer extends Observable implements Runnable {
 	{	
 		try
 		{
-			serversocket = new ServerSocket(1337);
+			serverSocket = new ServerSocket(1337);
 			thread = new Thread(this);
 			gameEngine = new GameEngine();
 		}
@@ -43,12 +41,12 @@ public class NetworkServer extends Observable implements Runnable {
 		{
 			try
 			{
-				klientSock = serversocket.accept();
-				if(temp)
+				clientSocket = serverSocket.accept();
+				if(accConnections)
 				{
-					System.out.println(klientSock.getInetAddress().getHostName() + " har anslutit sig");
-					ServerGui.players[numberOfPlayers].setText("Player " + (numberOfPlayers+1) + ": " + klientSock.getInetAddress().getHostAddress());
-					gameEngine.addPlayer(new ServerClientHandlerTCP(klientSock, numberOfPlayers), new ServerClientHandlerUDP(numberOfPlayers), new ServerClientSenderUDP(klientSock.getInetAddress()), new ServerClientSenderTCP(klientSock));
+					ServerGui.players[numberOfPlayers].setText("Player " + (numberOfPlayers+1) + ": " + clientSocket.getInetAddress().getHostAddress());
+					gameEngine.addPlayer(new ServerClientHandlerTCP(clientSocket, numberOfPlayers), new ServerClientHandlerUDP(numberOfPlayers), 
+							new ServerClientSenderUDP(clientSocket.getInetAddress()), new ServerClientSenderTCP(clientSocket));
 					numberOfPlayers++;
 				}
 			}
@@ -61,12 +59,12 @@ public class NetworkServer extends Observable implements Runnable {
 	
 	/**
 	 * Starts the game and stops
-	 * other clients to connetc
+	 * other clients to connect
 	 * 
 	 */
 	public void start()
 	{
-		temp = false;
+		accConnections = false;
 		gameEngine.start(numberOfPlayers);
 	}
 	
@@ -76,7 +74,5 @@ public class NetworkServer extends Observable implements Runnable {
 	public void connect()
 	{
 		thread.start();
-	}
-		
-		
+	}		
 }
