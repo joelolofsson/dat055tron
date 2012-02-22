@@ -40,7 +40,7 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
                 {
                         try 
                         {
-	                        System.out.println("Försöker ta emot data");
+	                        //System.out.println("Försöker ta emot data");
 	                        
 	                        
 	                        int packetId = dataInputStream.readInt();
@@ -53,7 +53,7 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
 	                        
 	                        	//Vi har fått namn
 	                        	String s = dataInputStream.readUTF().toString();
-	                        	System.out.println("har tagit emot namn" + s);
+	                        	//System.out.println("har tagit emot namn" + s);
 	                        	
 	                        	String[] temp = s.split(",");
 	 	                        for(int i = 0; i < temp.length; i++)
