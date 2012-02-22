@@ -40,39 +40,55 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable {
                 {
                         try 
                         {
-                        System.out.println("försöker ta emot");
-                        
-                        if(clientId == -1)
-                        {
-                        	clientId = new Integer(dataInputStream.readUTF().toString()).intValue();
-                        }
-                        
-                        String s = dataInputStream.readUTF().toString();
-                        System.out.println("har tagit emot namn" + s);
-                        String[] temp = s.split(",");
-                        for(int i = 0; i < temp.length; i++)
-                        {
-                        	if(i == 0)
-                        	{
-                        		Tron.playersLabel[i].setText(temp[i]);
-                        		Tron.playersLabel[i].setForeground(Color.cyan);
-                        	}
-                        	else if(i == 1)
-                        	{
-                        		Tron.playersLabel[i].setText(temp[i]);
-                        		Tron.playersLabel[i].setForeground(Color.green);
-                        	}
-                        	else if(i == 2)
-                        	{
-                        		Tron.playersLabel[i].setText(temp[i]);
-                        		Tron.playersLabel[i].setForeground(Color.red);
-                        	}
-                        	else if(i == 3)
-                        	{
-                        		Tron.playersLabel[i].setText(temp[i]);
-                        		Tron.playersLabel[i].setForeground(Color.blue);
-                        	}
-                        }
+	                        System.out.println("Försöker ta emot data");
+	                        
+	                        if(clientId == -1)
+	                        {
+	                        	clientId = new Integer(dataInputStream.readUTF().toString()).intValue();
+	                        }
+	                        
+	                        int packetId = dataInputStream.readInt();
+	                        String s;
+	                        if(packetId == 1)
+	                        {
+	                        	//Vi har fått namn
+	                        	s = dataInputStream.readUTF().toString();
+	                        	System.out.println("har tagit emot namn" + s);
+	                        	
+	                        	String[] temp = s.split(",");
+	 	                        for(int i = 0; i < temp.length; i++)
+	 	                        {
+	 	                        	if(i == 0)
+	 	                        	{
+	 	                        		Tron.playersLabel[i].setText(temp[i]);
+	 	                        		Tron.playersLabel[i].setForeground(Color.cyan);
+	 	                        	}
+	 	                        	else if(i == 1)
+	 	                        	{
+	 	                        		Tron.playersLabel[i].setText(temp[i]);
+	 	                        		Tron.playersLabel[i].setForeground(Color.green);
+	 	                        	}
+	 	                        	else if(i == 2)
+	 	                        	{
+	 	                        		Tron.playersLabel[i].setText(temp[i]);
+	 	                        		Tron.playersLabel[i].setForeground(Color.red);
+	 	                        	}
+	 	                        	else if(i == 3)
+	 	                        	{
+	 	                        		Tron.playersLabel[i].setText(temp[i]);
+	 	                        		Tron.playersLabel[i].setForeground(Color.blue);
+	 	                        	}
+	 	                        }
+	                        } else if(packetId == 2)
+	                        {
+	                        	//Vi har fått poäng
+	                        	s = dataInputStream.readUTF().toString();
+	                        	System.out.println("har tagit emot poäng" + s);
+	                        	
+	                        	//Lägg koden här
+	                        }
+
+	                       
                         }
                         catch (IOException e1)
                         {
