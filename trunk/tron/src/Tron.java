@@ -1,6 +1,9 @@
+import static java.awt.event.InputEvent.CTRL_DOWN_MASK;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -16,7 +19,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
-import static java.awt.event.InputEvent.CTRL_DOWN_MASK;
 
 /**	
  *@author Group 2
@@ -54,6 +56,7 @@ public class Tron extends JFrame implements ActionListener
 		west.setBackground(Color.black);
 		center = new GameWindow(key);
 		south = new JPanel();
+		setIconImage(Toolkit.getDefaultToolkit().getImage("graphics/tron.png"));
 
 		//Set labels
 		playersLabel = new JLabel[4];
