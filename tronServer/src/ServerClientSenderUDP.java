@@ -28,7 +28,7 @@ public class ServerClientSenderUDP extends Observable
 		try
 		{
 			socket = new DatagramSocket();
-			socket.setSoTimeout(100);
+			socket.setSoTimeout(100);	//Sets the socket timeout to 100ms
 		}
 		catch (SocketException e)
 		{
@@ -52,13 +52,17 @@ public class ServerClientSenderUDP extends Observable
 		DatagramPacket packet = new DatagramPacket(data, data.length, toAddr, toPort);
 		byte[] receiptData = new byte[1024];
 		DatagramPacket receipt = new DatagramPacket(receiptData, receiptData.length);
+		//This loop will run until an OK receipt has been returned from the receiver.
 		while(true)
 		{
 			try
 			{
+				//Try to send datagram packet
 				socket.send(packet);
+				//Try to receive the receipt
 				socket.receive(receipt);
 				String string = new String(receipt.getData(), 0, receipt.getLength());
+				//End the loop if the receipt was valid.
 				if(string.matches("OK"))
 				{
 					break;
