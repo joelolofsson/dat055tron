@@ -4,6 +4,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.LinkedList;
 import java.util.Observable;
 
@@ -67,6 +68,10 @@ public class ServerClientSenderUDP extends Observable
 				{
 					break;
 				}
+			}
+			catch (SocketException e1)
+			{		
+				socket.disconnect();
 			}
 			catch (IOException e)
 			{
