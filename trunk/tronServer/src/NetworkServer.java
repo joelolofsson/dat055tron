@@ -35,7 +35,7 @@ public class NetworkServer extends Observable implements Runnable
 		catch (BindException e1)
 		{
 			JOptionPane.showMessageDialog(null,
-					"You can only start once instance of the server at a time!", "Error", JOptionPane.ERROR_MESSAGE);
+					"You can only start one instance of the server at a time!", "Error", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		}
 		catch (IOException e)
