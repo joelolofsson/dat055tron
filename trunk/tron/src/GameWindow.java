@@ -29,15 +29,6 @@ public class GameWindow extends JPanel implements Observer
 		tempList = new LinkedList<ColorPoint>();
 		addKeyListener(key);
 	}
-	
-	/**
-	 * Clears the pointlist
-	 */
-	public void init()
-	{
-		pointList.clear();
-		tempList.clear();
-	}
 
 	/**
 	 * Draw all points from pointlist
@@ -83,6 +74,7 @@ public class GameWindow extends JPanel implements Observer
 			else if(o instanceof NetworkClientReceiverUDP && arg instanceof String)
 			{
 				pointList.clear();
+				tempList.clear();
 			}
 	}
 }
