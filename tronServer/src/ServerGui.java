@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 
 public class ServerGui extends JFrame implements ActionListener
 {	
-	private JButton connect;
 	private JButton start;
 	private JLabel ipAdress;
 	private NetworkServer networkServer;
@@ -40,13 +39,11 @@ public class ServerGui extends JFrame implements ActionListener
 			e.printStackTrace();
 		}
 		JPanel meny = new JPanel();
-		//connect = new JButton("Connect");
 		start = new JButton("Start");
 		networkServer = new NetworkServer();
 		ipAdress = new JLabel("Created new server on " + IP.getHostAddress());
 		setTitle("TronServer");
 		meny.setLayout(new FlowLayout());
-		//meny.add(connect);
 		meny.add(start);
 		meny.add(ipAdress);
 		add(meny);
@@ -59,7 +56,6 @@ public class ServerGui extends JFrame implements ActionListener
 		}
 		add(player);
 		setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
-		//connect.addActionListener(this);
 		start.addActionListener(this);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
@@ -75,11 +71,6 @@ public class ServerGui extends JFrame implements ActionListener
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		/*if(e.getSource() == connect)
-		{
-			networkServer.connect();
-		}
-		else */
 		if(e.getSource() == start)
 		{
 			networkServer.start();
