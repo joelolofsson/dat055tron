@@ -36,6 +36,7 @@ public class GameWindow extends JPanel implements Observer
 	public void init()
 	{
 		pointList.clear();
+		tempList.clear();
 	}
 
 	/**
