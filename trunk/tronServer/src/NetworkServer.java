@@ -1,7 +1,10 @@
 import java.io.IOException;
+import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Observable;
+
+import javax.swing.JOptionPane;
 /**
  * @author Group 2
  * 
@@ -28,6 +31,12 @@ public class NetworkServer extends Observable implements Runnable
 			serverSocket = new ServerSocket(1337);
 			thread = new Thread(this);
 			gameEngine = new GameEngine();
+		}
+		catch (BindException e1)
+		{
+			JOptionPane.showMessageDialog(null,
+					"You can only start once instance of the server at a time!", "Error", JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
 		}
 		catch (IOException e)
 		{
