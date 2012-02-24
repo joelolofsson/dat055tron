@@ -72,13 +72,17 @@ public class NetworkClient extends Observable implements Observer
 			DatagramPacket packet = new DatagramPacket(data, data.length, IP, 1339 + netWorkClientReceiverTCP.getClientId());
 			byte[] receiptData = new byte[1024];
 			DatagramPacket receipt = new DatagramPacket(receiptData, receiptData.length);
+			//This loop will run until an OK receipt has been returned from the receiver.
 			while(true)
 			{
 				try
 				{
+					//Try to send datagram packet
 					datagramSocketSend.send(packet);
+					//Try to receive the receipt
 					datagramSocketSend.receive(receipt);
 					String string = new String(receipt.getData(), 0, receipt.getLength());
+					//End the loop if the receipt was valid.
 					if(string.matches("OK"))
 					{
 						break;

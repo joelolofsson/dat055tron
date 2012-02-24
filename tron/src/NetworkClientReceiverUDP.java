@@ -42,9 +42,11 @@ public class NetworkClientReceiverUDP extends Observable implements Runnable
 			try 
 			{
 				socket.receive(packet);
+				//Create a receipt-package and send it to the original sender
 				byte[] data = new String("OK").getBytes();					
 				DatagramPacket sendPacket = new DatagramPacket(data, data.length, packet.getAddress(), packet.getPort());
-				socket.send(sendPacket);//Sends receipt
+				socket.send(sendPacket);
+				//Process data from the received package
 				String tempstring = new String(packet.getData(), 0, packet.getLength());
 				String[] tempstring2 = tempstring.split(",");
 				for(int i = 0, j = 0; i < tempstring2.length; j = j + 1, i = i + 2)
