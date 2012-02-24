@@ -52,11 +52,12 @@ public class ServerClientHandlerUDP extends Observable implements Runnable
 					String tempstring = new String(packet.getData(), 0, packet.getLength());					
 					int[] send = {id, new Integer(tempstring).intValue()};
 					setChanged();
-					notifyObservers(send);					
+					notifyObservers(send);	
+					//Create a receipt-package and send it to the original sender
 					DatagramSocket sendSocket = new DatagramSocket();
 					byte[] data = new String("OK").getBytes();					
 					DatagramPacket sendPacket = new DatagramPacket(data, data.length, packet.getAddress(), packet.getPort());
-					sendSocket.send(sendPacket);//Sends receipt
+					sendSocket.send(sendPacket);
 				}
 				catch (IOException e)
 				{
