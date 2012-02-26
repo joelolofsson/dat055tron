@@ -44,6 +44,7 @@ public class ServerClientSenderUDP extends Observable
 	 */
 	public void send(LinkedList<Point> pointList)
 	{
+		int i = 0;
 		String coordsString = "";
 		for(Point p : pointList)
 		{
@@ -54,7 +55,7 @@ public class ServerClientSenderUDP extends Observable
 		byte[] receiptData = new byte[1024];
 		DatagramPacket receipt = new DatagramPacket(receiptData, receiptData.length);
 		//This loop will run until an OK receipt has been returned from the receiver.
-		while(true)
+		while(i < 10)
 		{
 			try
 			{
@@ -72,7 +73,16 @@ public class ServerClientSenderUDP extends Observable
 			catch (SocketException e1)
 			{		
 				socket.disconnect();
+				break; 	
 			}
+
+			catch (SocketTimeoutException e2)
+			{
+				i++;
+				//Try to receive the receipt 10 times. If no receipt is received we assume the
+				//client has disconnected.
+			}
+		
 			catch (IOException e)
 			{
 				e.printStackTrace();
