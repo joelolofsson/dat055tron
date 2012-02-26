@@ -126,7 +126,6 @@ public class JoinWindow extends JDialog implements ActionListener
 		nickNameString = nickNameTextField.getText();
 		if(isOK)
 		{
-			System.out.println(ipadress + " : " + portInt + " : " + nickNameString);
 			dispose();
 			networkClient = new NetworkClient(ipadress, portInt, nickNameString, key);
 		}
