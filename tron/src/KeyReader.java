@@ -11,10 +11,10 @@ import java.util.Observable;
  */
 public class KeyReader extends Observable implements KeyListener 
 {
-	private final int UP = 1;
+	private final int UP = 1;	
 	private final int RIGHT = 2;
 	private final int DOWN = 3;
-	private final int LEFT = 4;
+	private final int LEFT = 4;	
 	private int direction;
 	
 	/**
@@ -49,7 +49,12 @@ public class KeyReader extends Observable implements KeyListener
 			notifyObservers(direction);
 		}
 	}
-	
+	/*
+	 * Is not used
+	 */
 	public void keyReleased(KeyEvent arg0){}
+	/*
+	 * Is not used
+	 */
 	public void keyTyped(KeyEvent arg0){}
 }
