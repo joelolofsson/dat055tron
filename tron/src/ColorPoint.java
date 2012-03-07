@@ -18,9 +18,9 @@ public class ColorPoint extends Point
 	 * Sets the x and y position in Point by a (super)-call
 	 * and the color.
 	 * 
-	 * @param int x 
-	 * @param int y
-	 * @param Color color
+	 * @param x X-coordinate
+	 * @param y Y-coordinte
+	 * @param color Color of the coordinate.
 	 */
 	public ColorPoint(int x, int y, Color color)
 	{

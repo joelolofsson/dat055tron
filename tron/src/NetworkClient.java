@@ -30,10 +30,10 @@ public class NetworkClient extends Observable implements Observer
 	/**
 	 * Default constructor for NetworkClient
 	 * 
-	 * @param InetAddress IP
-	 * @param int port
-	 * @param String nickname
-	 * @param KeyReader key
+	 * @param IP	IPadress to the server
+	 * @param port	Port for server
+	 * @param nickname	Nickname of player
+	 * @param key	The keyreader which networkclient will observ.
 	 */
 	public NetworkClient(InetAddress IP, int port, String nickname, KeyReader key)
 	{
@@ -66,8 +66,8 @@ public class NetworkClient extends Observable implements Observer
 	 * 100ms it will resend the direction (and do this until a receipt is received).
 	 * 
 	 * 
-	 * @param Observable o
-	 * @param Object arg
+	 * @param o Class who called notifyObservers
+	 * @param arg The object passed from the Object o
 	 */
 	public void update(Observable o, Object arg)
 	{	

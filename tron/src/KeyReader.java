@@ -20,7 +20,7 @@ public class KeyReader extends Observable implements KeyListener
 	/**
 	 * Handles pressed keys and notify observers
 	 * 
-	 * @param KeyEvent e
+	 * @param e The pressed key
 	 */
 	public void keyPressed(KeyEvent e)
 	{

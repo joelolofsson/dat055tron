@@ -41,8 +41,8 @@ public class JoinWindow extends JDialog implements ActionListener
 	/**
 	 * Default constructor for JoinWindow
 	 * 
-	 * @param NetworkClient networkClient	Handles communication with the server
-	 * @param KeyReader key		Is passed as an parameter when creating the NetworkClient
+	 * @param networkClient	Handles communication with the server
+	 * @param key		Is passed as an parameter when creating the NetworkClient
 	 */
 	public JoinWindow(NetworkClient networkClient, KeyReader key)
 	{
@@ -89,7 +89,7 @@ public class JoinWindow extends JDialog implements ActionListener
 	 * Handles actions from pressed buttons 
 	 * and takes care of the user input data
 	 * 
-	 * @param ActionEvent e
+	 * @param e
 	 */
 	public void actionPerformed(ActionEvent e)
 	{

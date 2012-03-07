@@ -21,7 +21,7 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable
 
         /**
          * Default constructor for NetworkClientReceiverTCP
-         * @param Socket socket
+         * @param socket
          */
         public NetworkClientReceiverTCP(Socket socket)
         {
@@ -112,7 +112,7 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable
         
         /**
          * Set the id of a specified client
-         * @param int clientId
+         * @param clientId
          */
         public void setClientId(int clientId)
         {
