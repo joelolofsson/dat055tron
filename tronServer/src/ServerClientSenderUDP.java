@@ -9,9 +9,14 @@ import java.util.LinkedList;
 import java.util.Observable;
 
 /**
+ * Send coordinates via datagram to client.
+ * Will resend the coordinate until a receipt is received from the client.
+ * If no receipt is received within 10 attempts to send, we assume the user has
+ * dissconnected.
+ * 
  * @author Group 2
  *
- * Send coordinates to client via UDP
+ * 
  */
 public class ServerClientSenderUDP extends Observable 
 {
@@ -21,7 +26,7 @@ public class ServerClientSenderUDP extends Observable
 	
 	/**
 	 * Default constructor for ServerClientSenderUDP
-	 * @param InetAddress toAddr
+	 * @param toAddr The adress to the client which will receive the datagram.
 	 */
 	public ServerClientSenderUDP(InetAddress toAddr)
 	{
@@ -40,7 +45,7 @@ public class ServerClientSenderUDP extends Observable
 	/**
 	 * Send coordinates to client
 	 * 
-	 * @param LinkedList<Point> pointList
+	 * @param  pointList List with the new coordinates.
 	 */
 	public void send(LinkedList<Point> pointList)
 	{

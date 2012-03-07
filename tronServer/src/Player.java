@@ -1,10 +1,11 @@
 import java.awt.Point;
 
 /**
+ * Class that creates and handles the player-objects.
  * 
  * @author Group 2
  * 
- * Class that creates and handles the player-objects.
+ * 
  */
 public class Player
 {
@@ -25,10 +26,10 @@ public class Player
 	/**
 	 * Default constructor for Players
 	 * 
-	 * @param int id
-	 * @param String name
-	 * @param int course
-	 * @param Point point
+	 * @param id	Player id
+	 * @param name	Nickname of the player
+	 * @param course	Players current course
+	 * @param point	Players current x and y coordinate.
 	 */
 	public Player(int id, String name, int course, Point point)
 	{
@@ -44,7 +45,7 @@ public class Player
 	* 
     * Returns a players id
 	* 
-	* @return int
+	* @return id
 	*/
 	public int getId()
 	{
@@ -55,7 +56,7 @@ public class Player
 	* 
     * Returns a players course
 	* 
-	* @return int
+	* @return course
 	*/
 	public int getCourse()
 	{
@@ -64,7 +65,7 @@ public class Player
 	
 	/**
 	* 
-    * Returns a players cordinates in a point object
+    * Returns a players coordinates in a point object
 	* 
 	* @return Point
 	*/
@@ -75,7 +76,7 @@ public class Player
 	
 	/**
 	* 
-    * Resets a players cordinates
+    * Resets a players cordinates to initial values.
 	* 
 	* 
 	*/
@@ -89,7 +90,7 @@ public class Player
 	* 
     * Returns a players name
 	* 
-	* @return String
+	* @return name
 	*/
 	public String getName()
 	{
@@ -100,7 +101,7 @@ public class Player
 	* 
     * Returns a players score
 	* 
-	* @return int
+	* @return score
 	*/
 	public int getScore()
 	{
@@ -109,9 +110,13 @@ public class Player
 	
 	/**
 	* 
-    * Sets a players course
+    * Sets a players course.
+    * If the absolute value for current course and new course is 2, 
+    * the course will not be changed.
+    * Doing this would be going in apposit direction and the player would 
+    * automatically die.   
 	* 
-	* @param int course
+	* @param course The new course.
 	*/
 	public void setCourse(int course)
 	{
@@ -127,7 +132,7 @@ public class Player
 	* 
     * Sets a players score
 	* 
-	* @param int score
+	* @param score
 	*/
 	public void setScore(int score)
 	{
@@ -139,7 +144,7 @@ public class Player
 	* 
     * Returns a player object alive status
 	* 
-	* @return int
+	* @return alive Holds the current status of the player is dead or alive.
 	*/
 	public boolean isAlive()
 	{
@@ -150,7 +155,7 @@ public class Player
 	* 
     * Sets a players alive status
 	* 
-	* @param boolean alive
+	* @param alive The new status of the player.
 	*/
 	public void setAlive(boolean alive)
 	{
@@ -159,7 +164,8 @@ public class Player
 
 	
 	/**
-	 * Moves player one point
+	 * Calculates the next coordinate depending of current coordinate
+	 * and the user course.
 	 */
 	public void move()
 	{

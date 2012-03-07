@@ -10,9 +10,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 /**
+ * Creates a GUI for server application.
+ * It will create a NetworkServer and set this to accept new connections.
+ * The gui will be updates when players connect.
+ * When hitting "Start"-button a start-method in NetworkServer will be called.
+ * 
  * @author Group 2
  * 
- * Creates a GUI for server application
+ * 
  * 
  */
 
@@ -25,7 +30,8 @@ public class ServerGui extends JFrame implements ActionListener
 	public static JLabel[] players = new JLabel[4];
 	
 	/**
-	 * Default constructor for CourseID
+	 * Default constructor for ServerGui.
+	 * Sets the layou, creates the networkserver and set this to accept new connections.
 	 * 
 	 */
 	public ServerGui()
@@ -65,7 +71,7 @@ public class ServerGui extends JFrame implements ActionListener
 	}
 	
 	/**
-	 * Handles actions from pressed buttons
+	 * Handles actions when "Start" is pressed.
 	 * 
 	 * @param ActionEvent e
 	 */

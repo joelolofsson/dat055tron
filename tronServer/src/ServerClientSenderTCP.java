@@ -6,9 +6,10 @@ import java.net.SocketException;
 import java.util.Observable;
 
 /**
+ * Sends name and score to client via TCP.
  * @author Group 2
  * 
- * Sends name and score to client via TCP
+ * 
  */
 
 public class ServerClientSenderTCP extends Observable
@@ -18,7 +19,7 @@ public class ServerClientSenderTCP extends Observable
 	
 	/**
 	 * Default constructor for ServerClientSender
-	 * @param Socket s
+	 * @param s The socket for tcp communication.
 	 */
 	public ServerClientSenderTCP(Socket s)
 	{
@@ -37,8 +38,9 @@ public class ServerClientSenderTCP extends Observable
 	/**
 	 * Sends name and score to client
 	 * 
-	 * @param int msgType
-	 * @param String data
+	 * @param  msgType Is used as an id so the client know what kind of
+	 * information is comming.
+	 * @param  data	Either name or score.
 	 */
 	public void send(int msgType, String data)
 	{

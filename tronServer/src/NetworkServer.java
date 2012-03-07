@@ -6,10 +6,13 @@ import java.util.Observable;
 
 import javax.swing.JOptionPane;
 /**
- * @author Group 2
+ * Allows new connections to the server. When a user connects this will be
+ * added as a player and ServerClient-Classes (four) will be created to handle
+ * communations in different ways.
  * 
- * Creates instances of nessecary classes to connect and 
  * maintain a connetion to the network
+ * @author Group 2
+ *
  */
 
 public class NetworkServer extends Observable implements Runnable 
@@ -22,7 +25,15 @@ public class NetworkServer extends Observable implements Runnable
 	private int numberOfPlayers = 0;
 	
 	/**
-	 * Default constructor for NetworkServer
+	 * Default constructor for NetworkServer. 
+	 * Sets up the sersocket and and new thread where new connections will be accepted.
+	 * If there is an error while setting the socket we assume the user already has 
+	 * a server running on the acctual port, and therefor we send an error message
+	 * and will terminate this new instance of the server.
+	 * 
+	 * Also creates a GameEngine.
+	 * 
+	 * 
 	 */
 	public NetworkServer()
 	{	
@@ -44,6 +55,12 @@ public class NetworkServer extends Observable implements Runnable
 		}
 	}
 	
+	/**
+	 * When the thread is started we will listen for new connections.
+	 * When a user has connected a player will be added and ServerClient*-classes created)
+	 * 
+	 * 
+	 */
 	public void run()
 	{
 		while(numberOfPlayers < 4)

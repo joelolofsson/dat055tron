@@ -4,9 +4,11 @@ import java.net.Socket;
 import java.util.Observable;
 
 /**
+ * Handles the Indata (name) from a client via TCP
+ * 
  * @author Group 2
  * 
- * Handles the Indata from a client via TCP
+ * 
  */
 public class ServerClientHandlerTCP extends Observable
 {
@@ -16,8 +18,8 @@ public class ServerClientHandlerTCP extends Observable
 	/**
 	 * Default constructor for ServerClientHandler
 	 * 
-	 * @param Socket s
-	 * @param int id
+	 * @param s The socket for TCP communication.
+	 * @param id THe id for the current player.
 	 */
 	public ServerClientHandlerTCP(Socket s, int id)
 	{
@@ -34,8 +36,9 @@ public class ServerClientHandlerTCP extends Observable
 	
 	/**
 	 * Returns the name of a connected player
-	 * 
-	 * @return String
+	 * If the name is blank (player has not set his name when connecting)
+	 * the name "TheStig" will be set.
+	 * @return Name of the player
 	 */
 	public String namn()
 	{
@@ -58,7 +61,7 @@ public class ServerClientHandlerTCP extends Observable
 	/**
 	 * Returns the id for the connected player
 	 * 
-	 * @return int
+	 * @return id
 	 */
 	public int getID()
 	{
