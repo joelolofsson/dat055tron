@@ -21,9 +21,12 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 /**	
+ *This is the main window in this application.
+ *It will create and place out all the menus, jpanels and the gamewindow.
+ *
  *@author Group 2
  * 
- * 	Handles the main GUI and menu. 
+ * 	 
  * 
  */
 public class Tron extends JFrame implements ActionListener
@@ -45,7 +48,7 @@ public class Tron extends JFrame implements ActionListener
 	private KeyReader key = new KeyReader();
 	
 	/**
-	 * Default constructor for Tron
+	 * Default constructor for Tron (set the layout)
 	 * 
 	 */
 	public Tron() 
@@ -120,7 +123,7 @@ public class Tron extends JFrame implements ActionListener
 	}
 	
 	/**
-	 * Set text in the textfield Connected
+	 * Set text in the south textfield Connected
 	 * @param String IP
 	 * @return void
 	 */
@@ -130,7 +133,7 @@ public class Tron extends JFrame implements ActionListener
 	}
 	
 	/**
-	 * Action performed
+	 * Action performed (for menu items)
 	 * 
 	 * @param ActionEvent e
 	 * @return void

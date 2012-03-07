@@ -3,10 +3,11 @@ import java.awt.event.KeyListener;
 import java.util.Observable;
 
 /** 
+ * Reads the keyboard input, is the user has pressed any of the four arrow keys
+ * it will update it's observer with the new direction.
+ * 
  * @author Group 2
- * Reads the key input from arrow keys and updates observers
- * 
- * 
+ *  
  */
 public class KeyReader extends Observable implements KeyListener 
 {

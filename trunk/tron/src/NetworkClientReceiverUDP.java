@@ -5,9 +5,12 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.Observable;
 /**
+ *Handles in data with the protocol UDP
+ *
+ *
  *@author Group 2 
  * 
- * Handles in data with the protocol UDP
+ *
  */
 
 public class NetworkClientReceiverUDP extends Observable implements Runnable
@@ -30,8 +33,10 @@ public class NetworkClientReceiverUDP extends Observable implements Runnable
 	}
 	
 	/**
-	 * Converts recieved datagram to text and x- y-coordinates
-	 * Notifies listeners in the class GameWindow
+	 * Receives a datagram with one or multiple x and y coordinates.
+	 * It will then convert these to colorpoint, where the color depends of the
+	 * coordinates index in the datagram.
+	 * When a new colorpoint is created it will notifyObservers() (gamewindow)
 	 */
 	public void run()
 	{

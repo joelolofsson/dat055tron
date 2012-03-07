@@ -9,9 +9,11 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
+ * Creates and sends event to server
+ * 
  * @author Group 2
  * 
- * Creates and sends event to server
+ * 
  */
 public class NetworkClient extends Observable implements Observer
 {
@@ -59,7 +61,10 @@ public class NetworkClient extends Observable implements Observer
 	}
 	
 	/**
-	 * Sends data to server via UDP
+	 * Sends the new direction to the server via UDP.
+	 * It will wait for a receipt from the server, if no receipt is received within
+	 * 100ms it will resend the direction (and do this until a receipt is received).
+	 * 
 	 * 
 	 * @param Observable o
 	 * @param Object arg

@@ -14,9 +14,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**	
- * 	@author Group 2
+ * Creates a dialog when a user wants to join game.
+ * It will ask for ip, port and nickname and then create a  
+ * NetworkClient which will handle the connection to the server.
  * 
- * Handles the JoinWindow GUI and creates NetworkClients for connection to server.
+ * @author Group 2
+ * 
  * 
  */
 public class JoinWindow extends JDialog implements ActionListener 
@@ -38,8 +41,8 @@ public class JoinWindow extends JDialog implements ActionListener
 	/**
 	 * Default constructor for JoinWindow
 	 * 
-	 * @param NetworkClient networkClient
-	 * @param KeyReader key
+	 * @param NetworkClient networkClient	Handles communication with the server
+	 * @param KeyReader key		Is passed as an parameter when creating the NetworkClient
 	 */
 	public JoinWindow(NetworkClient networkClient, KeyReader key)
 	{
@@ -84,7 +87,8 @@ public class JoinWindow extends JDialog implements ActionListener
 
 	/**
 	 * Handles actions from pressed buttons 
-	 * and takes care of the user inputdata
+	 * and takes care of the user input data
+	 * 
 	 * @param ActionEvent e
 	 */
 	public void actionPerformed(ActionEvent e)
@@ -99,7 +103,12 @@ public class JoinWindow extends JDialog implements ActionListener
 			dispose();
 		}
 	}
-
+	/**
+	 * This method is called then a user has either pressed the "connect"-button
+	 * or has pressed enter in the nickname-field.
+	 * This is where the input data will be saved and the NetworkClient created.
+	 * 
+	 */
 	public void connectPressed()
 	{
 		boolean isOK = true;
