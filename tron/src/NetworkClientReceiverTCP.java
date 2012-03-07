@@ -6,9 +6,11 @@ import java.net.SocketException;
 import java.util.Observable;
 
 /**
+ * Receives indata in form of player name and score from server with TCP
+ * 
  * @author Group 2
  * 
- * Handles Indata from server with TCP
+ * 
  * 
  */
 public class NetworkClientReceiverTCP extends Observable implements Runnable 
@@ -34,7 +36,9 @@ public class NetworkClientReceiverTCP extends Observable implements Runnable
         }
         
         /**
-         * Receives and handle playername and score
+         * Receives player name and score and updates this info in the 
+         * list with players in the main window.
+         * 
          */
         public void run()
         {

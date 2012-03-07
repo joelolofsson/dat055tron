@@ -7,9 +7,12 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 /**	
+ * 	Creates the actual panel where the game is taking place.
+ * 	Receives colorpoints, saves these in a list and then repaint the whole list.
+ * 	
  * 	@author Group 2
  *  
- *  Updates the active gamewindow
+ *  
  */
 public class GameWindow extends JPanel implements Observer
 {
@@ -20,7 +23,8 @@ public class GameWindow extends JPanel implements Observer
 	/**
 	 * Default constructor for GameWindow
 	 * 
-	 * @param KeyReader key
+	 * @param KeyReader key  - I used to add the key as a listener for gamewindow
+	 * 
 	 */
 	public GameWindow(KeyReader key)
 	{
@@ -31,7 +35,8 @@ public class GameWindow extends JPanel implements Observer
 	}
 
 	/**
-	 * Draw all points from pointlist
+	 * Draw all points from the list with saves colorpoints
+	 * and updates the list with the one from a temporary list
 	 * 
 	 * @param Graphics g
 	 */
@@ -59,7 +64,9 @@ public class GameWindow extends JPanel implements Observer
 	}
 
 	/**
-	 * Handles new point from NetworkClientReceiverUDP
+	 * Is called when NetworkClientReceiverUDP sets notifyObserver()
+	 * Adds the new point to a temporarylist, or clears the list if
+	 * a new game will begin.
 	 * 
 	 * @param Observable o
 	 * @param Object arg
