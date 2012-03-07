@@ -3,7 +3,7 @@ import java.awt.event.KeyListener;
 import java.util.Observable;
 
 /** 
- * Reads the keyboard input, is the user has pressed any of the four arrow keys
+ * Reads the keyboard input, if the user has pressed any of the four arrow keys
  * it will update it's observer (NetworkClient) with the new direction.
  * 
  * @author Group 2
