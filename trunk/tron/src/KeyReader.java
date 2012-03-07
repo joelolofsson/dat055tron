@@ -4,7 +4,7 @@ import java.util.Observable;
 
 /** 
  * Reads the keyboard input, is the user has pressed any of the four arrow keys
- * it will update it's observer with the new direction.
+ * it will update it's observer (NetworkClient) with the new direction.
  * 
  * @author Group 2
  *  
