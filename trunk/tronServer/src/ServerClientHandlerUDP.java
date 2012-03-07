@@ -4,9 +4,12 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.Observable;
 /**
+ * Receives a datagram containing player direction from the client.
+ * NotifyObservers with the new value.
+ * When a datagram is received a receipt will be sent to the client.
  * @author Group 2
  * 
- * Handles the Indata from a client via UDP
+ * 
  */
 
 public class ServerClientHandlerUDP extends Observable implements Runnable
@@ -19,8 +22,7 @@ public class ServerClientHandlerUDP extends Observable implements Runnable
 	/**
 	 * Default constructor for ServerClientHandler
 	 * 
-	 * @param Socket s
-	 * @param int id
+	 * @param id player id.
 	 */
 	public ServerClientHandlerUDP(int id)
 	{
@@ -39,7 +41,7 @@ public class ServerClientHandlerUDP extends Observable implements Runnable
 	}
 	
 	/**
-	 * Notifies observers if a event is recieved
+	 * Notifies observers if a new direction is received. is recieved
 	 * 
 	 */
 	public void run()

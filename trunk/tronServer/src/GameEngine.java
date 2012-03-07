@@ -9,10 +9,13 @@ import java.util.Observer;
 import javax.swing.Timer;
 
 /**
+ * Handles all gamelogic in the game such as adding players,
+ * clearing game, make sure new coordinates is ok and sends information to the clients.
+ * 
  * 
  * @author Group 2
  * 
- * Handles all gamelogic
+ * 
  */
 public class GameEngine implements ActionListener, Observer
 {	
@@ -26,6 +29,8 @@ public class GameEngine implements ActionListener, Observer
 	
 	/**
 	 * Default constructor for GameEngine
+	 * Sets up a list with players, a list with different ServerclientSenders,
+	 * a list with (all used) coordinates and sets the timer (for the speed of the game).
 	 */
 	public GameEngine()
 	{
@@ -38,11 +43,9 @@ public class GameEngine implements ActionListener, Observer
 	
 	/**
 	 * Sets course for each player
-	 * @param Observable o
-	 * @param Object arg
-	 * arg is int[] 
-	 * int[0] = Player ID
-	 * int[1] = Player course
+	 * @param o Class who called notifyObservers
+	 * @param arg	Object passed from the class o.  In this case an int[].
+	 * int[0] = Player ID, int[1] = Player course
 	 */
 	public void update(Observable o, Object arg)
 	{
@@ -56,12 +59,12 @@ public class GameEngine implements ActionListener, Observer
 	
 	/**
 	 * 
-	 * Creates and add player to playerlist.  
+	 * Creates and add player to playerlist with its different serverclient*-classes. 
 	 * 
-	 * @param ServerClientHandlerTCP serverClientHandlerTCP
-	 * @param ServerClientHandlerUDP serverClientHandlerUDP
-	 * @param ServerClientSenderUDP serverClientSenderUDP
-	 * @param ServerClientSenderTCP serverClientSenderTCP
+	 * @param serverClientHandlerTCP
+	 * @param serverClientHandlerUDP
+	 * @param serverClientSenderUDP
+	 * @param serverClientSenderTCP
 	 */
 	public void addPlayer(ServerClientHandlerTCP serverClientHandlerTCP, ServerClientHandlerUDP serverClientHandlerUDP,
 			ServerClientSenderUDP serverClientSenderUDP, ServerClientSenderTCP serverClientSenderTCP)
@@ -84,7 +87,12 @@ public class GameEngine implements ActionListener, Observer
 	}
 	
 	/**
-	 * Empty cords, reset player start course and sleeps for 5 sec
+	 * Is called when a game round has ended and a new game will start.
+	 * The list with coordinates will be cleared, players will be
+	 * set to initial start values and set as alive.
+	 * It will sleep for 5 sec and then the game starts again.
+	 * 
+	 * 
 	 */
 	private void clearGame()
 	{
@@ -126,7 +134,7 @@ public class GameEngine implements ActionListener, Observer
 	}
 	
 	/**
-	 * Updates cords, if a active game
+	 * Updates coordinates every time the timer has reached is value, if a active game
 	 * if not a active game, send score to clients and reset game.
 	 */
 	public void actionPerformed(ActionEvent e)
@@ -165,9 +173,10 @@ public class GameEngine implements ActionListener, Observer
 	
 	/**
 	 * Checks if a players cordinate already exists in the list
-	 * if returned true, a crash has been detected
-	 * @param Point p
-	 * @return boolean
+	 * 
+	 * @param p new (calculated) coordinate
+	 * @return true if this is a crash (coordinate has aleady been used), false if not.
+	 * 
 	 */
 	private boolean checkCrash(Point p)
 	{
@@ -185,7 +194,7 @@ public class GameEngine implements ActionListener, Observer
 	/**
 	 * Starts the timer which starts the game.
 	 * 
-	 * @param int numberOfPlayers
+	 * @param numberOfPlayers Number of players in the game.
 	 */
 	public void start(int numberOfPlayers)
 	{
