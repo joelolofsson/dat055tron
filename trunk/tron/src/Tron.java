@@ -124,8 +124,7 @@ public class Tron extends JFrame implements ActionListener
 	
 	/**
 	 * Set text in the south textfield Connected
-	 * @param String IP
-	 * @return void
+	 * @param IP
 	 */
 	public static void setConnected(String IP)
 	{
@@ -135,8 +134,7 @@ public class Tron extends JFrame implements ActionListener
 	/**
 	 * Action performed (for menu items)
 	 * 
-	 * @param ActionEvent e
-	 * @return void
+	 * @param e	The actionevent
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
@@ -182,7 +180,7 @@ public class Tron extends JFrame implements ActionListener
 	/**
 	 * Creates a Tron GUI
 	 * 
-	 * @param String[] arg
+	 * @param arg
 	 */
 	public static void main(String[] arg)
 	{

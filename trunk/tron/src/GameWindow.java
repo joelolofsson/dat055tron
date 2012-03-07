@@ -23,7 +23,7 @@ public class GameWindow extends JPanel implements Observer
 	/**
 	 * Default constructor for GameWindow
 	 * 
-	 * @param KeyReader key  - I used to add the key as a listener for gamewindow
+	 * @param key  - I used to add the key as a listener for gamewindow
 	 * 
 	 */
 	public GameWindow(KeyReader key)
@@ -38,7 +38,7 @@ public class GameWindow extends JPanel implements Observer
 	 * Draw all points from the list with saves colorpoints
 	 * and updates the list with the one from a temporary list
 	 * 
-	 * @param Graphics g
+	 * @param g
 	 */
 	public void paintComponent(Graphics g)
 	{
@@ -68,8 +68,8 @@ public class GameWindow extends JPanel implements Observer
 	 * Adds the new point to a temporarylist, or clears the list if
 	 * a new game will begin.
 	 * 
-	 * @param Observable o
-	 * @param Object arg
+	 * @param o Class who called notifyObservers
+	 * @param arg Object from o.
 	 */
 	public void update(Observable o, Object arg)
 	{

@@ -21,7 +21,7 @@ public class NetworkClientReceiverUDP extends Observable implements Runnable
 	
     /**
      * Default constructor for NetworkClientReceiverUDP
-     * @param DatagramSocket socket
+     * @param socket
      */
 	public NetworkClientReceiverUDP(DatagramSocket socket)
 	{
