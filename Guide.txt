@@ -1,0 +1,1 @@
+http://www.ankara-gtug.org/2011/06/04/how-to-create-google-code-project-and-synchronize-files-with-svn-repository-using-subclipse/
